@@ -17,9 +17,9 @@ export class Login{
   email: any;
   password: any;
   constructor(public loadingCtrl: LoadingController,public navCtrl: NavController, public navParams: NavParams, public platform : Platform, public actionsheetCtrl: ActionSheetController,public alertCtrl: AlertController)
-   {
+  {
 
-   }
+  }
  
   ionViewDidLoad() {
     console.log('ionViewDidLoad Login');
@@ -32,21 +32,36 @@ export class Login{
       });
       loader.present();
 
-   firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(ok => {
-            
-              this.navCtrl.push(TabsPage);           
-        },
-        error => {
-          let alert = this.alertCtrl.create({
-          title: 'ERROR!',
-          subTitle: 'Usuario y/o contraseña incorrectas!',
-          buttons: ['OK']
-          });
-          alert.present();        
-        }
+
+  if(this.email == null || this.password == null){
+    let alert = this.alertCtrl.create({
+    title: 'ADVERTENCIA!',
+    subTitle: 'Debe completar todos los campos!',
+    buttons: ['OK']
+    });
+    alert.present();
+  }
+  else{
+    firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(ok => {
+    this.navCtrl.push(TabsPage);           
+    },
+    error => {
+    let alert = this.alertCtrl.create({
+    title: 'ERROR!',
+    subTitle: 'Usuario y/o contraseña incorrectas!',
+    buttons: ['OK']
+    });
+    alert.present();        
+    }
     );
   }
+ 
+  }
   
+  sinUsuario(){
+    this.email = "";
+    this.password = "";
+  }
   administrador(){
     this.email = "administrador@administrador.com";
     this.password = "administrador";
@@ -73,10 +88,31 @@ export class Login{
   }
   
   google(){
-    const loading = this.loadingCtrl.create({
-    content: 'Espere...'
+  var provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider).then(result=> {
+  // This gives you a Google Access Token. You can use it to access the Google API.
+  var token = result.credential.accessToken;
+  // The signed-in user info.
+  var user = result.user;
+  // firebase.auth().signInWithRedirect(provider);
+
+  // //Loading
+  // const loading = this.loadingCtrl.create({
+  // content: 'Espere...'
+  // });
+  // loading.present();
+
+  this.navCtrl.push(TabsPage);           
+
+  // ...
+  }).catch( error => {
+      let alert = this.alertCtrl.create({
+      title: 'ERROR!',
+      subTitle: 'Usuario y/o contraseña incorrectas!',
+      buttons: ['OK']
+      });
+      alert.present();        
     });
-    loading.present();
 
   }
 }

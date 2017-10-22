@@ -76,16 +76,30 @@ var Login = (function () {
             duration: 2600
         });
         loader.present();
-        __WEBPACK_IMPORTED_MODULE_3_firebase__["auth"]().signInWithEmailAndPassword(this.email, this.password).then(function (ok) {
-            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__tabs_tabs__["a" /* TabsPage */]);
-        }, function (error) {
-            var alert = _this.alertCtrl.create({
-                title: 'ERROR!',
-                subTitle: 'Usuario y/o contraseña incorrectas!',
+        if (this.email == null || this.password == null) {
+            var alert = this.alertCtrl.create({
+                title: 'ADVERTENCIA!',
+                subTitle: 'Debe completar todos los campos!',
                 buttons: ['OK']
             });
             alert.present();
-        });
+        }
+        else {
+            __WEBPACK_IMPORTED_MODULE_3_firebase__["auth"]().signInWithEmailAndPassword(this.email, this.password).then(function (ok) {
+                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__tabs_tabs__["a" /* TabsPage */]);
+            }, function (error) {
+                var alert = _this.alertCtrl.create({
+                    title: 'ERROR!',
+                    subTitle: 'Usuario y/o contraseña incorrectas!',
+                    buttons: ['OK']
+                });
+                alert.present();
+            });
+        }
+    };
+    Login.prototype.sinUsuario = function () {
+        this.email = "";
+        this.password = "";
     };
     Login.prototype.administrador = function () {
         this.email = "administrador@administrador.com";
@@ -108,16 +122,35 @@ var Login = (function () {
     Login.prototype.github = function () {
     };
     Login.prototype.google = function () {
-        var loading = this.loadingCtrl.create({
-            content: 'Espere...'
+        var _this = this;
+        var provider = new __WEBPACK_IMPORTED_MODULE_3_firebase__["auth"].GoogleAuthProvider();
+        __WEBPACK_IMPORTED_MODULE_3_firebase__["auth"]().signInWithPopup(provider).then(function (result) {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            var token = result.credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            // firebase.auth().signInWithRedirect(provider);
+            // //Loading
+            // const loading = this.loadingCtrl.create({
+            // content: 'Espere...'
+            // });
+            // loading.present();
+            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__tabs_tabs__["a" /* TabsPage */]);
+            // ...
+        }).catch(function (error) {
+            var alert = _this.alertCtrl.create({
+                title: 'ERROR!',
+                subTitle: 'Usuario y/o contraseña incorrectas!',
+                buttons: ['OK']
+            });
+            alert.present();
         });
-        loading.present();
     };
     return Login;
 }());
 Login = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-login',template:/*ion-inline-start:"C:\IONIC2SP\TP_PPS_2C_2017\src\pages\login\login.html"*/'<html >\n\n<head>\n\n  <meta charset="UTF-8">\n\n  <title>Ingrese</title>\n\n  \n\n  \n\n  \n\n  \n\n</head>\n\n\n\n<body>\n\n  <div class="loginpanel">\n\n  <div class="txt">\n\n    <input id="user" [(ngModel)]="email" name="email" type="text" placeholder="Correo" />\n\n    <label for="user" class="entypo-user"></label>\n\n  </div>\n\n  <div class="txt">\n\n    <input id="pwd"  [(ngModel)]="password" name="password" type="password" placeholder="Contraseña" />\n\n    <label for="pwd" class="entypo-lock"></label>\n\n  </div>\n\n  <div class="buttons">\n\n    <input type="button" (click)="login()" value="INGRESAR" />\n\n      <input type="button" value="Registrarse"/>\n\n  </div>\n\n\n\n\n\n<div class="hr">\n\n    <div></div>\n\n    <div>O con</div>\n\n    <div></div>\n\n  </div>\n\n    <div class="form-group">\n\n  <select class="form-control" id="sel1">\n\n    <option>--Seleccione un usuario específico--</option>\n\n    <option (click)="administrador()">Administrador</option>\n\n    <option (click)="profesor()">Profesor</option>\n\n    <option (click)="alumno()">Alumno</option>\n\n    <option (click)="administrativo()">Administrativo</option>\n\n  </select>\n\n</div>\n\n\n\n  <div  class="social">\n\n   <input style="background-color: blue" type="button" (click)="facebook()"  value="FACEBOOK" />\n\n   <input style="background-color: red" type="button" (click)="google()" value="GOOGLE+" />\n\n   <input style="background-color: black" type="button" (click)="github()" value="GITHUB" />\n\n  </div>\n\n\n\n\n\n</div> \n\n\n\n\n\n\n\n  <script src=\'http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js\'></script>\n\n\n\n  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">\n\n  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>\n\n  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>\n\n</body>\n\n\n\n\n\n</html>\n\n\n\n'/*ion-inline-end:"C:\IONIC2SP\TP_PPS_2C_2017\src\pages\login\login.html"*/
+        selector: 'page-login',template:/*ion-inline-start:"C:\IONIC2SP\TP_PPS_2C_2017\src\pages\login\login.html"*/'<html >\n\n<head>\n\n  <meta charset="UTF-8">\n\n  <title>Ingrese</title>    \n\n</head>\n\n\n\n<body>\n\n  <div class="loginpanel">\n\n  <div class="txt">\n\n    <input id="user" [(ngModel)]="email" name="email" type="text" placeholder="Correo" />\n\n    <label for="user" class="entypo-user"></label>\n\n  </div>\n\n  <div class="txt">\n\n    <input id="pwd"  [(ngModel)]="password" name="password" type="password" placeholder="Contraseña" />\n\n    <label for="pwd" class="entypo-lock"></label>\n\n  </div>\n\n  <div class="buttons">\n\n    <input type="button" (click)="login()" value="INGRESAR" />\n\n      <input type="button" value="Registrarse"/>\n\n  </div>\n\n\n\n\n\n<div class="hr">\n\n    <div></div>\n\n    <div>O con</div>\n\n    <div></div>\n\n  </div>\n\n    <div class="form-group">\n\n    <select class="form-control">\n\n    <option (click)="sinUsuario()">--Seleccione un usuario específico--</option>\n\n    <option (click)="administrador()"><label>Administrador</label></option>\n\n    <option (click)="profesor()">Profesor</option>\n\n    <option (click)="alumno()">Alumno</option>\n\n    <option (click)="administrativo()">Administrativo</option>\n\n  </select>\n\n</div>\n\n\n\n  <div  class="social">\n\n   <input style="background-color: blue" type="button" (click)="facebook()"  value="FACEBOOK" />\n\n   <input style="background-color: red" type="button" (click)="google()" value="GOOGLE+" />\n\n   <input style="background-color: black" type="button" (click)="github()" value="GITHUB" />\n\n  </div>\n\n\n\n\n\n</div> \n\n  <script src=\'http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js\'></script>\n\n  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">\n\n  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>\n\n  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>\n\n</body>\n\n\n\n\n\n</html>\n\n\n\n'/*ion-inline-end:"C:\IONIC2SP\TP_PPS_2C_2017\src\pages\login\login.html"*/
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* LoadingController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* Platform */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* ActionSheetController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* ActionSheetController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* AlertController */]) === "function" && _f || Object])
 ], Login);
