@@ -13,7 +13,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from 'angularfire2';
 import firebase from 'firebase';
-
+import { Facebook } from '@ionic-native/facebook';
 
 
 
@@ -55,7 +55,9 @@ import firebase from 'firebase';
   providers: [
     StatusBar,
     SplashScreen,
+    Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
+    
   ]
 })
 export class AppModule {}
