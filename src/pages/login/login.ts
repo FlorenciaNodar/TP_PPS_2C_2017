@@ -16,8 +16,16 @@ import { Facebook } from '@ionic-native/facebook';
 })
 
 export class Login {
-  email: any;
-  password: any;
+  //email: any;
+  //password: any;
+
+  listUsuarios = [{ id: 1, email: "administrador@administrador.com", password: "administrador", perfil: "administrador"},
+                  { id: 2, email: "profesor@profesor.com", password: "profesor", perfil: "profesor"},
+                  { id: 3, email: "administrativo@administrativo.com", password: "administrativo", perfil: "administrativo"},
+                  { id: 3, email: "alumno@alumno.com", password: "alumno", perfil: "alumno"}];
+
+  usuarioSelecionado = {email: '', password: ''};                 
+
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController,
     public navParams: NavParams, public platform: Platform, public actionsheetCtrl: ActionSheetController,
     public alertCtrl: AlertController, public facebook: Facebook) {
@@ -29,14 +37,7 @@ export class Login {
   }
 
   login() {
-    let loader = this.loadingCtrl.create({
-      content: "Espere...",
-      duration: 2600
-    });
-    loader.present();
-
-
-    if (this.email == null || this.password == null) {
+    if (this.usuarioSelecionado.email == '' || this.usuarioSelecionado.password == '') {
       let alert = this.alertCtrl.create({
         title: 'ADVERTENCIA!',
         subTitle: 'Debe completar todos los campos!',
@@ -45,7 +46,12 @@ export class Login {
       alert.present();
     }
     else {
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(ok => {
+      firebase.auth().signInWithEmailAndPassword(this.usuarioSelecionado.email, this.usuarioSelecionado.password).then(ok => {
+        let loader = this.loadingCtrl.create({
+          content: "Espere...",
+          duration: 2600
+        });
+        loader.present();
         this.navCtrl.push(TabsPage);
       },
         error => {
@@ -61,7 +67,7 @@ export class Login {
 
   }
 
-  sinUsuario() {
+  /*sinUsuario() {
     this.email = "";
     this.password = "";
   }
@@ -80,34 +86,46 @@ export class Login {
   alumno() {
     this.email = "alumno@alumno.com";
     this.password = "alumno";
-  }
+  }*/
 
-  signInWithFacebook() { 
-    //verifico si la platforma es movile, sino es web.   
+  /*facebookLogin() {
+    this.signInWithFacebook().then(res=>{      
+      this.navCtrl.push(TabsPage); 
+    })
+  }*/
+
+  signInWithFacebook() {
     if (this.platform.is('cordova')) {
       this.facebook.login(['email', 'public_profile']).then(res => {
         const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
-         firebase.auth().signInWithCredential(facebookCredential).then(res=>{
-          this.navCtrl.push(TabsPage);
-         });
-      }).catch(err=>{
-        this.showAlertError('Usuario y/o contraseña incorrectas!');
-      })
+        firebase.auth().signInWithCredential(facebookCredential).then(() => {
+          this.navCtrl.push(TabsPage); 
+          console.log(facebookCredential);         
+        }).catch(error => {
+          console.log(error);
+          alert("Secundario: "+error);
+        });
+      }).catch(error => {
+        alert("Principal: "+error);
+      });
+    } else {
+      firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider()).then((res) => {
+        let loader = this.loadingCtrl.create({
+          content: "Espere...",
+          duration: 2600
+        });
+        loader.present();
+        this.navCtrl.push(TabsPage);
+      }).catch(error => {
+        console.log(error);
+      });
     }
-    else {
-     this.facebookWeb()
-        .then(res => {
-          this.navCtrl.push(TabsPage);
-        }).catch(err=>{
-          this.showAlertError('Usuario y/o contraseña incorrectas!');          
-        })
-    } 
   }  
 
-  facebookWeb(): Promise<any> {
-    return firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider())
-      .then((res) => Promise.resolve);
-  }
+  /* facebookWeb(): Promise<any> {
+     return firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider())
+       .then((res) => Promise.resolve);
+   }*/
 
   github() {
 
@@ -142,7 +160,7 @@ export class Login {
 
   }
 
-  showAlertError(mensaje: string ){
+  showAlertError(mensaje: string) {
     let alert = this.alertCtrl.create({
       title: 'ERROR!',
       subTitle: mensaje,

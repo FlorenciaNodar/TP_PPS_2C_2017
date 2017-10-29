@@ -68,18 +68,20 @@ var Login = (function () {
         this.actionsheetCtrl = actionsheetCtrl;
         this.alertCtrl = alertCtrl;
         this.facebook = facebook;
+        //email: any;
+        //password: any;
+        this.listUsuarios = [{ id: 1, email: "administrador@administrador.com", password: "administrador", perfil: "administrador" },
+            { id: 2, email: "profesor@profesor.com", password: "profesor", perfil: "profesor" },
+            { id: 3, email: "administrativo@administrativo.com", password: "administrativo", perfil: "administrativo" },
+            { id: 3, email: "alumno@alumno.com", password: "alumno", perfil: "alumno" }];
+        this.usuarioSelecionado = { email: '', password: '' };
     }
     Login.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad Login');
     };
     Login.prototype.login = function () {
         var _this = this;
-        var loader = this.loadingCtrl.create({
-            content: "Espere...",
-            duration: 2600
-        });
-        loader.present();
-        if (this.email == null || this.password == null) {
+        if (this.usuarioSelecionado.email == '' || this.usuarioSelecionado.password == '') {
             var alert_1 = this.alertCtrl.create({
                 title: 'ADVERTENCIA!',
                 subTitle: 'Debe completar todos los campos!',
@@ -88,7 +90,12 @@ var Login = (function () {
             alert_1.present();
         }
         else {
-            __WEBPACK_IMPORTED_MODULE_3_firebase__["auth"]().signInWithEmailAndPassword(this.email, this.password).then(function (ok) {
+            __WEBPACK_IMPORTED_MODULE_3_firebase__["auth"]().signInWithEmailAndPassword(this.usuarioSelecionado.email, this.usuarioSelecionado.password).then(function (ok) {
+                var loader = _this.loadingCtrl.create({
+                    content: "Espere...",
+                    duration: 2600
+                });
+                loader.present();
                 _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__tabs_tabs__["a" /* TabsPage */]);
             }, function (error) {
                 var alert = _this.alertCtrl.create({
@@ -100,52 +107,64 @@ var Login = (function () {
             });
         }
     };
-    Login.prototype.sinUsuario = function () {
-        this.email = "";
-        this.password = "";
-    };
-    Login.prototype.administrador = function () {
-        this.email = "administrador@administrador.com";
-        this.password = "administrador";
-    };
-    Login.prototype.profesor = function () {
-        this.email = "profesor@profesor.com";
-        this.password = "profesor";
-    };
-    Login.prototype.administrativo = function () {
-        this.email = "administrativo@administrativo.com";
-        this.password = "administrativo";
-    };
-    Login.prototype.alumno = function () {
-        this.email = "alumno@alumno.com";
-        this.password = "alumno";
-    };
+    /*sinUsuario() {
+      this.email = "";
+      this.password = "";
+    }
+    administrador() {
+      this.email = "administrador@administrador.com";
+      this.password = "administrador";
+    }
+    profesor() {
+      this.email = "profesor@profesor.com";
+      this.password = "profesor";
+    }
+    administrativo() {
+      this.email = "administrativo@administrativo.com";
+      this.password = "administrativo";
+    }
+    alumno() {
+      this.email = "alumno@alumno.com";
+      this.password = "alumno";
+    }*/
+    /*facebookLogin() {
+      this.signInWithFacebook().then(res=>{
+        this.navCtrl.push(TabsPage);
+      })
+    }*/
     Login.prototype.signInWithFacebook = function () {
         var _this = this;
-        //verifico si la platforma es movile, sino es web.   
         if (this.platform.is('cordova')) {
             this.facebook.login(['email', 'public_profile']).then(function (res) {
                 var facebookCredential = __WEBPACK_IMPORTED_MODULE_3_firebase__["auth"].FacebookAuthProvider.credential(res.authResponse.accessToken);
-                __WEBPACK_IMPORTED_MODULE_3_firebase__["auth"]().signInWithCredential(facebookCredential).then(function (res) {
+                __WEBPACK_IMPORTED_MODULE_3_firebase__["auth"]().signInWithCredential(facebookCredential).then(function () {
                     _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__tabs_tabs__["a" /* TabsPage */]);
+                    console.log(facebookCredential);
+                }).catch(function (error) {
+                    console.log(error);
+                    alert("Secundario: " + error);
                 });
-            }).catch(function (err) {
-                _this.showAlertError('Usuario y/o contraseña incorrectas!');
+            }).catch(function (error) {
+                alert("Principal: " + error);
             });
         }
         else {
-            this.facebookWeb()
-                .then(function (res) {
+            __WEBPACK_IMPORTED_MODULE_3_firebase__["auth"]().signInWithPopup(new __WEBPACK_IMPORTED_MODULE_3_firebase__["auth"].FacebookAuthProvider()).then(function (res) {
+                var loader = _this.loadingCtrl.create({
+                    content: "Espere...",
+                    duration: 2600
+                });
+                loader.present();
                 _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__tabs_tabs__["a" /* TabsPage */]);
-            }).catch(function (err) {
-                _this.showAlertError('Usuario y/o contraseña incorrectas!');
+            }).catch(function (error) {
+                console.log(error);
             });
         }
     };
-    Login.prototype.facebookWeb = function () {
-        return __WEBPACK_IMPORTED_MODULE_3_firebase__["auth"]().signInWithPopup(new __WEBPACK_IMPORTED_MODULE_3_firebase__["auth"].FacebookAuthProvider())
-            .then(function (res) { return Promise.resolve; });
-    };
+    /* facebookWeb(): Promise<any> {
+       return firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider())
+         .then((res) => Promise.resolve);
+     }*/
     Login.prototype.github = function () {
     };
     Login.prototype.google = function () {
@@ -185,7 +204,7 @@ var Login = (function () {
 }());
 Login = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-login',template:/*ion-inline-start:"C:\Repo_Git\TP_PPS_2C_2017\src\pages\login\login.html"*/'<html >\n\n<head>\n\n  <meta charset="UTF-8">\n\n  <title>Ingrese</title>    \n\n</head>\n\n\n\n<body>\n\n  <div class="loginpanel">\n\n  <div class="txt">\n\n    <input id="user" [(ngModel)]="email" name="email" type="text" placeholder="Correo" />\n\n    <label for="user" class="entypo-user"></label>\n\n  </div>\n\n  <div class="txt">\n\n    <input id="pwd"  [(ngModel)]="password" name="password" type="password" placeholder="Contraseña" />\n\n    <label for="pwd" class="entypo-lock"></label>\n\n  </div>\n\n  <div class="buttons">\n\n    <input type="button" (click)="login()" value="INGRESAR" />\n\n      <input type="button" value="Registrarse"/>\n\n  </div>\n\n\n\n\n\n<div class="hr">\n\n    <div></div>\n\n    <div>O con</div>\n\n    <div></div>\n\n  </div>\n\n    <div class="form-group">\n\n    <select class="form-control">\n\n    <option (click)="sinUsuario()">--Seleccione un usuario específico--</option>\n\n    <option (click)="administrador()"><label>Administrador</label></option>\n\n    <option (click)="profesor()">Profesor</option>\n\n    <option (click)="alumno()">Alumno</option>\n\n    <option (click)="administrativo()">Administrativo</option>\n\n  </select>\n\n</div>\n\n\n\n  <div  class="social">\n\n   <input style="background-color: blue" type="button" (click)="signInWithFacebook()"  value="FACEBOOK" />\n\n   <input style="background-color: red" type="button" (click)="google()" value="GOOGLE+" />\n\n   <input style="background-color: black" type="button" (click)="github()" value="GITHUB" />\n\n  </div>\n\n\n\n\n\n</div> \n\n  <script src=\'http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js\'></script>\n\n  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">\n\n  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>\n\n  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>\n\n</body>\n\n\n\n\n\n</html>\n\n\n\n'/*ion-inline-end:"C:\Repo_Git\TP_PPS_2C_2017\src\pages\login\login.html"*/
+        selector: 'page-login',template:/*ion-inline-start:"C:\Repo_Git\TP_PPS_2C_2017\src\pages\login\login.html"*/'<html>\n\n\n\n<head>\n\n  <meta charset="UTF-8">\n\n  <title>Ingrese</title>\n\n</head>\n\n\n\n<body>\n\n  <div class="loginpanel">\n\n    <div class="txt">\n\n      <input id="user" [(ngModel)]="usuarioSelecionado.email" name="email" type="text" placeholder="Correo" />\n\n      <label for="user" class="entypo-user"></label>\n\n    </div>\n\n    <div class="txt">\n\n      <input id="pwd" [(ngModel)]="usuarioSelecionado.password" name="password" type="password" placeholder="Contraseña" />\n\n      <label for="pwd" class="entypo-lock"></label>\n\n    </div>\n\n    <div class="buttons">\n\n      <input type="button" (click)="login()" value="INGRESAR" />\n\n      <input type="button" value="Registrarse" />\n\n    </div>\n\n\n\n\n\n    <div class="hr">\n\n      <div></div>\n\n      <div>O con</div>\n\n      <div></div>\n\n    </div>\n\n    \n\n      <ion-item>\n\n        <ion-label>Usuario:</ion-label>\n\n        <ion-select [(ngModel)]="usuarioSelecionado">\n\n          <ion-option *ngFor="let u of listUsuarios" value="u.id" [value]="u">{{u.perfil}}</ion-option>\n\n        </ion-select>\n\n      </ion-item>\n\n    \n\n\n\n    <div class="social">\n\n      <input style="background-color: blue" type="button" (click)="signInWithFacebook()" value="FACEBOOK" />\n\n      <input style="background-color: red" type="button" (click)="google()" value="GOOGLE+" />\n\n      <input style="background-color: black" type="button" (click)="github()" value="GITHUB" />\n\n    </div>\n\n\n\n\n\n  </div>\n\n  <script src=\'http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js\'></script>\n\n  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">\n\n  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>\n\n  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>\n\n</body>\n\n\n\n\n\n</html>'/*ion-inline-end:"C:\Repo_Git\TP_PPS_2C_2017\src\pages\login\login.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* ActionSheetController */],

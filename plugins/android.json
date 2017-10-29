@@ -10,24 +10,24 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "io.ionic.starter"
         },
+        "cordova-plugin-facebook4": {
+            "APP_ID": "136499990330942",
+            "APP_NAME": "practicaProfesionalSupervisada",
+            "PACKAGE_NAME": "io.ionic.starter"
+        },
         "cordova-plugin-ionic-webview": {
             "PACKAGE_NAME": "io.ionic.starter"
         },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "io.ionic.starter"
         },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "io.ionic.starter"
+        },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "io.ionic.starter"
         },
         "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
-        "cordova-plugin-facebook4": {
-            "APP_ID": "509017942768196",
-            "APP_NAME": "tpPPS2C2017",
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
-        "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "io.ionic.starter"
         }
     },
