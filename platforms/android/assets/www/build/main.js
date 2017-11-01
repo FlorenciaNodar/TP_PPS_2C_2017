@@ -632,12 +632,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyC9bFTSWHIlpF0042GU46YNHnAtdgcG0Sc",
-    authDomain: "usuarios-1afa4.firebaseapp.com",
-    databaseURL: "https://usuarios-1afa4.firebaseio.com",
-    projectId: "usuarios-1afa4",
-    storageBucket: "usuarios-1afa4.appspot.com",
-    messagingSenderId: "931862599083"
+    apiKey: "AIzaSyABU4rSGpe9E5QfiOiAOB8Cxo1rlo6Hb8Q",
+    authDomain: "segparcialionic.firebaseapp.com",
+    databaseURL: "https://segparcialionic.firebaseio.com",
+    projectId: "segparcialionic",
+    storageBucket: "",
+    messagingSenderId: "548960747107"
 };
 __WEBPACK_IMPORTED_MODULE_14_firebase___default.a.initializeApp(config);
 var AppModule = (function () {
