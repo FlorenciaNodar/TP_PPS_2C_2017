@@ -113,7 +113,7 @@ var RegistroPage = (function () {
 }());
 RegistroPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
-        selector: 'page-registro',template:/*ion-inline-start:"C:\Users\macar\TP_PPS_2C_2017\src\pages\registro\registro.html"*/'<html>\n\n  \n\n  <head>\n\n    <meta charset="UTF-8">\n\n    <title>Ingrese</title>\n\n  </head>\n\n  \n\n  <body>\n\n    <div class="loginpanel">\n\n      <div class="txt">\n\n        <input id="user" [(ngModel)]="usuarioSelecionado.email" name="email" type="text" placeholder="Correo" required/>\n\n        <label for="user" class="entypo-user"></label>\n\n      </div>\n\n      <div class="txt">\n\n        <input id="pwd" [(ngModel)]="usuarioSelecionado.password" name="password" type="password" placeholder="Contraseña" required/>\n\n        <label for="pwd" class="entypo-lock"></label>\n\n      </div>\n\n      <div class="txt">\n\n          <input id="pwd" [(ngModel)]="usuarioSelecionado.password1" name="password" type="password" placeholder="Repetir Contraseña" required/>\n\n          <label for="pwd" class="entypo-lock"></label>\n\n        </div>\n\n      <div class="buttons">\n\n\n\n        <input type="button" (click)="Registrar()" value="Registrarse" />\n\n      </div>\n\n  \n\n\n\n    </div>\n\n    <script src=\'http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js\'></script>\n\n    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">\n\n    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>\n\n    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>\n\n  </body>\n\n  \n\n  \n\n  </html>'/*ion-inline-end:"C:\Users\macar\TP_PPS_2C_2017\src\pages\registro\registro.html"*/
+        selector: 'page-registro',template:/*ion-inline-start:"C:\IONIC-2doParcial\TP_PPS_2C_2017\src\pages\registro\registro.html"*/'<html>\n\n  \n\n  <head>\n\n    <meta charset="UTF-8">\n\n    <title>Ingrese</title>\n\n  </head>\n\n  \n\n  <body>\n\n    <div class="loginpanel">\n\n      <div class="txt">\n\n        <input id="user" [(ngModel)]="usuarioSelecionado.email" name="email" type="text" placeholder="Correo" required/>\n\n        <label for="user" class="entypo-user"></label>\n\n      </div>\n\n      <div class="txt">\n\n        <input id="pwd" [(ngModel)]="usuarioSelecionado.password" name="password" type="password" placeholder="Contraseña" required/>\n\n        <label for="pwd" class="entypo-lock"></label>\n\n      </div>\n\n      <div class="txt">\n\n          <input id="pwd" [(ngModel)]="usuarioSelecionado.password1" name="password" type="password" placeholder="Repetir Contraseña" required/>\n\n          <label for="pwd" class="entypo-lock"></label>\n\n        </div>\n\n      <div class="buttons">\n\n\n\n        <input type="button" (click)="Registrar()" value="Registrarse" />\n\n      </div>\n\n  \n\n\n\n    </div>\n\n    <script src=\'http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js\'></script>\n\n    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">\n\n    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>\n\n    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>\n\n  </body>\n\n  \n\n  \n\n  </html>'/*ion-inline-end:"C:\IONIC-2doParcial\TP_PPS_2C_2017\src\pages\registro\registro.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__["a" /* AngularFireAuth */],
         __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* ActionSheetController */],
@@ -150,7 +150,7 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"C:\Users\macar\TP_PPS_2C_2017\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>Home</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <h2>Welcome to Ionic!</h2>\n\n  <p>\n\n    This starter project comes with simple tabs-based layout for apps\n\n    that are going to primarily use a Tabbed UI.\n\n  </p>\n\n  <p>\n\n    Take a look at the <code>src/pages/</code> directory to add or change tabs,\n\n    update any existing page or create new pages.\n\n  </p>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\macar\TP_PPS_2C_2017\src\pages\home\home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"C:\IONIC-2doParcial\TP_PPS_2C_2017\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>Home</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <h2>Welcome to Ionic!</h2>\n\n  <p>\n\n    This starter project comes with simple tabs-based layout for apps\n\n    that are going to primarily use a Tabbed UI.\n\n  </p>\n\n  <p>\n\n    Take a look at the <code>src/pages/</code> directory to add or change tabs,\n\n    update any existing page or create new pages.\n\n  </p>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\IONIC-2doParcial\TP_PPS_2C_2017\src\pages\home\home.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]])
 ], HomePage);
@@ -204,11 +204,12 @@ webpackEmptyAsyncContext.id = 236;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(294);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_facebook__ = __webpack_require__(329);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__registro_registro__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__ = __webpack_require__(330);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__(331);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_Rx__ = __webpack_require__(500);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_plus__ = __webpack_require__(330);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__registro_registro__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_http__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_Rx__ = __webpack_require__(501);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_Rx__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -228,8 +229,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var Login = (function () {
-    function Login(loadingCtrl, navCtrl, events, iab, http, navParams, platform, actionsheetCtrl, alertCtrl, facebook) {
+    function Login(loadingCtrl, navCtrl, events, iab, http, navParams, platform, actionsheetCtrl, alertCtrl, facebook, googlePlus) {
         this.loadingCtrl = loadingCtrl;
         this.navCtrl = navCtrl;
         this.events = events;
@@ -240,6 +242,7 @@ var Login = (function () {
         this.actionsheetCtrl = actionsheetCtrl;
         this.alertCtrl = alertCtrl;
         this.facebook = facebook;
+        this.googlePlus = googlePlus;
         this.listUsuarios = [{ id: 1, email: "administrador@administrador.com", password: "administrador", perfil: "administrador" },
             { id: 2, email: "profesor@profesor.com", password: "profesor", perfil: "profesor" },
             { id: 3, email: "administrativo@administrativo.com", password: "administrativo", perfil: "administrativo" },
@@ -277,31 +280,6 @@ var Login = (function () {
             });
         }
     };
-    /*sinUsuario() {
-      this.email = "";
-      this.password = "";
-    }
-    administrador() {
-      this.email = "administrador@administrador.com";
-      this.password = "administrador";
-    }
-    profesor() {
-      this.email = "profesor@profesor.com";
-      this.password = "profesor";
-    }
-    administrativo() {
-      this.email = "administrativo@administrativo.com";
-      this.password = "administrativo";
-    }
-    alumno() {
-      this.email = "alumno@alumno.com";
-      this.password = "alumno";
-    }*/
-    /*facebookLogin() {
-      this.signInWithFacebook().then(res=>{
-        this.navCtrl.push(TabsPage);
-      })
-    }*/
     Login.prototype.signInWithFacebook = function () {
         var _this = this;
         if (this.platform.is('cordova')) {
@@ -443,27 +421,27 @@ var Login = (function () {
     };
     Login.prototype.google = function () {
         var _this = this;
-        var provider = new __WEBPACK_IMPORTED_MODULE_3_firebase__["auth"].GoogleAuthProvider();
-        __WEBPACK_IMPORTED_MODULE_3_firebase__["auth"]().signInWithPopup(provider).then(function (result) {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            var token = result.credential.accessToken;
-            // The signed-in user info.
-            var user = result.user;
-            // firebase.auth().signInWithRedirect(provider);
-            // //Loading
-            // const loading = this.loadingCtrl.create({
-            // content: 'Espere...'
-            // });
-            // loading.present();
-            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__tabs_tabs__["a" /* TabsPage */]);
-            // ...
-        }).catch(function (error) {
-            var alert = _this.alertCtrl.create({
-                title: 'ERROR!',
-                subTitle: 'Usuario y/o contraseña incorrectas!',
-                buttons: ['OK']
+        this.googlePlus.login({
+            'webClientId': '548960747107-m3s482qrichiirr9erslo0qdivd9q0gb.apps.googleusercontent.com',
+            'offline': true,
+        }).then(function (res) {
+            var fire = __WEBPACK_IMPORTED_MODULE_3_firebase__["auth"].GoogleAuthProvider.credential(res.idToken);
+            __WEBPACK_IMPORTED_MODULE_3_firebase__["auth"]().signInWithCredential(fire).then(function (suc) {
+                alert("login");
+                var loader = _this.loadingCtrl.create({
+                    content: "Espere...",
+                    duration: 2600
+                });
+                loader.present();
+                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_1__tabs_tabs__["a" /* TabsPage */]);
+            }).catch(function (ns) {
+                var alert = _this.alertCtrl.create({
+                    title: 'ERROR!',
+                    subTitle: 'Usuario y/o contraseña incorrectas!',
+                    buttons: ['OK']
+                });
+                alert.present();
             });
-            alert.present();
         });
     };
     Login.prototype.showAlertError = function (mensaje) {
@@ -475,18 +453,18 @@ var Login = (function () {
         alert.present();
     };
     Login.prototype.registro = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__registro_registro__["a" /* RegistroPage */]);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_6__registro_registro__["a" /* RegistroPage */]);
     };
     return Login;
 }());
 Login = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-login',template:/*ion-inline-start:"C:\Users\macar\TP_PPS_2C_2017\src\pages\login\login.html"*/'<html>\n\n\n\n<head>\n\n  <meta charset="UTF-8">\n\n  <title>Ingrese</title>\n\n</head>\n\n\n\n<body>\n\n  <div class="loginpanel">\n\n    <div class="txt">\n\n      <input id="user" [(ngModel)]="usuarioSelecionado.email" name="email" type="text" placeholder="Correo" />\n\n      <label for="user" class="entypo-user"></label>\n\n    </div>\n\n    <div class="txt">\n\n      <input id="pwd" [(ngModel)]="usuarioSelecionado.password" name="password" type="password" placeholder="Contraseña" />\n\n      <label for="pwd" class="entypo-lock"></label>\n\n    </div>\n\n    <div class="buttons">\n\n      <input type="button" (click)="login()" value="INGRESAR" />\n\n      <input type="button" (click)="registro()" value="Registrarse" />\n\n    </div>\n\n\n\n\n\n    <div class="hr">\n\n      <div></div>\n\n      <div>O con</div>\n\n      <div></div>\n\n    </div>\n\n    \n\n      <ion-item>\n\n        <ion-label>Usuario:</ion-label>\n\n        <ion-select [(ngModel)]="usuarioSelecionado">\n\n          <ion-option *ngFor="let u of listUsuarios" value="u.id" [value]="u">{{u.perfil}}</ion-option>\n\n        </ion-select>\n\n      </ion-item>\n\n    \n\n\n\n    <div class="social">\n\n      <input style="background-color: blue" type="button" (click)="signInWithFacebook()" value="FACEBOOK" />\n\n      <input style="background-color: red" type="button" (click)="google()" value="GOOGLE+" />\n\n      <input style="background-color: black" type="button" (click)="loginWithGithub()" value="GITHUB" />\n\n    </div>\n\n\n\n\n\n  </div>\n\n  <script src=\'http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js\'></script>\n\n  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">\n\n  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>\n\n  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>\n\n</body>\n\n\n\n\n\n</html>'/*ion-inline-end:"C:\Users\macar\TP_PPS_2C_2017\src\pages\login\login.html"*/
+        selector: 'page-login',template:/*ion-inline-start:"C:\IONIC-2doParcial\TP_PPS_2C_2017\src\pages\login\login.html"*/'<html>\n\n\n\n<head>\n\n  <meta charset="UTF-8">\n\n  <title>Ingrese</title>\n\n</head>\n\n\n\n<body>\n\n  <div class="loginpanel">\n\n    <div class="txt">\n\n      <input id="user" [(ngModel)]="usuarioSelecionado.email" name="email" type="text" placeholder="Correo" />\n\n      <label for="user" class="entypo-user"></label>\n\n    </div>\n\n    <div class="txt">\n\n      <input id="pwd" [(ngModel)]="usuarioSelecionado.password" name="password" type="password" placeholder="Contraseña" />\n\n      <label for="pwd" class="entypo-lock"></label>\n\n    </div>\n\n    <div class="buttons">\n\n      <input type="button" (click)="login()" value="INGRESAR" />\n\n      <input type="button" (click)="registro()" value="Registrarse" />\n\n    </div>\n\n\n\n\n\n    <div class="hr">\n\n      <div></div>\n\n      <div>O con</div>\n\n      <div></div>\n\n    </div>\n\n    \n\n      <ion-item>\n\n        <ion-label>Usuario:</ion-label>\n\n        <ion-select [(ngModel)]="usuarioSelecionado">\n\n          <ion-option *ngFor="let u of listUsuarios" value="u.id" [value]="u">{{u.perfil}}</ion-option>\n\n        </ion-select>\n\n      </ion-item>\n\n    \n\n\n\n    <div class="social">\n\n      <input style="background-color: blue" type="button" (click)="signInWithFacebook()" value="FACEBOOK" />\n\n      <input style="background-color: red" type="button" (click)="google()" value="GOOGLE+" />\n\n      <input style="background-color: black" type="button" (click)="loginWithGithub()" value="GITHUB" />\n\n    </div>\n\n\n\n\n\n  </div>\n\n  <script src=\'http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js\'></script>\n\n  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">\n\n  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>\n\n  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>\n\n</body>\n\n\n\n\n\n</html>'/*ion-inline-end:"C:\IONIC-2doParcial\TP_PPS_2C_2017\src\pages\login\login.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* Events */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_in_app_browser__["a" /* InAppBrowser */], __WEBPACK_IMPORTED_MODULE_7__angular_http__["a" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* Events */], __WEBPACK_IMPORTED_MODULE_7__ionic_native_in_app_browser__["a" /* InAppBrowser */], __WEBPACK_IMPORTED_MODULE_8__angular_http__["a" /* Http */],
         __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* ActionSheetController */],
-        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_facebook__["a" /* Facebook */]])
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_facebook__["a" /* Facebook */], __WEBPACK_IMPORTED_MODULE_5__ionic_native_google_plus__["a" /* GooglePlus */]])
 ], Login);
 
 //# sourceMappingURL=login.js.map
@@ -524,7 +502,7 @@ var TabsPage = (function () {
     return TabsPage;
 }());
 TabsPage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"C:\Users\macar\TP_PPS_2C_2017\src\pages\tabs\tabs.html"*/'<ion-tabs>\n\n  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>\n\n  <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>\n\n  <ion-tab [root]="tab3Root" tabTitle="Registro" tabIcon="contacts"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"C:\Users\macar\TP_PPS_2C_2017\src\pages\tabs\tabs.html"*/
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"C:\IONIC-2doParcial\TP_PPS_2C_2017\src\pages\tabs\tabs.html"*/'<ion-tabs>\n\n  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>\n\n  <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>\n\n  <ion-tab [root]="tab3Root" tabTitle="Registro" tabIcon="contacts"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"C:\IONIC-2doParcial\TP_PPS_2C_2017\src\pages\tabs\tabs.html"*/
     }),
     __metadata("design:paramtypes", [])
 ], TabsPage);
@@ -559,7 +537,7 @@ var AboutPage = (function () {
 }());
 AboutPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-about',template:/*ion-inline-start:"C:\Users\macar\TP_PPS_2C_2017\src\pages\about\about.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      About\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\macar\TP_PPS_2C_2017\src\pages\about\about.html"*/
+        selector: 'page-about',template:/*ion-inline-start:"C:\IONIC-2doParcial\TP_PPS_2C_2017\src\pages\about\about.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      About\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\IONIC-2doParcial\TP_PPS_2C_2017\src\pages\about\about.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]])
 ], AboutPage);
@@ -568,13 +546,13 @@ AboutPage = __decorate([
 
 /***/ }),
 
-/***/ 363:
+/***/ 364:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(364);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(369);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -582,7 +560,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 368:
+/***/ 369:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -590,7 +568,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(405);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(406);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_about_about__ = __webpack_require__(283);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_registro_registro__ = __webpack_require__(157);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(158);
@@ -599,13 +577,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_status_bar__ = __webpack_require__(276);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_splash_screen__ = __webpack_require__(280);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_angularfire2__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angularfire2_database__ = __webpack_require__(749);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_angularfire2_database__ = __webpack_require__(750);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_angularfire2_auth__ = __webpack_require__(284);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_firebase__ = __webpack_require__(294);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_firebase__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_facebook__ = __webpack_require__(329);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_in_app_browser__ = __webpack_require__(330);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__angular_http__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ionic_native_google_plus__ = __webpack_require__(330);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__ionic_native_in_app_browser__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__angular_http__ = __webpack_require__(332);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -630,14 +609,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyC9bFTSWHIlpF0042GU46YNHnAtdgcG0Sc",
-    authDomain: "usuarios-1afa4.firebaseapp.com",
-    databaseURL: "https://usuarios-1afa4.firebaseio.com",
-    projectId: "usuarios-1afa4",
-    storageBucket: "usuarios-1afa4.appspot.com",
-    messagingSenderId: "931862599083"
+    apiKey: "AIzaSyABU4rSGpe9E5QfiOiAOB8Cxo1rlo6Hb8Q",
+    authDomain: "segparcialionic.firebaseapp.com",
+    databaseURL: "https://segparcialionic.firebaseio.com",
+    projectId: "segparcialionic",
+    storageBucket: "",
+    messagingSenderId: "548960747107"
 };
 __WEBPACK_IMPORTED_MODULE_14_firebase___default.a.initializeApp(config);
 var AppModule = (function () {
@@ -663,7 +643,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_11_angularfire2__["a" /* AngularFireModule */].initializeApp(config),
             __WEBPACK_IMPORTED_MODULE_12_angularfire2_database__["a" /* AngularFireDatabaseModule */],
             __WEBPACK_IMPORTED_MODULE_13_angularfire2_auth__["b" /* AngularFireAuthModule */],
-            __WEBPACK_IMPORTED_MODULE_17__angular_http__["b" /* HttpModule */]
+            __WEBPACK_IMPORTED_MODULE_18__angular_http__["b" /* HttpModule */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicApp */]],
         entryComponents: [
@@ -678,7 +658,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_9__ionic_native_status_bar__["a" /* StatusBar */],
             __WEBPACK_IMPORTED_MODULE_10__ionic_native_splash_screen__["a" /* SplashScreen */],
             __WEBPACK_IMPORTED_MODULE_15__ionic_native_facebook__["a" /* Facebook */],
-            __WEBPACK_IMPORTED_MODULE_16__ionic_native_in_app_browser__["a" /* InAppBrowser */],
+            __WEBPACK_IMPORTED_MODULE_17__ionic_native_in_app_browser__["a" /* InAppBrowser */],
+            __WEBPACK_IMPORTED_MODULE_16__ionic_native_google_plus__["a" /* GooglePlus */],
             { provide: __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicErrorHandler */] }
         ]
     })
@@ -688,7 +669,7 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ 405:
+/***/ 406:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -727,7 +708,7 @@ var MyApp = (function () {
     return MyApp;
 }());
 MyApp = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"C:\Users\macar\TP_PPS_2C_2017\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\macar\TP_PPS_2C_2017\src\app\app.html"*/
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"C:\IONIC-2doParcial\TP_PPS_2C_2017\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"C:\IONIC-2doParcial\TP_PPS_2C_2017\src\app\app.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
 ], MyApp);
@@ -736,5 +717,5 @@ MyApp = __decorate([
 
 /***/ })
 
-},[363]);
+},[364]);
 //# sourceMappingURL=main.js.map

@@ -16,18 +16,19 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import firebase from 'firebase';
 import { Facebook } from '@ionic-native/facebook';
+import { GooglePlus } from '@ionic-native/google-plus';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { HttpModule } from '@angular/http';
 
 
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyC9bFTSWHIlpF0042GU46YNHnAtdgcG0Sc",
-    authDomain: "usuarios-1afa4.firebaseapp.com",
-    databaseURL: "https://usuarios-1afa4.firebaseio.com",
-    projectId: "usuarios-1afa4",
-    storageBucket: "usuarios-1afa4.appspot.com",
-    messagingSenderId: "931862599083"
+    apiKey: "AIzaSyABU4rSGpe9E5QfiOiAOB8Cxo1rlo6Hb8Q",
+    authDomain: "segparcialionic.firebaseapp.com",
+    databaseURL: "https://segparcialionic.firebaseio.com",
+    projectId: "segparcialionic",
+    storageBucket: "",
+    messagingSenderId: "548960747107"
   };
   firebase.initializeApp(config);
 
@@ -63,6 +64,7 @@ import { HttpModule } from '@angular/http';
     SplashScreen,
     Facebook,
     InAppBrowser,
+    GooglePlus,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
     
   ]

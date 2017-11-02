@@ -6,6 +6,7 @@ import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 
 import { AngularFireAuth, AngularFireAuthProvider, AngularFireAuthModule } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { Facebook } from '@ionic-native/facebook';
+import {GooglePlus} from '@ionic-native/google-plus';
 import { RegistroPage } from '../registro/registro';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Events } from 'ionic-angular';
@@ -33,7 +34,7 @@ export class Login {
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController,
     private events: Events, private iab: InAppBrowser, private http: Http,
     public navParams: NavParams, public platform: Platform, public actionsheetCtrl: ActionSheetController,
-    public alertCtrl: AlertController, public facebook: Facebook) {
+    public alertCtrl: AlertController, public facebook: Facebook,public googlePlus: GooglePlus) {
 
   }
 
@@ -72,32 +73,6 @@ export class Login {
 
   }
 
-  /*sinUsuario() {
-    this.email = "";
-    this.password = "";
-  }
-  administrador() {
-    this.email = "administrador@administrador.com";
-    this.password = "administrador";
-  }
-  profesor() {
-    this.email = "profesor@profesor.com";
-    this.password = "profesor";
-  }
-  administrativo() {
-    this.email = "administrativo@administrativo.com";
-    this.password = "administrativo";
-  }
-  alumno() {
-    this.email = "alumno@alumno.com";
-    this.password = "alumno";
-  }*/
-
-  /*facebookLogin() {
-    this.signInWithFacebook().then(res=>{      
-      this.navCtrl.push(TabsPage); 
-    })
-  }*/
 
   signInWithFacebook() {
     if (this.platform.is('cordova')) {
@@ -259,34 +234,37 @@ showLoading(): Promise<any> {
   return this.loading.present();
 }
 
-  google() {
-    var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider).then(result => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      var token = result.credential.accessToken;
-      // The signed-in user info.
-      var user = result.user;
-      // firebase.auth().signInWithRedirect(provider);
+   google() {
+     
+    this.googlePlus.login({
 
-      // //Loading
-      // const loading = this.loadingCtrl.create({
-      // content: 'Espere...'
-      // });
-      // loading.present();
+    'webClientId': '548960747107-m3s482qrichiirr9erslo0qdivd9q0gb.apps.googleusercontent.com',
+    'offline': true,
 
-      this.navCtrl.push(TabsPage);
+    }).then(res=>{
+      const fire=firebase.auth.GoogleAuthProvider.credential(res.idToken);
+      firebase.auth().signInWithCredential(fire).then(suc=>{
 
-      // ...
-    }).catch(error => {
-      let alert = this.alertCtrl.create({
-        title: 'ERROR!',
-        subTitle: 'Usuario y/o contraseña incorrectas!',
-        buttons: ['OK']
-      });
-      alert.present();
-    });
 
+          alert("login");
+         let loader = this.loadingCtrl.create({
+          content: "Espere...",
+          duration: 2600
+        });
+        loader.present();
+       this.navCtrl.setRoot(TabsPage);
+      }).catch(ns=>{
+          let alert = this.alertCtrl.create({
+          title: 'ERROR!',
+          subTitle: 'Usuario y/o contraseña incorrectas!',
+          buttons: ['OK']
+          });
+          alert.present();  
+      })
+    })
   }
+
+
 
   showAlertError(mensaje: string) {
     let alert = this.alertCtrl.create({
