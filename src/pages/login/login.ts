@@ -244,9 +244,6 @@ showLoading(): Promise<any> {
     }).then(res=>{
       const fire=firebase.auth.GoogleAuthProvider.credential(res.idToken);
       firebase.auth().signInWithCredential(fire).then(suc=>{
-
-
-          alert("login");
          let loader = this.loadingCtrl.create({
           content: "Espere...",
           duration: 2600
