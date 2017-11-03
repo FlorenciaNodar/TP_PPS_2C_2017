@@ -6,7 +6,7 @@ import { NavController, NavParams, ActionSheetController, LoadingController, Ale
 import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuth, AngularFireAuthProvider, AngularFireAuthModule } from 'angularfire2/auth';
 import * as firebase from 'firebase';
-
+import { UserData } from '../../providers/userdata/userdata';
 
 @Component({
   selector: 'page-registro',
@@ -19,7 +19,7 @@ export class RegistroPage {
   
     constructor(public loadingCtrl: LoadingController, public navCtrl: NavController,private af: AngularFireAuth,
       public navParams: NavParams, public platform: Platform, public actionsheetCtrl: ActionSheetController,
-      public alertCtrl: AlertController) {
+      public alertCtrl: AlertController,public userData: UserData) {
   
     }
     Registrar(){
@@ -29,6 +29,7 @@ export class RegistroPage {
         this.af.auth.createUserWithEmailAndPassword(this.usuarioSelecionado.email,this.usuarioSelecionado.password).then((response)=>{
         
         this.AlertMensaje("Bienvenido", "Su perfil a sido guardado con exito!!!");
+        this.userData.signup(this.usuarioSelecionado.email);
         this.navCtrl.push(HomePage);
 
       }).catch((error: any) => {

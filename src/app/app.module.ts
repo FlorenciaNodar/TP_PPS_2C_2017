@@ -18,7 +18,8 @@ import firebase from 'firebase';
 import { Facebook } from '@ionic-native/facebook';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { HttpModule } from '@angular/http';
-
+import { UserData } from '../providers/userdata/userdata';
+import { IonicStorageModule } from '@ionic/storage';
 
   // Initialize Firebase
   var config = {
@@ -54,6 +55,7 @@ import { HttpModule } from '@angular/http';
         { component: RegistroPage, name: 'Registro', segment: 'registro' }
          ]
     }),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -69,7 +71,8 @@ import { HttpModule } from '@angular/http';
     SplashScreen,
     Facebook,
     InAppBrowser,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    UserData
     
   ]
 })

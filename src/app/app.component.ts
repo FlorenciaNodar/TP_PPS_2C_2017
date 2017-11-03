@@ -10,6 +10,7 @@ import { Login } from '../pages/login/login';
 import { AboutPage } from '../pages/about/about';
 import { RegistroPage } from '../pages/registro/registro';
 import { HomePage } from '../pages/home/home';
+import { UserData } from '../providers/userdata/userdata';
 
 export interface PageInterface {
   title: string;
@@ -45,10 +46,19 @@ export class MyApp {
   constructor(public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
+    public events: Events,
+    public userData: UserData,
     public splashScreen: SplashScreen) {
-    this.initializeApp();
-     
+
+    // qué elementos del menú deben estar ocultos según el estado de inicio de sesión actual 
+    this.userData.hasLoggedIn().then((hasLoggedIn) => {
+      this.enableMenu(hasLoggedIn === true);
+    });
+    this.enableMenu(false);
+
+    this.listenToLoginEvents();
   }
+  
 
   initializeApp() {
     this.platform.ready().then(() => {
@@ -57,14 +67,6 @@ export class MyApp {
       this.splashScreen.hide();
     });
     
-  }
-  // qué elementos del menú deben estar ocultos según el estado de inicio de sesión actual 
- /* this.userData.hasLoggedIn().then((hasLoggedIn) => {
-    this.enableMenu(hasLoggedIn === true);
-  });
-  this.enableMenu(true);
-
-  this.listenToLoginEvents();
   }
 
   listenToLoginEvents() {
@@ -82,9 +84,9 @@ export class MyApp {
   }
 
   enableMenu(loggedIn: boolean) {
-    this.menu.enable(loggedIn, 'loggedInMenu');
-    this.menu.enable(!loggedIn, 'loggedOutMenu');
-  }*/
+    //this.menu.enable(!loggedIn, 'loggedInMenu');
+    this.menu.enable(loggedIn, 'loggedOutMenu');
+  }
 
   openPage(page: PageInterface) {
 
@@ -107,6 +109,7 @@ export class MyApp {
 
     if (page.logsOut === true) {
       console.log("Logout");
+      this.userData.logout();
     }
   }
 
