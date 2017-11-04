@@ -46,12 +46,12 @@ addNewAlumn(){
     this.ngOnInit();
 }
 
-// delete(i){
+delete(i){
     
-//     this.af.list("/Alumno/").remove(this.items[i]);
+    this.af.list("/Alumno/").remove(this.items[i]);
 
-//     this.ngOnInit();
+    this.ngOnInit();
 
-// }
+}
 
 }
