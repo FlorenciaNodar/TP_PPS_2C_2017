@@ -75,13 +75,10 @@ import { IonicStorageModule } from '@ionic/storage';
     SplashScreen,
     Facebook,
     InAppBrowser,
-<<<<<<< HEAD
     GooglePlus,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-=======
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserData
->>>>>>> develop
     
   ]
 })
