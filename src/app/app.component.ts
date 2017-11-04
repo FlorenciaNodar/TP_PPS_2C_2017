@@ -13,6 +13,7 @@ import { HomePage } from '../pages/home/home';
 import { UserData } from '../providers/userdata/userdata';
 import { EncuestaPage } from '../pages/encuesta/encuesta';
 import { Alumno } from '../pages/alumno/alumno';
+import { nuevoAlumno } from '../pages/nuevoAlumno/nuevoAlumno';
 
 export interface PageInterface {
   title: string;

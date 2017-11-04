@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,ModalController  } from 'ionic-angular';
 import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { nuevoAlumno } from '../nuevoAlumno/nuevoAlumno';
 import { Observable } from 'rxjs/Observable';
 
 
@@ -19,7 +20,7 @@ export class Alumno {
   apellido;
   nombreInsertado;
   apellidoInsertado;
-  constructor (public navCtrl: NavController, public af: AngularFireDatabase) {
+  constructor (public navCtrl: NavController, public af: AngularFireDatabase,public modalCtrl: ModalController) {
   }
  ngOnInit() {
     this.items = this.getCourses('/Alumno/');
@@ -47,11 +48,17 @@ addNewAlumn(){
 }
 
 delete(i){
+
     
     this.af.list("/Alumno/").remove(this.items[i]);
 
     this.ngOnInit();
 
 }
+
+ presentModal() {
+    let modal = this.modalCtrl.create(nuevoAlumno);
+    modal.present();
+  }
 
 }

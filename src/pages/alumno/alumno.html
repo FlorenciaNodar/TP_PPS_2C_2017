@@ -1,27 +1,7 @@
-<ion-header>
-    <ion-navbar  color='rosa'>
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
-    <ion-title>
-      Alumnos
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content padding>
-
-
-<ion-item>
-  <ion-input [(ngModel)]="nombre" placeholder="Ingrese nombre"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-input [(ngModel)]="apellido" placeholder="Ingrese apellido"></ion-input>
-</ion-item>
-<br>
     <ion-buttons>
-      <button full  (click)="addNewAlumn()" ion-button icon-only>
-        <ion-icon name="checkmark-circle-outline">Agregar</ion-icon>
+      <button full  (click)="presentModal()" ion-button icon-only>
+        <ion-icon name="add">Añadir Alumnos</ion-icon>
       </button>
     </ion-buttons>
 
@@ -35,8 +15,13 @@
     </ion-thumbnail>
     <h2>{{boca.nombre}}</h2>
     <p> {{boca.apellido}}</p>
-    <button ion-button clear item-end>Modificar</button>
-    <button ion-button clear item-end (click)="delete(i)">Eliminar</button>
+ <button ion-button clear item-end icon-only>
+  <ion-icon name="create"></ion-icon>
+</button>
+ <button ion-button clear item-end icon-only>
+  <ion-icon name="trash"></ion-icon>
+</button>
+    
     </ion-item>
 </ion-list> 
 
