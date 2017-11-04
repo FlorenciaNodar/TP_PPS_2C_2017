@@ -8,6 +8,7 @@ import { RegistroPage } from '../pages/registro/registro';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { Login } from '../pages/login/login';
+import { Alumno } from '../pages/alumno/alumno';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -40,7 +41,8 @@ import { IonicStorageModule } from '@ionic/storage';
     RegistroPage,
     HomePage,
     TabsPage,
-    Login
+    Login,
+    Alumno
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,8 @@ import { IonicStorageModule } from '@ionic/storage';
     RegistroPage,
     HomePage,
     TabsPage,
-    Login
+    Login,
+    Alumno
   ],
   providers: [
     StatusBar,
