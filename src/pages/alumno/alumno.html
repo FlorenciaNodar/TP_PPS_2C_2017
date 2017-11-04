@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-navbar  color='rosa'>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>
+      Alumnos
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+
+<ion-item>
+  <ion-input [(ngModel)]="nombre"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-input [(ngModel)]="apellido"></ion-input>
+</ion-item>
+<button (click)="addNewAlumn()">Agregar</button>
+
+ <ion-list>
+    <ion-item style="background-color: black; text-align: left" *ngFor="let boca of items | async; let i= index" (click)="delete(i)">
+      {{boca.nombre}} {{boca.apellido}}
+    </ion-item>
+</ion-list> 
+
+
+
+
+
+</ion-content>
