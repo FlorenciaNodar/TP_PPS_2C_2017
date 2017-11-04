@@ -1,32 +1,33 @@
 <ion-split-pane>
     
       <!-- logged out menu -->
-      <ion-menu id="loggedOutMenu" [content]="content">
+      <ion-menu id="loggedOutMenu" [content]="content" type="overlay">
     
         <ion-header>
           <ion-toolbar color='dark'>
             <ion-title>Menu</ion-title>
           </ion-toolbar>
         </ion-header>
-    
+      
         <ion-content class="outer-content" style="background-color: black;">
-    
+          <div class="sidemenu-header">
+            <img src="./assets/img/avatar.jpg"/>
+          </div>
           <ion-list>
-            <ion-list-header color='favorite'>
-              Paginas
-            </ion-list-header>
-            <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">
+    
+            <button id="boton" ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">
               <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
               {{p.title}}
             </button>
           </ion-list>
     
           <ion-list>
+
             <ion-list-header color='favorite'>
               Cuenta Activa
             </ion-list-header>
-            <button ion-item menuClose *ngFor="let p of pagesLog" (click)="openPage(p)" color="primary">
-              <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
+            <button id="boton1" ion-item menuClose *ngFor="let p of pagesLog" (click)="openPage(p)" color="danger">
+              <ion-icon id="icon" item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
               {{p.title}}
             </button>
           </ion-list>
@@ -91,4 +92,4 @@
       
     </ion-split-pane>
     
-    
+  
