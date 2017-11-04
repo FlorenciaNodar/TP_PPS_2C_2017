@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { Login } from '../pages/login/login';
 import { Alumno } from '../pages/alumno/alumno';
+import { EncuestaPage} from '../pages/encuesta/encuesta';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -43,7 +44,8 @@ import { IonicStorageModule } from '@ionic/storage';
     HomePage,
     TabsPage,
     Login,
-    Alumno
+    Alumno,
+    EncuestaPage
   ],
   imports: [
     BrowserModule,
@@ -53,9 +55,9 @@ import { IonicStorageModule } from '@ionic/storage';
     HttpModule,
     IonicModule.forRoot(MyApp, {}, {
       links: [
-        { component: TabsPage, name: 'TabsPage', segment: 'tabs' },
-        { component: Login, name: 'Login', segment: 'login' },
-        { component: RegistroPage, name: 'Registro', segment: 'registro' }
+        { component: HomePage, name: 'Inicio', segment: 'inicio' },
+        { component: Alumno, name: 'Alumno', segment: 'alumno' },
+        { component: EncuestaPage, name: 'Encuesta', segment: 'encuesta' }
          ]
     }),
     IonicStorageModule.forRoot()
@@ -68,7 +70,8 @@ import { IonicStorageModule } from '@ionic/storage';
     HomePage,
     TabsPage,
     Login,
-    Alumno
+    Alumno,
+    EncuestaPage
   ],
   providers: [
     StatusBar,

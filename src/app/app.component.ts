@@ -11,6 +11,8 @@ import { AboutPage } from '../pages/about/about';
 import { RegistroPage } from '../pages/registro/registro';
 import { HomePage } from '../pages/home/home';
 import { UserData } from '../providers/userdata/userdata';
+import { EncuestaPage } from '../pages/encuesta/encuesta';
+import { Alumno } from '../pages/alumno/alumno';
 
 export interface PageInterface {
   title: string;
@@ -34,9 +36,10 @@ export class MyApp {
   rootPage:any = Login;
 
   pages: PageInterface[] = [
-    { title: 'Registro', name: 'TabsPage', component: TabsPage, tabComponent: RegistroPage, index: 0, icon: 'list-box' },
-    { title: 'Inicio', name: 'TabsPage', component: TabsPage, tabComponent: HomePage, index: 1, icon: 'pie' },
-    { title: 'Sobre', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 2, icon: 'information-circle' }
+    
+    { title: 'Inicio', name: 'TabsPage', component: TabsPage, tabComponent: HomePage, index: 0, icon: 'pie' },
+    { title: 'Alumno', name: 'TabsPage', component: TabsPage, tabComponent: Alumno, index: 1, icon: 'school' },
+    { title: 'Encuesta', name: 'TabsPage', component: TabsPage, tabComponent: EncuestaPage, index: 2, icon: 'clipboard' }
   ];
 
   pagesLog: PageInterface[] = [
