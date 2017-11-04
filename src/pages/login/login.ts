@@ -12,6 +12,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Events } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/Rx';
+import { UserData } from '../../providers/userdata/userdata';
 
 @Component({
   selector: 'page-login',
@@ -32,7 +33,7 @@ export class Login {
   usuarioSelecionado = {email: '', password: ''};                 
 
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController,
-    private events: Events, private iab: InAppBrowser, private http: Http,
+    private events: Events, private iab: InAppBrowser, private http: Http,public userData: UserData,
     public navParams: NavParams, public platform: Platform, public actionsheetCtrl: ActionSheetController,
     public alertCtrl: AlertController, public facebook: Facebook,public googlePlus: GooglePlus) {
 
@@ -57,6 +58,7 @@ export class Login {
           content: "Espere...",
           duration: 2600
         });
+        this.userData.login(this.usuarioSelecionado.email);
         loader.present();
         this.navCtrl.push(TabsPage);
       },

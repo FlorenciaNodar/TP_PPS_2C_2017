@@ -27,6 +27,10 @@ Responsabilidades:
     
 *Fecha Entrega: 28/10/2017
 
+*Objetivo:
+    *Creación de menu + estilos
+    
+*Fecha de inicio y finalización: 1/11/2017
 ---------------------------------------------------------------------------------------
 *Hernán
 

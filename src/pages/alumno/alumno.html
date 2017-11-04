@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-navbar  color='rosa'>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>
+      Alumnos
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+
+<ion-item>
+  <ion-input [(ngModel)]="nombre" placeholder="Ingrese nombre"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-input [(ngModel)]="apellido" placeholder="Ingrese apellido"></ion-input>
+</ion-item>
+<br>
+    <ion-buttons>
+      <button full  (click)="addNewAlumn()" ion-button icon-only>
+        <ion-icon name="checkmark-circle-outline">Agregar</ion-icon>
+      </button>
+    </ion-buttons>
+
+<br><br><br><br>
+<b><h3>Lista de Alumnos</h3></b>
+ <ion-list>
+
+    <ion-item *ngFor="let boca of items | async; let i = index" style="background-color: black; text-align: left">
+         <ion-thumbnail item-start>
+      <img width="25px" height="25px" src="assets/icono.jpg">
+    </ion-thumbnail>
+    <h2>{{boca.nombre}}</h2>
+    <p> {{boca.apellido}}</p>
+    <button ion-button clear item-end>Modificar</button>
+    <button ion-button clear item-end>Eliminar</button>
+    </ion-item>
+</ion-list> 
+
+
+
+
+
+
+</ion-content>
