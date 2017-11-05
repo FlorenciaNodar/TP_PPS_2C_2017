@@ -10,11 +10,13 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { Login } from '../pages/login/login';
 import { Alumno } from '../pages/alumno/alumno';
 import { EncuestaPage} from '../pages/encuesta/encuesta';
+import { nuevoAlumno} from '../pages/nuevoAlumno/nuevoAlumno';
+import { editarAlumno} from '../pages/editarAlumno/editarAlumno';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import firebase from 'firebase';
 import { Facebook } from '@ionic-native/facebook';
@@ -48,7 +50,9 @@ import { EncuestaHomePage } from '../pages/encuesta-home/encuesta-home';
     Login,
     Alumno,
     EncuestaPage,
-    EncuestaHomePage
+    EncuestaHomePage,
+    nuevoAlumno,
+    editarAlumno
   ],
   imports: [
     BrowserModule,
@@ -75,7 +79,9 @@ import { EncuestaHomePage } from '../pages/encuesta-home/encuesta-home';
     Login,
     Alumno,
     EncuestaPage,
-    EncuestaHomePage
+    EncuestaHomePage,
+    nuevoAlumno,
+    editarAlumno,
   ],
   providers: [
     StatusBar,

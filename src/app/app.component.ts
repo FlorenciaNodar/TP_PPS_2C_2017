@@ -14,6 +14,8 @@ import { UserData } from '../providers/userdata/userdata';
 import { EncuestaPage } from '../pages/encuesta/encuesta';
 import { Alumno } from '../pages/alumno/alumno';
 import { EncuestaHomePage } from '../pages/encuesta-home/encuesta-home';
+import { nuevoAlumno } from '../pages/nuevoAlumno/nuevoAlumno';
+import { editarAlumno } from '../pages/editarAlumno/editarAlumno';
 
 export interface PageInterface {
   title: string;

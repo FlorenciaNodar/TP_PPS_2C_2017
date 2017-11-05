@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      ALTA ALUMNOS
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios,androd,windows">Cancelar</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-item>
+    <ion-input type="text"  [(ngModel)]="nombre" placeholder="Ingrese nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+    <ion-input type="text" [(ngModel)]="apellido" placeholder="Ingrese apellido"></ion-input>
+    </ion-item>
+    <ion-item>
+    <ion-input type="text" [(ngModel)]="dni" placeholder="Ingrese DNI"></ion-input>
+    </ion-item>
+    <ion-item>
+    <ion-label>Fecha de Nacimiento</ion-label>
+    <ion-datetime displayFormat="DD MMM YYYY" doneText="Aceptar" cancelText="Cancelar" [(ngModel)]="fecha"></ion-datetime>
+    </ion-item>
+    <ion-item>
+    <ion-input type="text" [(ngModel)]="mail" placeholder="Ingrese correo"></ion-input>
+    </ion-item>
+    <ion-item>
+    <ion-label>Seleccione un sexo</ion-label>
+    <ion-select cancelText="Cancelar"  [(ngModel)]="sexos" (ionChange)="onChange();">
+    <ion-option [value]="item" *ngFor="let item of options">{{item.name}}</ion-option> 
+    </ion-select> 
+    </ion-item>
+
+<br>
+    <ion-buttons>
+      <button full  (click)="addNewAlumn()" ion-button icon-only>
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+</ion-content>
