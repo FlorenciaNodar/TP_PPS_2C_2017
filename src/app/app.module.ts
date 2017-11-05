@@ -11,6 +11,7 @@ import { Login } from '../pages/login/login';
 import { Alumno } from '../pages/alumno/alumno';
 import { EncuestaPage} from '../pages/encuesta/encuesta';
 import { nuevoAlumno} from '../pages/nuevoAlumno/nuevoAlumno';
+import { editarAlumno} from '../pages/editarAlumno/editarAlumno';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -47,7 +48,8 @@ import { IonicStorageModule } from '@ionic/storage';
     Login,
     Alumno,
     EncuestaPage,
-    nuevoAlumno
+    nuevoAlumno,
+    editarAlumno
   ],
   imports: [
     BrowserModule,
@@ -74,7 +76,8 @@ import { IonicStorageModule } from '@ionic/storage';
     Login,
     Alumno,
     EncuestaPage,
-    nuevoAlumno
+    nuevoAlumno,
+    editarAlumno
   ],
   providers: [
     StatusBar,
