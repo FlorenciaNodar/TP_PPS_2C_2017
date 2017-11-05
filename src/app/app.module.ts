@@ -15,7 +15,7 @@ import { nuevoAlumno} from '../pages/nuevoAlumno/nuevoAlumno';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import firebase from 'firebase';
 import { Facebook } from '@ionic-native/facebook';

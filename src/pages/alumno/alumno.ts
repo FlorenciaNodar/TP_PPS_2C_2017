@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController,ModalController  } from 'ionic-angular';
-import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFireDatabaseModule, AngularFireList } from 'angularfire2/database';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { nuevoAlumno } from '../nuevoAlumno/nuevoAlumno';
 import { Observable } from 'rxjs/Observable';
+import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database-deprecated";
 
 
 import firebase from 'firebase';
@@ -15,44 +16,26 @@ import firebase from 'firebase';
 })
 export class Alumno {
 
- items: Observable<any[]>;
+  items: FirebaseListObservable<any[]>;
   nombre;
   apellido;
   nombreInsertado;
   apellidoInsertado;
+  hola;
   constructor (public navCtrl: NavController, public af: AngularFireDatabase,public modalCtrl: ModalController) {
+
+    this.items= af.list('/Alumno/');
+  
   }
  ngOnInit() {
-    this.items = this.getCourses('/Alumno/');
-  }
-
-    getCourses(listPath): Observable<any[]> {
-    return this.af.list(listPath).valueChanges();
-  }
-
-
-addNewAlumn(){
-
-    this.nombreInsertado = this.nombre;
-    this.apellidoInsertado = this.apellido;
-
-
-    this.af.list("/Alumno/").push({
-    nombre: this.nombreInsertado,
-    apellido: this.apellidoInsertado
-    });
-
-    this.nombre = "";
-    this.apellido= "";
-    this.ngOnInit();
-}
-
-delete(i){
-
     
-    this.af.list("/Alumno/").remove(this.items[i]);
+  }
 
-    this.ngOnInit();
+
+
+delete(boca){
+  this.af.list('/Alumno/').remove(boca.$key);
+  this.ngOnInit();
 
 }
 
