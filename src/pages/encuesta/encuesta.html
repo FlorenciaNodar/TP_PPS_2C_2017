@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Encuesta</ion-title>
+    <ion-title>Generar Encuesta</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -20,11 +20,21 @@
   <!-- AGREGO EL NOMBRE DE LA ENCUESTA -->
   <ion-card>
     <ion-card-header>
-      Nombre de la Encuesta
+      <div style="color : rgb(26, 18, 92)">Nombre de la Encuesta</div>
     </ion-card-header>
     <ion-card-content>
       <ion-item>
         <ion-input placeholder="nombre" type="text" [(ngModel)]="encuesta.nombreEncuesta"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label  style="color : rgb(85, 158, 218)">Fecha Ingreso</ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="encuesta.fechaIngreso" placeholder="dia/mes/año"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label style="color : rgb(85, 158, 218)">Fecha Egreso</ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="encuesta.fechaEgreso" placeholder="dia/mes/año"></ion-datetime>
       </ion-item>
     </ion-card-content>
   </ion-card>
@@ -34,43 +44,44 @@
     <ion-card>
       <ion-card-header>
           <ion-icon name="trash" style="float:right;" (click)="eliminarPregunta(pregunta)"></ion-icon>
-          Pregunta {{i+1}}
+          <div style="color : rgb(26, 18, 92)">Pregunta {{i+1}}</div>
           <ion-item>
               <ion-input placeholder="Ingrese la pregunta" type="text" [(ngModel)]="pregunta.texto"></ion-input>
             </ion-item>
       </ion-card-header>
       <ion-card-content>       
 
-        <br> Tipo de respuesta:
+        <br> 
+        <div style="color : rgb(26, 18, 92)"><h2>Tipo de respuesta:</h2></div>
 
         <ion-list radio-group [(ngModel)]="pregunta.tipoRespuesta" >
 
-          <ion-item class="xxx">
-            <ion-label>Opinion</ion-label>
+          <ion-item>
+            <ion-label style="color : rgb(85, 158, 218)">Opinion</ion-label>
             <ion-radio checked="true" value="OPINION"></ion-radio>
           </ion-item>
 
-          <ion-item class="xxx">
-            <ion-label>si/no</ion-label>
+          <ion-item>
+            <ion-label style="color : rgb(85, 158, 218)">si/no</ion-label>
             <ion-radio value="SI-NO"></ion-radio>
           </ion-item>
 
-          <ion-item class="xxx">
-            <ion-label>Opciones</ion-label>
+          <ion-item>
+            <ion-label style="color : rgb(85, 158, 218)">Opciones</ion-label>
             <ion-radio value="OPCIONES"></ion-radio>
           </ion-item>
 
-          <ion-item *ngIf="pregunta.tipoRespuesta == 'OPCIONES'" class="xxx">
+          <ion-item *ngIf="pregunta.tipoRespuesta == 'OPCIONES'">
             <ion-label>Mis Opciones</ion-label>
             <ion-select [(ngModel)]="pregunta.cantidadOpciones" (ngModelChange)="generarItemsOpciones(pregunta)">
               <ion-option *ngFor="let op of opcionesSelect">{{op.valor}}</ion-option>
             </ion-select>
           </ion-item>
 
-          <ion-item *ngIf="pregunta.tipoRespuesta == 'OPCIONES'" class="xxx">
+          <ion-item *ngIf="pregunta.tipoRespuesta == 'OPCIONES'">
             <ion-item *ngFor="let itemOp of pregunta.opciones; let i = index; trackBy:trackByIndex">
-              <ion-label class="xxx">{{i+1}}-</ion-label> 
-              <ion-input class="xxx" type="text" [(ngModel)]="pregunta.opciones[i]"></ion-input>
+              <ion-label style="color : rgb(85, 158, 218)">{{i+1}}-</ion-label> 
+              <ion-input type="text" [(ngModel)]="pregunta.opciones[i]"></ion-input>
             </ion-item>
           </ion-item>
 
@@ -81,5 +92,6 @@
   </div>
 
 
-  <button ion-button style="float:right;" (click)="guardarEncuesta()" round>Guardar</button>
+  <button ion-button  (click)="guardarEncuesta()" round>Guardar</button>
+  <button ion-button style="float:right;" class="btnEnv" (click)="enviarEncuesta()" round>Enviar</button>
 </ion-content>

@@ -13,6 +13,7 @@ import { HomePage } from '../pages/home/home';
 import { UserData } from '../providers/userdata/userdata';
 import { EncuestaPage } from '../pages/encuesta/encuesta';
 import { Alumno } from '../pages/alumno/alumno';
+import { EncuestaHomePage } from '../pages/encuesta-home/encuesta-home';
 
 export interface PageInterface {
   title: string;
@@ -39,7 +40,7 @@ export class MyApp {
     
     { title: 'Inicio', name: 'TabsPage', component: TabsPage, tabComponent: HomePage, index: 0, icon: 'pie' },
     { title: 'Alumno', name: 'TabsPage', component: TabsPage, tabComponent: Alumno, index: 1, icon: 'school' },
-    { title: 'Encuesta', name: 'TabsPage', component: TabsPage, tabComponent: EncuestaPage, index: 2, icon: 'clipboard' }
+    { title: 'Encuesta', name: 'TabsPage', component: TabsPage, tabComponent: EncuestaHomePage, index: 2, icon: 'clipboard' }
   ];
 
   pagesLog: PageInterface[] = [

@@ -23,6 +23,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { HttpModule } from '@angular/http';
 import { UserData } from '../providers/userdata/userdata';
 import { IonicStorageModule } from '@ionic/storage';
+import { EncuestaDataProvider } from '../providers/encuesta-data/encuesta-data';
+import { EncuestaHomePage } from '../pages/encuesta-home/encuesta-home';
 
   // Initialize Firebase
   var config = {
@@ -45,7 +47,8 @@ import { IonicStorageModule } from '@ionic/storage';
     TabsPage,
     Login,
     Alumno,
-    EncuestaPage
+    EncuestaPage,
+    EncuestaHomePage
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,7 @@ import { IonicStorageModule } from '@ionic/storage';
       links: [
         { component: HomePage, name: 'Inicio', segment: 'inicio' },
         { component: Alumno, name: 'Alumno', segment: 'alumno' },
-        { component: EncuestaPage, name: 'Encuesta', segment: 'encuesta' }
+        { component: EncuestaHomePage, name: 'Encuesta', segment: 'encuesta' }
          ]
     }),
     IonicStorageModule.forRoot()
@@ -71,7 +74,8 @@ import { IonicStorageModule } from '@ionic/storage';
     TabsPage,
     Login,
     Alumno,
-    EncuestaPage
+    EncuestaPage,
+    EncuestaHomePage
   ],
   providers: [
     StatusBar,
@@ -81,8 +85,8 @@ import { IonicStorageModule } from '@ionic/storage';
     GooglePlus,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserData
-    
+    UserData,
+    EncuestaDataProvider    
   ]
 })
 export class AppModule {}

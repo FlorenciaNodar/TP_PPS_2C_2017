@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @IonicPage()
 @Component({
@@ -9,13 +10,20 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class EncuestaPage {
 
-  encuesta= { preguntas:[{}]};
+  encuesta= { autor: '', enviada: '', preguntas:[{}]};
 
   opcionesSelect = [{valor:'1'}, {valor:'2'}, {valor:'3'}];
   
+  creadorDelaEncuesta = '';
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public afDB: AngularFireDatabase,
-  public alertCtrl: AlertController) {
+  public alertCtrl: AlertController, public afAuth: AngularFireAuth) {
+    //this.creadorDelaEncuesta = this.getUser();
+    //console.log(this.creadorDelaEncuesta);
+  }
+
+  getUser() {
+    return this.afAuth.auth.currentUser.email;
   }
 
   trackByIndex(index: number, value: number) {
@@ -27,9 +35,19 @@ export class EncuestaPage {
     console.log(this.encuesta);
   }
 
-  guardarEncuesta(){
+  guardarEncuesta(){    
+    //this.encuesta.autor = this.creadorDelaEncuesta;
+    this.encuesta.enviada = 'no'
     this.saveEncuestaInFB().then(res=>{
       this.showAlerOK("La encuesta se guardo exitosamente")
+    })
+  }
+
+  enviarEncuesta(){
+    //this.encuesta.autor = this.creadorDelaEncuesta;    
+    this.encuesta.enviada = 'si';
+    this.saveEncuestaInFB().then(res=>{
+      this.showAlerOK("La encuesta se envio exitosamente")
     })
   }
 

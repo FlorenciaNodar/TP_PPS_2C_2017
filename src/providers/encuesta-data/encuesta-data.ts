@@ -1,0 +1,17 @@
+import { Injectable } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
+import * as firebase from 'firebase/app';
+
+@Injectable()
+export class EncuestaDataProvider {
+
+  constructor(public afAuth: AngularFireAuth, public afDB: AngularFireDatabase) {
+    console.log('Hello EncuestaDataProvider Provider');
+  }
+
+  getEncuestas(){
+    return this.afDB.list('Encuestas/');
+  }
+
+}

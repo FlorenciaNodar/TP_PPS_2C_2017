@@ -30,6 +30,7 @@
         "angularfire2": "^5.0.0-rc.3",
         "cordova-android": "^6.2.3",
         "cordova-browser": "^4.1.0",
+        "cordova-plugin-datepicker": "^0.9.3",
         "cordova-plugin-device": "^1.1.4",
         "cordova-plugin-facebook4": "^1.9.1",
         "cordova-plugin-googleplus": "^5.1.1",
