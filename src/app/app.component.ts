@@ -13,7 +13,6 @@ import { HomePage } from '../pages/home/home';
 import { EncuestaPage } from '../pages/encuesta/encuesta';
 
 import { UserData } from '../providers/userdata/userdata';
-import { EncuestaPage } from '../pages/encuesta/encuesta';
 import { Alumno } from '../pages/alumno/alumno';
 import { EncuestaHomePage } from '../pages/encuesta-home/encuesta-home';
 import { nuevoAlumno } from '../pages/nuevoAlumno/nuevoAlumno';
@@ -42,18 +41,11 @@ export class MyApp {
   rootPage:any = Login;
 
   pages: PageInterface[] = [
-<<<<<<< Updated upstream
     
     { title: 'Inicio', name: 'TabsPage', component: TabsPage, tabComponent: HomePage, index: 0, icon: 'pie' },
     { title: 'Alumno', name: 'TabsPage', component: TabsPage, tabComponent: Alumno, index: 1, icon: 'school' },
     { title: 'Encuesta', name: 'TabsPage', component: TabsPage, tabComponent: EncuestaHomePage, index: 2, icon: 'clipboard' }
 
-=======
-    { title: 'Registro', name: 'TabsPage', component: TabsPage, tabComponent: RegistroPage, index: 0, icon: 'list-box' },
-    { title: 'Inicio', name: 'TabsPage', component: TabsPage, tabComponent: HomePage, index: 1, icon: 'pie' },
-    { title: 'Sobre', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 2, icon: 'information-circle' },
-    { title: 'Encuesta', name: 'TabsPage', component: TabsPage, tabComponent: EncuestaPage, index: 3, icon: 'ios-document' }
->>>>>>> Stashed changes
   ];
 
   pagesLog: PageInterface[] = [
