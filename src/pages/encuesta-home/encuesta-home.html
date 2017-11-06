@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>encuestaHome</ion-title>
+    <ion-title>Encuestas</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -10,5 +10,28 @@
 <ion-content padding>
 
   <button ion-button (click)="generarEncuesta()">Nueva Encuesta</button>
+
+  <div *ngFor="let e of encuestas | async; let i = index">
+    <ion-card>
+      <ion-card-header>
+        
+        <button ion-button *ngIf="e.enviada=='no'" style="float:right;" class="btnEnv btnChico"><ion-icon  name="send"></ion-icon></button>
+
+        <div style="color : rgb(26, 18, 92)">{{e.nombreEncuesta}}</div>
+      </ion-card-header>
+
+      <div *ngFor="let pregunta of e.preguntas; let i = index">
+        <ion-card-content>
+          <ion-item>
+            <ion-label style="color : rgb(85, 158, 218)">{{pregunta.texto}}</ion-label>
+          </ion-item>
+        </ion-card-content>
+      </div>
+
+    </ion-card>
+
+  </div>
+
+
 
 </ion-content>

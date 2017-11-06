@@ -4,6 +4,7 @@ import { EncuestaDataProvider } from '../../providers/encuesta-data/encuesta-dat
 import { AngularFireList } from 'angularfire2/database';
 import { EncuestaPage } from '../encuesta/encuesta';
 import { Observable } from 'rxjs/Observable';
+import { FirebaseListObservable } from 'angularfire2/database-deprecated';
 
 @IonicPage()
 @Component({
@@ -12,13 +13,15 @@ import { Observable } from 'rxjs/Observable';
 })
 export class EncuestaHomePage {
 
-
-  encuestas: Observable<any[]>;
-
+  encuestas: FirebaseListObservable<any[]>;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, public encuestaDataProvider: EncuestaDataProvider) {
 
-    this.encuestas = this.encuestaDataProvider.getEncuestas().valueChanges();
+    this.encuestas = this.encuestaDataProvider.getEncuestas();
     console.log(this.encuestas);
+    this.encuestas.forEach(e=>{
+      console.log (e);
+    })
 
   }
 
