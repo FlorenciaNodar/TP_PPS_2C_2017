@@ -61,8 +61,6 @@ import { EncuestaHomePage } from '../pages/encuesta-home/encuesta-home';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpModule,
-    FormsModule,
-    ReactiveFormsModule,
     IonicModule.forRoot(MyApp, {}, {
       links: [
         { component: HomePage, name: 'Inicio', segment: 'inicio' },
