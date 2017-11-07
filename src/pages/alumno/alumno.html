@@ -6,11 +6,11 @@
  <ion-list>
 
 <ion-item *ngFor="let boca of items | async; let i = index" style="background-color: black; text-align: left">
-<ion-thumbnail item-start>
-<img width="25px" height="25px" src="assets/icono.jpg">
+<ion-thumbnail item-start style="margin:12px 0px 0px" >
+<img style="width: 50px;height:50px;"  src="assets/icono.jpg">
 </ion-thumbnail>
-<h2>{{boca.nombre}}</h2>
-<p> {{boca.apellido}}</p>
+<h2 style="color: white">{{boca.nombre}}</h2>
+<p style="color: white"> {{boca.apellido}}</p>
  <button ion-button clear item-end icon-only (click)="modify(boca)">
   <ion-icon name="create" ></ion-icon>
 </button>

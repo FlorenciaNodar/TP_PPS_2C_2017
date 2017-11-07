@@ -65,18 +65,18 @@ ngOnInit() {
 }
 onChange()
 {
-  this.sexo = this.sexos.name;
+  this.sexo = this.lista.sexo;
 }
 
 
-modify(lista:any, sexos){
+modify(lista:any){
  firebase.database().ref('/Alumno/' + lista.$key).set({
     nombre: lista.nombre,
     apellido: lista.apellido,
     dni: lista.dni,
     mail: lista.mail,
     fechaNacimiento: lista.fechaNacimiento,
-    sexo: sexos.name
+    sexo: lista.sexo
   });
 this.ngOnInit();
 this.dismiss();

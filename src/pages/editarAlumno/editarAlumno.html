@@ -33,8 +33,8 @@
     </ion-item>
     <ion-item>
     <ion-label>Seleccione un sexo</ion-label>
-    <ion-select cancelText="Cancelar" [formControl]="rForm.controls.sexo1"   [(ngModel)]="sexos" (ionChange)="onChange();">
-    <ion-option [value]="item" *ngFor="let item of options">{{item.name}}</ion-option> 
+    <ion-select cancelText="Cancelar" [formControl]="rForm.controls.sexo1"   [(ngModel)]="lista.sexo" (ionChange)="onChange();">
+    <ion-option  *ngFor="let item of options">{{item.name}}</ion-option> 
     </ion-select> 
     </ion-item>
 </ion-list>
@@ -42,7 +42,7 @@
 </form>
 <br>
     <ion-buttons>
-      <button full [disabled]="rForm.invalid"  (click)="modify(lista, sexos)" ion-button icon-only>
+      <button full [disabled]="rForm.invalid"  (click)="modify(lista)" ion-button icon-only>
         <ion-icon name="checkmark-circle-outline"></ion-icon>
       </button>
     </ion-buttons>
