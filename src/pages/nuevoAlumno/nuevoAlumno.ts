@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { NavController,ModalController,ViewController, AlertController   } from 'ionic-angular';
 import { AngularFireDatabaseModule, AngularFireList } from 'angularfire2/database';
 import { AngularFirestore } from 'angularfire2/firestore';
@@ -40,7 +41,34 @@ options = [
 }
 ];
 
-constructor (public navCtrl: NavController,public alertCtrl: AlertController, public af: AngularFireDatabase,public modalCtrl: ModalController,public viewCtrl: ViewController) {
+
+//Validaciones
+rForm: FormGroup;
+nome;
+ape;
+ma;
+sexo1;
+fecha1;
+dni1;
+
+constructor (public formbuilder: FormBuilder ,public navCtrl: NavController,public alertCtrl: AlertController, public af: AngularFireDatabase,public modalCtrl: ModalController,public viewCtrl: ViewController) {
+this.nome = new FormControl();
+this.ape = new FormControl();
+this.ma = new FormControl();
+this.sexo1 = new FormControl();
+this.fecha1 = new FormControl();
+this.dni1 = new FormControl();
+
+
+this.rForm = formbuilder.group({
+'nome': ['', Validators.compose([Validators.required, Validators.maxLength(25)])],
+'ape': ['', Validators.compose([Validators.required, Validators.maxLength(25)])],
+'ma': ['',Validators.compose([Validators.required, Validators.email])],
+'sexo1': ['', Validators.required],
+'fecha1': ['', Validators.required],
+'dni1': ['', Validators.compose([Validators.required, Validators.maxLength(11)]) ]
+});
+
 }
 ngOnInit() {
 }

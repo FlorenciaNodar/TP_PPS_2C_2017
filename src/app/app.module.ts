@@ -1,4 +1,5 @@
 import { NgModule, ErrorHandler } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -60,6 +61,8 @@ import { EncuestaHomePage } from '../pages/encuesta-home/encuesta-home';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpModule,
+    FormsModule,
+    ReactiveFormsModule,
     IonicModule.forRoot(MyApp, {}, {
       links: [
         { component: HomePage, name: 'Inicio', segment: 'inicio' },

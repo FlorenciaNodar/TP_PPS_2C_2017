@@ -13,33 +13,38 @@
 </ion-header>
 
 <ion-content>
-
-<ion-item>
-    <ion-input type="text"  [(ngModel)]="nombre" placeholder="Ingrese nombre"></ion-input>
+<form [formGroup]="rForm">
+  <ion-list>
+    <ion-item>
+    <ion-input type="text"    [formControl]="rForm.controls.nome" [(ngModel)]="nombre" placeholder="Ingrese nombre"></ion-input>
+    </ion-item>
+     <ion-item>
+    <ion-input type="text"  [formControl]="rForm.controls.ape"  [(ngModel)]="apellido" placeholder="Ingrese apellido"></ion-input>
     </ion-item>
     <ion-item>
-    <ion-input type="text" [(ngModel)]="apellido" placeholder="Ingrese apellido"></ion-input>
+    <ion-input type="number"  [formControl]="rForm.controls.dni1" [(ngModel)]="dni" placeholder="Ingrese DNI"></ion-input>
     </ion-item>
-    <ion-item>
-    <ion-input type="text" [(ngModel)]="dni" placeholder="Ingrese DNI"></ion-input>
-    </ion-item>
-    <ion-item>
+     <ion-item>
     <ion-label>Fecha de Nacimiento</ion-label>
-    <ion-datetime displayFormat="DD MMM YYYY" doneText="Aceptar" cancelText="Cancelar" [(ngModel)]="fecha"></ion-datetime>
-    </ion-item>
+    <ion-datetime displayFormat="DD MMM YYYY" doneText="Aceptar" cancelText="Cancelar"  [formControl]="rForm.controls.fecha1" [(ngModel)]="fecha"></ion-datetime>
+    </ion-item> 
     <ion-item>
-    <ion-input type="text" [(ngModel)]="mail" placeholder="Ingrese correo"></ion-input>
+    <ion-input type="text"  [formControl]="rForm.controls.ma" [(ngModel)]="mail" placeholder="Ingrese correo"></ion-input>
     </ion-item>
-    <ion-item>
+     <ion-item>
     <ion-label>Seleccione un sexo</ion-label>
-    <ion-select cancelText="Cancelar"  [(ngModel)]="sexos" (ionChange)="onChange();">
+    <ion-select cancelText="Cancelar"  [formControl]="rForm.controls.sexo1"   [(ngModel)]="sexos" (ionChange)="onChange();">
     <ion-option [value]="item" *ngFor="let item of options">{{item.name}}</ion-option> 
     </ion-select> 
-    </ion-item>
+    </ion-item>  
+  </ion-list>
+
+</form>
+
 
 <br>
     <ion-buttons>
-      <button full  (click)="addNewAlumn()" ion-button icon-only>
+      <button full [disabled]="rForm.invalid" (click)="addNewAlumn()" ion-button icon-only>
         <ion-icon name="checkmark-circle-outline"></ion-icon>
       </button>
     </ion-buttons>
