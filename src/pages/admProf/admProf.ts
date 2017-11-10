@@ -23,16 +23,33 @@ nombreInsertado;
 apellidoInsertado;
 hola;
 lista: any;
+pet;
 constructor (public navCtrl: NavController, public af: AngularFireDatabase,public modalCtrl: ModalController) {
 
   this.itemsAdm= af.list('/Administrativos/');
   this.itemsProf= af.list('/Profesores/');
+  this.pet = "puppies";
+
 
 
 }
+ngOnInit(){
 
+}
 presentModal(){
 let modal = this.modalCtrl.create(nuevoAdmProf);
 modal.present();
+}
+
+deleteProf(boca){
+
+this.af.list('/Profesores/').remove(boca.$key);
+this.ngOnInit();
+}
+
+delete(boca){
+
+this.af.list('/Administrativos/').remove(boca.$key);
+this.ngOnInit();
 }
 }
