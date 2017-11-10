@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { EncuestaDataProvider } from '../../providers/encuesta-data/encuesta-data';
 import { AngularFireList } from 'angularfire2/database';
 import { EncuestaPage } from '../encuesta/encuesta';
 import { Observable } from 'rxjs/Observable';
 import { FirebaseListObservable } from 'angularfire2/database-deprecated';
+import { EncuestaEnviarPage } from '../encuesta-enviar/encuesta-enviar';
 
 @IonicPage()
 @Component({
@@ -15,22 +16,54 @@ export class EncuestaHomePage {
 
   encuestas: FirebaseListObservable<any[]>;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, public encuestaDataProvider: EncuestaDataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public eDataProvider: EncuestaDataProvider,
+  public modalCtrl: ModalController, public alertCtrl: AlertController) {
 
-    this.encuestas = this.encuestaDataProvider.getEncuestas();
-    console.log(this.encuestas);
+    this.encuestas = this.eDataProvider.getEncuestas();
+    
     this.encuestas.forEach(e=>{
       console.log (e);
     })
 
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EncuestaHomePage');
+  enviarEncuesta(e){
+    console.log(e);
+    e.enviada=true;
+    this.enviarEncuestaFB(e).then(res=>{
+      this.showAlerOK("La encuesta se envio exitosamente");
+    })
   }
+
+  enviarEncuestaFB(e){
+    return this.eDataProvider.enviarEncuestaGuardadaFB(e);
+  }
+
+  /*enviarEncuestaModal(encuesta) {
+    let modal = this.modalCtrl.create(EncuestaEnviarPage,{encuesta: encuesta});
+    modal.present();
+  } */ 
 
   generarEncuesta(){
     this.navCtrl.push(EncuestaPage);
+  }
+
+  showAlerOK(mensaje: string) {
+    let alert = this.alertCtrl.create({
+      title: 'Info',
+      subTitle: mensaje,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  showAlertError(mensaje: string) {
+    let alert = this.alertCtrl.create({
+      title: 'ERROR!',
+      subTitle: mensaje,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }

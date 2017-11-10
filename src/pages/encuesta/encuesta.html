@@ -20,11 +20,11 @@
   <!-- AGREGO EL NOMBRE DE LA ENCUESTA -->
   <ion-card>
     <ion-card-header>
-      <div style="color : rgb(26, 18, 92)">Nombre de la Encuesta</div>
+      <div style="color : rgb(26, 18, 92)">Datos:</div>
     </ion-card-header>
     <ion-card-content>
       <ion-item>
-        <ion-input placeholder="nombre" type="text" [(ngModel)]="encuesta.nombreEncuesta"></ion-input>
+        <ion-input placeholder="Nombre de la Encuesta" type="text" [(ngModel)]="encuesta.nombreEncuesta"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -90,8 +90,7 @@
       </ion-card-content>
     </ion-card>
   </div>
-
-
-  <button ion-button  (click)="guardarEncuesta()" round>Guardar</button>
-  <button ion-button style="float:right;" class="btnEnv" (click)="enviarEncuesta()" round>Enviar</button>
+  
+  <!--<button ion-button  (click)="guardarEncuesta()" round><ion-icon  name="md-archive"></ion-icon></button>-->
+  <button ion-button style="float:right;" class="btnEnv" (click)="siguiente()" round>Siguiente</button>
 </ion-content>

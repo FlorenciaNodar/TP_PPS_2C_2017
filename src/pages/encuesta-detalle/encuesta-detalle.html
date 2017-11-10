@@ -1,0 +1,35 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Detalle de la Encuesta</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-label>{{encuesta.nombreEncuesta}}</ion-label>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-label>Preguntas:</ion-label>
+      <ion-item *ngFor="let p of encuesta.preguntas; let i = index">
+        <ion-label>{{i+1}}-{{ p.texto}}</ion-label>
+      </ion-item>
+
+      <ion-label>Destinatarios:</ion-label>
+      <ion-item *ngFor="let d of encuesta.destinatarios; let i = index">
+        <ion-label>{{d.descripcion}}</ion-label>
+      </ion-item>
+
+    </ion-card-content>
+  </ion-card>
+
+  <button ion-button  (click)="guardarEncuesta()" round><ion-icon  name="md-archive"></ion-icon></button>
+  <button ion-button style="float:right;" class="btnEnv" (click)="enviarEncuesta()" round>Enviar</button>
+  
+
+</ion-content>

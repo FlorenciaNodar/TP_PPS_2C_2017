@@ -15,4 +15,12 @@ export class EncuestaDataProvider {
     return this.afDB.list('Encuestas/');
   }
 
+  saveEncuestaInFB(encuesta){
+    return this.afDB.database.ref('Encuestas/').push(encuesta);
+  }
+
+  enviarEncuestaGuardadaFB(encuesta){
+    return firebase.database().ref('Encuestas/' + encuesta.$key).update(encuesta);
+  }  
+
 }

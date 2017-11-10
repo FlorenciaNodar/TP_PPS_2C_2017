@@ -27,6 +27,10 @@ import { UserData } from '../providers/userdata/userdata';
 import { IonicStorageModule } from '@ionic/storage';
 import { EncuestaDataProvider } from '../providers/encuesta-data/encuesta-data';
 import { EncuestaHomePage } from '../pages/encuesta-home/encuesta-home';
+import { EncuestaEnviarPage } from '../pages/encuesta-enviar/encuesta-enviar';
+import { AsistenciaModalPage } from '../pages/asistencia-modal/asistencia-modal';
+import { AsistenciDataProvider } from '../providers/asistencia-data/asistencia-data';
+import { EncuestaDetallePage } from '../pages/encuesta-detalle/encuesta-detalle';
 
   // Initialize Firebase
   var config = {
@@ -52,7 +56,10 @@ import { EncuestaHomePage } from '../pages/encuesta-home/encuesta-home';
     EncuestaPage,
     EncuestaHomePage,
     nuevoAlumno,
-    editarAlumno
+    editarAlumno,
+    EncuestaEnviarPage,
+    AsistenciaModalPage,
+    EncuestaDetallePage
   ],
   imports: [
     BrowserModule,
@@ -82,6 +89,9 @@ import { EncuestaHomePage } from '../pages/encuesta-home/encuesta-home';
     EncuestaHomePage,
     nuevoAlumno,
     editarAlumno,
+    EncuestaEnviarPage,
+    AsistenciaModalPage,
+    EncuestaDetallePage
   ],
   providers: [
     StatusBar,
@@ -92,7 +102,8 @@ import { EncuestaHomePage } from '../pages/encuesta-home/encuesta-home';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserData,
-    EncuestaDataProvider    
+    EncuestaDataProvider,
+    AsistenciDataProvider    
   ]
 })
 export class AppModule {}

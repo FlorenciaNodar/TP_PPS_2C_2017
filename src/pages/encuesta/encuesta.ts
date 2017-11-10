@@ -1,25 +1,32 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database-deprecated"
 import { AngularFireAuth } from 'angularfire2/auth';
+import { EncuestaEnviarPage } from '../encuesta-enviar/encuesta-enviar';
+import { EncuestaDataProvider } from '../../providers/encuesta-data/encuesta-data';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @IonicPage()
 @Component({
   selector: 'page-encuesta',
   templateUrl: 'encuesta.html',
 })
-export class EncuestaPage {
+export class EncuestaPage {  
 
-  encuesta= { autor: '', enviada: '', preguntas:[{}]};
+  encuesta= { autor: '', enviada: false, preguntas: [{}], destinatarios: [{}]};
 
   opcionesSelect = [{valor:'1'}, {valor:'2'}, {valor:'3'}];
   
   creadorDelaEncuesta = '';
+
+  public loginForm: any;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public afDB: AngularFireDatabase,
-  public alertCtrl: AlertController, public afAuth: AngularFireAuth) {
+  public alertCtrl: AlertController, public afAuth: AngularFireAuth, public modalCtrl: ModalController, 
+  public eDataProvider: EncuestaDataProvider, public formBuilder: FormBuilder) {
     //this.creadorDelaEncuesta = this.getUser();
     //console.log(this.creadorDelaEncuesta);
+   
   }
 
   getUser() {
@@ -35,26 +42,12 @@ export class EncuestaPage {
     console.log(this.encuesta);
   }
 
-  guardarEncuesta(){    
-    //this.encuesta.autor = this.creadorDelaEncuesta;
-    this.encuesta.enviada = 'no'
-    this.saveEncuestaInFB().then(res=>{
-      this.showAlerOK("La encuesta se guardo exitosamente")
-    })
-  }
-
-  enviarEncuesta(){
-    //this.encuesta.autor = this.creadorDelaEncuesta;    
-    this.encuesta.enviada = 'si';
-    this.saveEncuestaInFB().then(res=>{
-      this.showAlerOK("La encuesta se envio exitosamente")
-    })
-  }
-
-  saveEncuestaInFB(){
-    console.log(this.encuesta);
-    return this.afDB.database.ref('Encuestas/').push(this.encuesta);
-  }
+  siguiente() {
+    var jsonEncuesta = {encuesta: this.encuesta};
+    /*let modal = this.modalCtrl.create(EncuestaEnviarPage,jsonEncuesta);
+    modal.present();*/
+    this.navCtrl.push(EncuestaEnviarPage,jsonEncuesta);
+  }  
 
   agregarPregunta(){
     this.encuesta.preguntas.push({texto:''});

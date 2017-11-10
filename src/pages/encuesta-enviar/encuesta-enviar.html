@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Destinatarios</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-label>Aulas</ion-label>
+    <ion-select [(ngModel)]="destinatarios" multiple="true">
+      <ion-option *ngFor="let a of aulas" value="a.descripcion" [value]="a">{{a.descripcion}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <br>
+
+  <ion-item>
+    <div style="color : rgb(26, 18, 92)">Destinatarios:</div>
+  </ion-item>
+
+  <ion-item *ngFor="let d of destinatarios">
+    <div style="color : rgb(26, 18, 92)">{{d.descripcion}}</div>
+  </ion-item>
+
+  <br><br>
+  <!--<button ion-button (click)="cerrarModal()">Guardar</button>-->
+
+  <!--<button ion-button (click)="mostrarDestinatarios()">mostrarOP</button>-->
+
+  <button ion-button (click)="siguiente()" style="float:right;" class="btnEnv" round>Siguiente</button>
+
+</ion-content>
