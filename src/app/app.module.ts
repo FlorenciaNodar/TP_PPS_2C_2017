@@ -17,6 +17,7 @@ import { AdmProf} from '../pages/admProf/admProf';
 import { nuevoAdmProf} from '../pages/nuevoAdmProf/nuevoAdmProf';
 import { editarAdmProf} from '../pages/editarAdmProf/editarAdmProf';
 import { ListasPage } from '../pages/listas/listas';
+import { CodigoAlumnos } from '../pages/codigoAlumnos/codigoAlumnos';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -36,6 +37,8 @@ import { EncuestaEnviarPage } from '../pages/encuesta-enviar/encuesta-enviar';
 import { AsistenciaModalPage } from '../pages/asistencia-modal/asistencia-modal';
 import { AsistenciDataProvider } from '../providers/asistencia-data/asistencia-data';
 import { EncuestaDetallePage } from '../pages/encuesta-detalle/encuesta-detalle';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
   // Initialize Firebase
   var config = {
@@ -68,7 +71,8 @@ import { EncuestaDetallePage } from '../pages/encuesta-detalle/encuesta-detalle'
     AdmProf,
     nuevoAdmProf,
     editarAdmProf,
-    ListasPage
+    ListasPage,
+    CodigoAlumnos
   ],
   imports: [
     BrowserModule,
@@ -76,6 +80,7 @@ import { EncuestaDetallePage } from '../pages/encuesta-detalle/encuesta-detalle'
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpModule,
+    NgxQRCodeModule,
     IonicModule.forRoot(MyApp, {}, {
       links: [
         { component: HomePage, name: 'Inicio', segment: 'inicio' },
@@ -104,7 +109,8 @@ import { EncuestaDetallePage } from '../pages/encuesta-detalle/encuesta-detalle'
     AdmProf,
     nuevoAdmProf,
     editarAdmProf,
-    ListasPage
+    ListasPage,
+    CodigoAlumnos
   ],
   providers: [
     StatusBar,
@@ -116,7 +122,8 @@ import { EncuestaDetallePage } from '../pages/encuesta-detalle/encuesta-detalle'
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserData,
     EncuestaDataProvider,
-    AsistenciDataProvider    
+    AsistenciDataProvider,
+    BarcodeScanner 
   ]
 })
 export class AppModule {}
