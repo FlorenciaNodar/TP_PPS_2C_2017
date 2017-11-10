@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      EDITAR {{puesto}}
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios,androd,windows">Cancelar</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<form [formGroup]="rForm">
+  <ion-list>
+<ion-item>
+    <ion-input type="text"  [formControl]="rForm.controls.nome" [(ngModel)]="lista.nombre" placeholder="Ingrese nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+    <ion-input type="text" [formControl]="rForm.controls.ape"  [(ngModel)]="lista.apellido" placeholder="Ingrese apellido"></ion-input>
+    </ion-item>
+    <ion-item>
+    <ion-input type="number" [formControl]="rForm.controls.dni1" [(ngModel)]="lista.dni" placeholder="Ingrese DNI"></ion-input>
+    </ion-item>
+    <ion-item>
+    <ion-label>Fecha de Nacimiento</ion-label>
+    <ion-datetime displayFormat="DD MMM YYYY" doneText="Aceptar"   [formControl]="rForm.controls.fecha1" cancelText="Cancelar" [(ngModel)]="lista.fechaNacimiento"></ion-datetime>
+    </ion-item>
+    <ion-item>
+    <ion-input type="text"  [formControl]="rForm.controls.ma" [(ngModel)]="lista.mail" placeholder="Ingrese correo"></ion-input>
+    </ion-item>
+    <ion-item>
+    <ion-label>Seleccione un sexo</ion-label>
+    <ion-select cancelText="Cancelar" [formControl]="rForm.controls.sexo1"   [(ngModel)]="lista.sexo" (ionChange)="onChange();">
+    <ion-option  *ngFor="let item of options">{{item.name}}</ion-option> 
+    </ion-select> 
+    </ion-item>
+</ion-list>
+
+</form>
+<br>
+    <ion-buttons>
+      <button full [disabled]="rForm.invalid"  (click)="modify(lista)" ion-button icon-only>
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+</ion-content>

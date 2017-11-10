@@ -15,6 +15,7 @@ import { nuevoAlumno} from '../pages/nuevoAlumno/nuevoAlumno';
 import { editarAlumno} from '../pages/editarAlumno/editarAlumno';
 import { AdmProf} from '../pages/admProf/admProf';
 import { nuevoAdmProf} from '../pages/nuevoAdmProf/nuevoAdmProf';
+import { editarAdmProf} from '../pages/editarAdmProf/editarAdmProf';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -57,7 +58,8 @@ import { EncuestaHomePage } from '../pages/encuesta-home/encuesta-home';
     nuevoAlumno,
     editarAlumno,
     AdmProf,
-    nuevoAdmProf
+    nuevoAdmProf,
+    editarAdmProf
   ],
   imports: [
     BrowserModule,
@@ -88,7 +90,8 @@ import { EncuestaHomePage } from '../pages/encuesta-home/encuesta-home';
     nuevoAlumno,
     editarAlumno,
     AdmProf,
-    nuevoAdmProf
+    nuevoAdmProf,
+    editarAdmProf
   ],
   providers: [
     StatusBar,

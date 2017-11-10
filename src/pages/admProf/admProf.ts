@@ -3,7 +3,7 @@ import { NavController,ModalController  } from 'ionic-angular';
 import { AngularFireDatabaseModule, AngularFireList } from 'angularfire2/database';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { nuevoAdmProf } from '../nuevoAdmProf/nuevoAdmProf';
-import { editarAlumno } from '../editarAlumno/editarAlumno';
+import { editarAdmProf } from '../editarAdmProf/editarAdmProf';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database-deprecated";
 
@@ -52,4 +52,18 @@ delete(boca){
 this.af.list('/Administrativos/').remove(boca.$key);
 this.ngOnInit();
 }
+
+modifyProf(boca){
+
+var puesto = "PROFESOR";
+let modal = this.modalCtrl.create(editarAdmProf, {lista:boca, puestoPersona: puesto });
+modal.present();
+}
+
+modify(boca){
+var puesto = "ADMINISTRATIVO";
+let modal = this.modalCtrl.create(editarAdmProf, {lista:boca, puestoPersona: puesto});
+modal.present();
+}
+
 }
