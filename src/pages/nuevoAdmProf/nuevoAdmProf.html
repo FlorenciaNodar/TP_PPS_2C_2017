@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      ALTA ALUMNOS
+      ALTA
     </ion-title>
     <ion-buttons start>
       <button ion-button (click)="dismiss()">
@@ -15,6 +15,13 @@
 <ion-content>
 <form [formGroup]="rForm">
   <ion-list>
+     <ion-item>
+    <ion-label>Seleccione a quien dar alta</ion-label>
+    <ion-select cancelText="Cancelar"  [formControl]="rForm.controls.alta1"   [(ngModel)]="altas" (ionChange)="onChangeTwo();">
+    <ion-option [value]="item" *ngFor="let item of options1">{{item.name}}</ion-option> 
+    </ion-select> 
+     </ion-item>
+
     <ion-item>
     <ion-input type="text"    [formControl]="rForm.controls.nome" [(ngModel)]="nombre" placeholder="Ingrese nombre"></ion-input>
     </ion-item>

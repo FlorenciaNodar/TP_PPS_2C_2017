@@ -12,10 +12,10 @@ import firebase from 'firebase';
 
 
 @Component({
-  selector: 'page-editarAlumno',
-  templateUrl: 'editarAlumno.html'
+  selector: 'page-editarAdmProf',
+  templateUrl: 'editarAdmProf.html'
 })
-export class editarAlumno {
+export class editarAdmProf {
 
 sexo:string;
 sexoInsertado;
@@ -29,6 +29,7 @@ options = [
 }
 ];
 lista:any;  
+puesto:any;  
 
 //Validaciones
 rForm: FormGroup;
@@ -40,7 +41,9 @@ fecha1;
 dni1;
 constructor (public formbuilder: FormBuilder,public navCtrl: NavController, public af: AngularFireDatabase,public modalCtrl: ModalController, public navParams: NavParams,public viewCtrl: ViewController) {
 let datos= this.navParams.get('lista'); 
+let puestoPersona= this.navParams.get('puestoPersona'); 
 this.lista = datos;
+this.puesto = puestoPersona;
 this.sexos= this.lista.sexo;
 this.nome = new FormControl();
 this.ape = new FormControl();
@@ -70,14 +73,26 @@ onChange()
 
 
 modify(lista:any){
- firebase.database().ref('/Alumno/' + lista.$key).set({
-    nombre: lista.nombre,
-    apellido: lista.apellido,
-    dni: lista.dni,
-    mail: lista.mail,
-    fechaNacimiento: lista.fechaNacimiento,
-    sexo: lista.sexo
-  });
+if(this.puesto == "ADMINISTRATIVO"){
+firebase.database().ref('/Administrativos/' + lista.$key).set({
+nombre: lista.nombre,
+apellido: lista.apellido,
+dni: lista.dni,
+mail: lista.mail,
+fechaNacimiento: lista.fechaNacimiento,
+sexo: lista.sexo
+});
+}else{
+        firebase.database().ref('/Profesores/' + lista.$key).set({
+nombre: lista.nombre,
+apellido: lista.apellido,
+dni: lista.dni,
+mail: lista.mail,
+fechaNacimiento: lista.fechaNacimiento,
+sexo: lista.sexo
+});
+}
+
 this.ngOnInit();
 this.dismiss();
 

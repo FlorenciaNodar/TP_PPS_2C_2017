@@ -8,6 +8,7 @@ import { HomePage } from '../home/home';
 import { Alumno } from '../alumno/alumno';
 import { EncuestaPage } from '../encuesta/encuesta';
 import { EncuestaHomePage } from '../encuesta-home/encuesta-home';
+import { AdmProf } from '../admProf/admProf';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class TabsPage {
   tab1Root = HomePage;  
   tab2Root = Alumno;
   tab3Root = EncuestaHomePage;
+  tab4Root = AdmProf;
   
 
 

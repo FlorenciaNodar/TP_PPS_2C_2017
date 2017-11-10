@@ -1,4 +1,5 @@
 import { NgModule, ErrorHandler } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -12,6 +13,9 @@ import { Alumno } from '../pages/alumno/alumno';
 import { EncuestaPage} from '../pages/encuesta/encuesta';
 import { nuevoAlumno} from '../pages/nuevoAlumno/nuevoAlumno';
 import { editarAlumno} from '../pages/editarAlumno/editarAlumno';
+import { AdmProf} from '../pages/admProf/admProf';
+import { nuevoAdmProf} from '../pages/nuevoAdmProf/nuevoAdmProf';
+import { editarAdmProf} from '../pages/editarAdmProf/editarAdmProf';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -59,7 +63,10 @@ import { EncuestaDetallePage } from '../pages/encuesta-detalle/encuesta-detalle'
     editarAlumno,
     EncuestaEnviarPage,
     AsistenciaModalPage,
-    EncuestaDetallePage
+    EncuestaDetallePage,
+    AdmProf,
+    nuevoAdmProf,
+    editarAdmProf
   ],
   imports: [
     BrowserModule,
@@ -91,7 +98,10 @@ import { EncuestaDetallePage } from '../pages/encuesta-detalle/encuesta-detalle'
     editarAlumno,
     EncuestaEnviarPage,
     AsistenciaModalPage,
-    EncuestaDetallePage
+    EncuestaDetallePage,
+    AdmProf,
+    nuevoAdmProf,
+    editarAdmProf
   ],
   providers: [
     StatusBar,

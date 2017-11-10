@@ -11,13 +11,14 @@ import firebase from 'firebase';
 
 
 @Component({
-  selector: 'page-nuevoAlumno',
-  templateUrl: 'nuevoAlumno.html'
+  selector: 'page-nuevoAdmProf',
+  templateUrl: 'nuevoAdmProf.html'
 })
 
-export class nuevoAlumno {
+export class nuevoAdmProf{
 
-    
+
+        
 items: Observable<any[]>;
 nombre;
 apellido;
@@ -30,8 +31,10 @@ fechaInsertado;
 nombreInsertado;
 apellidoInsertado;
 sexo:string;
+alta:string;
 sexoInsertado;
 sexos: any;
+altas:any;
 options = [
 {
   "name": "Femenino"
@@ -42,21 +45,31 @@ options = [
 ];
 
 
+options1 =[
+    {
+        "name": "Administrativos"
+    },
+      {
+        "name": "Profesores"
+    }
+];
+
 //Validaciones
 rForm: FormGroup;
 nome;
 ape;
 ma;
 sexo1;
+alta1;
 fecha1;
 dni1;
-
 constructor (public formbuilder: FormBuilder ,public navCtrl: NavController,public alertCtrl: AlertController, public af: AngularFireDatabase,public modalCtrl: ModalController,public viewCtrl: ViewController) {
 this.nome = new FormControl();
 this.ape = new FormControl();
 this.ma = new FormControl();
 this.sexo1 = new FormControl();
 this.fecha1 = new FormControl();
+this.alta1 = new FormControl();
 this.dni1 = new FormControl();
 
 
@@ -65,11 +78,12 @@ this.rForm = formbuilder.group({
 'ape': ['', Validators.compose([Validators.required, Validators.maxLength(25)])],
 'ma': ['',Validators.compose([Validators.required, Validators.email])],
 'sexo1': ['', Validators.required],
+'alta1': ['', Validators.required],
 'fecha1': ['', Validators.required],
 'dni1': ['', Validators.compose([Validators.required, Validators.maxLength(11)]) ]
-});
-
+}); 
 }
+
 ngOnInit() {
 }
 
@@ -77,6 +91,10 @@ ngOnInit() {
 onChange()
 {
   this.sexo = this.sexos.name;
+}
+
+onChangeTwo(){
+    this.alta = this.altas.name;
 }
 
 addNewAlumn(){
@@ -97,14 +115,29 @@ addNewAlumn(){
     });
     alert.present();
   }else{
-  this.af.list("/Alumno/").push({
-  nombre: this.nombreInsertado,
-  apellido: this.apellidoInsertado,
-  fechaNacimiento: this.fechaInsertado,
-  sexo: this.sexoInsertado,
-  dni: this.dniInsertado,
-  mail: this.mailInsertado
-  });
+
+    if(this.alta == "Administrativos")
+    {
+    this.af.list("/Administrativos/").push({
+    nombre: this.nombreInsertado,
+    apellido: this.apellidoInsertado,
+    fechaNacimiento: this.fechaInsertado,
+    sexo: this.sexoInsertado,
+    dni: this.dniInsertado,
+    mail: this.mailInsertado
+    });
+    }
+    else{
+    this.af.list("/Profesores/").push({
+    nombre: this.nombreInsertado,
+    apellido: this.apellidoInsertado,
+    fechaNacimiento: this.fechaInsertado,
+    sexo: this.sexoInsertado,
+    dni: this.dniInsertado,
+    mail: this.mailInsertado
+    });
+    }
+
 
   this.nombre = "";
   this.apellido= "";
@@ -112,6 +145,7 @@ addNewAlumn(){
   this.mail="";
   this.sexo ="";
   this.dni="";
+  this.alta = "";
   this.ngOnInit();
   }
 
