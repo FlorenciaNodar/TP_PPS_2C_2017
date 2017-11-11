@@ -39,13 +39,13 @@ export class EncuestaHomePage {
     return this.eDataProvider.enviarEncuestaGuardadaFB(e);
   }
 
-  /*enviarEncuestaModal(encuesta) {
-    let modal = this.modalCtrl.create(EncuestaEnviarPage,{encuesta: encuesta});
-    modal.present();
-  } */ 
-
   generarEncuesta(){
     this.navCtrl.push(EncuestaPage);
+  }
+
+  eliminarEncuesta(encuesta){
+    console.log(encuesta.$key);
+    this.eDataProvider.eliminarEncuesta(encuesta);
   }
 
   showAlerOK(mensaje: string) {

@@ -11,18 +11,18 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-label>{{encuesta.nombreEncuesta}}</ion-label>
+      <ion-label style="color : rgb(85, 158, 218)">{{encuesta.nombreEncuesta}}</ion-label>
     </ion-card-header>
 
     <ion-card-content>
-      <ion-label>Preguntas:</ion-label>
+      <ion-label style="color : rgb(85, 158, 218)">Preguntas:</ion-label>
       <ion-item *ngFor="let p of encuesta.preguntas; let i = index">
-        <ion-label>{{i+1}}-{{ p.texto}}</ion-label>
+        <ion-label style="color : rgb(128, 153, 173)">{{i+1}}-{{ p.texto}}</ion-label>
       </ion-item>
 
-      <ion-label>Destinatarios:</ion-label>
+      <ion-label style="color : rgb(85, 158, 218)">Destinatarios:</ion-label>
       <ion-item *ngFor="let d of encuesta.destinatarios; let i = index">
-        <ion-label>{{d.descripcion}}</ion-label>
+        <ion-label style="color : rgb(128, 153, 173)">{{d.descripcion}}</ion-label>
       </ion-item>
 
     </ion-card-content>

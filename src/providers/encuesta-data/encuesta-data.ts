@@ -21,6 +21,10 @@ export class EncuestaDataProvider {
 
   enviarEncuestaGuardadaFB(encuesta){
     return firebase.database().ref('Encuestas/' + encuesta.$key).update(encuesta);
-  }  
+  } 
+  
+  eliminarEncuesta(encuesta){
+    return this.afDB.database.ref('Encuestas/'+encuesta.$key).remove();
+  }
 
 }

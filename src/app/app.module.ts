@@ -35,6 +35,7 @@ import { EncuestaEnviarPage } from '../pages/encuesta-enviar/encuesta-enviar';
 import { AsistenciaModalPage } from '../pages/asistencia-modal/asistencia-modal';
 import { AsistenciDataProvider } from '../providers/asistencia-data/asistencia-data';
 import { EncuestaDetallePage } from '../pages/encuesta-detalle/encuesta-detalle';
+import { DatePipe } from '@angular/common';
 
   // Initialize Firebase
   var config = {
@@ -113,7 +114,8 @@ import { EncuestaDetallePage } from '../pages/encuesta-detalle/encuesta-detalle'
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserData,
     EncuestaDataProvider,
-    AsistenciDataProvider    
+    AsistenciDataProvider,
+    DatePipe    
   ]
 })
 export class AppModule {}

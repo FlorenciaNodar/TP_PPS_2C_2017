@@ -8,7 +8,7 @@
 <ion-content padding>
 
   <ion-item>
-    <ion-label>Aulas</ion-label>
+    <ion-label style="color : rgb(85, 158, 218)">Aulas</ion-label>
     <ion-select [(ngModel)]="destinatarios" multiple="true">
       <ion-option *ngFor="let a of aulas" value="a.descripcion" [value]="a">{{a.descripcion}}</ion-option>
     </ion-select>
@@ -29,6 +29,6 @@
 
   <!--<button ion-button (click)="mostrarDestinatarios()">mostrarOP</button>-->
 
-  <button ion-button (click)="siguiente()" style="float:right;" class="btnEnv" round>Siguiente</button>
+  <button ion-button (click)="siguiente()" style="float:right;" class="btnEnv" round  [disabled]="verificarDestinatarios()">Siguiente</button>
 
 </ion-content>

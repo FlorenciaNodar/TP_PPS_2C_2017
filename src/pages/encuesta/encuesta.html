@@ -17,80 +17,84 @@
     </ion-fab-list>
   </ion-fab>
 
-  <!-- AGREGO EL NOMBRE DE LA ENCUESTA -->
-  <ion-card>
-    <ion-card-header>
-      <div style="color : rgb(26, 18, 92)">Datos:</div>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item>
-        <ion-input placeholder="Nombre de la Encuesta" type="text" [(ngModel)]="encuesta.nombreEncuesta"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label  style="color : rgb(85, 158, 218)">Fecha Ingreso</ion-label>
-        <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="encuesta.fechaIngreso" placeholder="dia/mes/año"></ion-datetime>
-      </ion-item>
-
-      <ion-item>
-        <ion-label style="color : rgb(85, 158, 218)">Fecha Egreso</ion-label>
-        <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="encuesta.fechaEgreso" placeholder="dia/mes/año"></ion-datetime>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
-
-  <!-- AGREGO LOS CAMPOS DE LA PREGUNTA -->
-  <div *ngFor="let pregunta of encuesta.preguntas; let i = index">    
+  <div [formGroup]="myForm">
+    <!-- AGREGO EL NOMBRE DE LA ENCUESTA -->
     <ion-card>
       <ion-card-header>
-          <ion-icon name="trash" style="float:right;" (click)="eliminarPregunta(pregunta)"></ion-icon>
-          <div style="color : rgb(26, 18, 92)">Pregunta {{i+1}}</div>
-          <ion-item>
-              <ion-input placeholder="Ingrese la pregunta" type="text" [(ngModel)]="pregunta.texto"></ion-input>
-            </ion-item>
+        <div style="color : rgb(26, 18, 92)">Datos:</div>
       </ion-card-header>
-      <ion-card-content>       
+      <ion-card-content>
+        <ion-item>
+          <ion-input formControlName="nombreEncuesta" type="text" placeholder="Nombre de la Encuesta" [(ngModel)]="encuesta.nombreEncuesta"></ion-input>
+        </ion-item>
 
-        <br> 
-        <div style="color : rgb(26, 18, 92)"><h2>Tipo de respuesta:</h2></div>
+        <ion-item>
+          <ion-label style="color : rgb(85, 158, 218)">Fecha Ingreso</ion-label>
+          <ion-datetime formControlName="fechaIngreso" displayFormat="MM/DD/YYYY" [(ngModel)]="encuesta.fechaIngreso" placeholder="dia/mes/año"></ion-datetime>
+        </ion-item>
 
-        <ion-list radio-group [(ngModel)]="pregunta.tipoRespuesta" >
-
-          <ion-item>
-            <ion-label style="color : rgb(85, 158, 218)">Opinion</ion-label>
-            <ion-radio checked="true" value="OPINION"></ion-radio>
-          </ion-item>
-
-          <ion-item>
-            <ion-label style="color : rgb(85, 158, 218)">si/no</ion-label>
-            <ion-radio value="SI-NO"></ion-radio>
-          </ion-item>
-
-          <ion-item>
-            <ion-label style="color : rgb(85, 158, 218)">Opciones</ion-label>
-            <ion-radio value="OPCIONES"></ion-radio>
-          </ion-item>
-
-          <ion-item *ngIf="pregunta.tipoRespuesta == 'OPCIONES'">
-            <ion-label>Mis Opciones</ion-label>
-            <ion-select [(ngModel)]="pregunta.cantidadOpciones" (ngModelChange)="generarItemsOpciones(pregunta)">
-              <ion-option *ngFor="let op of opcionesSelect">{{op.valor}}</ion-option>
-            </ion-select>
-          </ion-item>
-
-          <ion-item *ngIf="pregunta.tipoRespuesta == 'OPCIONES'">
-            <ion-item *ngFor="let itemOp of pregunta.opciones; let i = index; trackBy:trackByIndex">
-              <ion-label style="color : rgb(85, 158, 218)">{{i+1}}-</ion-label> 
-              <ion-input type="text" [(ngModel)]="pregunta.opciones[i]"></ion-input>
-            </ion-item>
-          </ion-item>
-
-        </ion-list>
-
+        <ion-item>
+          <ion-label style="color : rgb(85, 158, 218)">Fecha Egreso</ion-label>
+          <ion-datetime formControlName="fechaEgreso" displayFormat="MM/DD/YYYY" [(ngModel)]="encuesta.fechaEgreso" placeholder="dia/mes/año"></ion-datetime>
+        </ion-item>
       </ion-card-content>
     </ion-card>
+
+    <!-- AGREGO LOS CAMPOS DE LA PREGUNTA -->
+    <div *ngFor="let pregunta of encuesta.preguntas; let i = index">
+      <ion-card>
+        <ion-card-header (click)="pregunta.isOpen = !pregunta.isOpen">
+          <ion-icon name="trash" style="float:right;" (click)="eliminarPregunta(pregunta)"></ion-icon>
+          <div style="color : rgb(26, 18, 92)">Pregunta {{i+1}}</div>
+        </ion-card-header>
+
+        <ion-card-content [hidden]="pregunta.isOpen">
+          <ion-item>
+            <ion-input formControlName="preguntaTexto" placeholder="Ingrese la pregunta" type="text" [(ngModel)]="pregunta.texto"></ion-input>
+          </ion-item>
+          <br>
+          <div style="color : rgb(26, 18, 92)">
+            <h2>Tipo de respuesta:</h2>
+          </div>
+
+          <ion-list formControlName="tipoRespuesta" radio-group  [(ngModel)]="pregunta.tipoRespuesta">
+
+            <ion-item>
+              <ion-label style="color : rgb(85, 158, 218)">Opinion</ion-label>
+              <ion-radio value="OPINION" (click)="tipoRespuestaSelected(pregunta)"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label style="color : rgb(85, 158, 218)">si/no</ion-label>
+              <ion-radio value="SI-NO" (click)="tipoRespuestaSelected(pregunta)"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label style="color : rgb(85, 158, 218)">Opciones</ion-label>
+              <ion-radio value="OPCIONES"></ion-radio>
+            </ion-item>
+
+            <ion-item [hidden]="pregunta.tipoRespuesta != 'OPCIONES'">
+              <ion-label style="color : rgb(85, 158, 218)">Mis Opciones</ion-label>
+              <ion-select formControlName="cantidadOpciones" [(ngModel)]="pregunta.cantidadOpciones" (ngModelChange)="generarItemsOpciones(pregunta)">
+                <ion-option *ngFor="let op of opcionesSelect">{{op.valor}}</ion-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item [hidden]="pregunta.tipoRespuesta != 'OPCIONES'">
+              <ion-item *ngFor="let itemOp of pregunta.opciones; let i = index; trackBy:trackByIndex">
+                <ion-label style="color : rgb(85, 158, 218)">{{i+1}}-</ion-label>
+                <ion-input formControlName="opciones" type="text" [(ngModel)]="pregunta.opciones[i]"></ion-input>
+              </ion-item>
+            </ion-item>
+
+          </ion-list>
+
+        </ion-card-content>
+      </ion-card>
+    </div>
   </div>
+    <!--<button ion-button  (click)="guardarEncuesta()" round><ion-icon  name="md-archive"></ion-icon></button>-->
+    <button ion-button style="float:right;" class="btnEnv" (click)="siguiente()" round [disabled]="myForm.invalid">Siguiente</button>
   
-  <!--<button ion-button  (click)="guardarEncuesta()" round><ion-icon  name="md-archive"></ion-icon></button>-->
-  <button ion-button style="float:right;" class="btnEnv" (click)="siguiente()" round>Siguiente</button>
 </ion-content>

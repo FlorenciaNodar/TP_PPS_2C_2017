@@ -12,13 +12,13 @@ import { EncuestaDetallePage } from '../encuesta-detalle/encuesta-detalle';
 export class EncuestaEnviarPage {
 
   encuesta = { enviada: false, destinatarios: [{}] };
-
   aulas = [{ descripcion: '4A' }, { descripcion: '4B' }, { descripcion: '4C' }, { descripcion: '4D' }];
-
-  destinatarios = [{}];
+  destinatarios = [];
+  inhabilitar = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
     public afDB: AngularFireDatabase, public alertCtrl: AlertController, public eDataProvider: EncuestaDataProvider) {
+      console.log(this.destinatarios);
   }
 
   ionViewDidLoad() {
@@ -32,6 +32,14 @@ export class EncuestaEnviarPage {
     var jsonEncuesta = {encuesta: this.encuesta};
     this.navCtrl.push(EncuestaDetallePage,jsonEncuesta);
   } 
+
+  verificarDestinatarios(): boolean{
+    if(this.destinatarios.length > 0){
+      this.inhabilitar=false;
+      return false;
+    }
+    return true;
+  }
 
 
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { EncuestaDataProvider } from '../../providers/encuesta-data/encuesta-data';
+import { EncuestaHomePage } from '../encuesta-home/encuesta-home';
 
 @IonicPage()
 @Component({
@@ -24,6 +25,7 @@ export class EncuestaDetallePage {
   enviarEncuesta(){
     this.enviarNewEncuestaYGuardar().then(res=>{
       this.showAlerOK("La encuesta se envio exitosamente");
+      this.navCtrl.push(EncuestaHomePage);
     })
   }
 
@@ -36,7 +38,8 @@ export class EncuestaDetallePage {
     //this.encuesta.autor = this.creadorDelaEncuesta;
     this.encuesta.enviada = false;
     this.saveEncuestaInFB().then(res=>{
-      this.showAlerOK("La encuesta se guardo exitosamente")
+      this.showAlerOK("La encuesta se guardo exitosamente");
+      this.navCtrl.push(EncuestaHomePage);      
     })
   } 
   
