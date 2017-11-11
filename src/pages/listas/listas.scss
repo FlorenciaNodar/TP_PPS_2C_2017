@@ -7,6 +7,11 @@ page-listas {
         right: 0;
     }
     .data-table {
-        min-width: 800px;
+        min-width: 550px;
     }
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+    tr:nth-child(even){background-color: #f2f2f2}
 }
