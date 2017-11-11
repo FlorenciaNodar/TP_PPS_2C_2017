@@ -59,6 +59,14 @@ export class MyApp {
     public userData: UserData,
     public splashScreen: SplashScreen) {
 
+      
+     this.platform.ready().then(() => {
+    
+      //this.statusBar.styleDefault();
+         setTimeout(() => {
+      this.splashScreen.hide();
+      }, 100);
+    });
     // qué elementos del menú deben estar ocultos según el estado de inicio de sesión actual 
     this.userData.hasLoggedIn().then((hasLoggedIn) => {
       this.enableMenu(hasLoggedIn === true);
@@ -66,17 +74,14 @@ export class MyApp {
     this.enableMenu(false);
 
     this.listenToLoginEvents();
+
   }
   
 
-  initializeApp() {
-    this.platform.ready().then(() => {
+  // initializeApp() {
+   
     
-      //this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
-    
-  }
+  // }
 
   listenToLoginEvents() {
     this.events.subscribe('user:login', () => {
