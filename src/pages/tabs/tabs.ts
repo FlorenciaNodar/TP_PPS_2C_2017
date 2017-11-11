@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { AboutPage } from '../about/about';
 import { RegistroPage } from '../registro/registro';
 import { HomePage } from '../home/home';
+import { EncuestaPage } from '../encuesta/encuesta';
 
 
 import { Alumno } from '../alumno/alumno';
