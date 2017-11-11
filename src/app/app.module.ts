@@ -16,6 +16,8 @@ import { editarAlumno} from '../pages/editarAlumno/editarAlumno';
 import { AdmProf} from '../pages/admProf/admProf';
 import { nuevoAdmProf} from '../pages/nuevoAdmProf/nuevoAdmProf';
 import { editarAdmProf} from '../pages/editarAdmProf/editarAdmProf';
+import { ListasPage } from '../pages/listas/listas';
+import { CodigoAlumnos } from '../pages/codigoAlumnos/codigoAlumnos';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -36,6 +38,8 @@ import { AsistenciaModalPage } from '../pages/asistencia-modal/asistencia-modal'
 import { AsistenciDataProvider } from '../providers/asistencia-data/asistencia-data';
 import { EncuestaDetallePage } from '../pages/encuesta-detalle/encuesta-detalle';
 import { DatePipe } from '@angular/common';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 
   // Initialize Firebase
   var config = {
@@ -67,7 +71,9 @@ import { DatePipe } from '@angular/common';
     EncuestaDetallePage,
     AdmProf,
     nuevoAdmProf,
-    editarAdmProf
+    editarAdmProf,
+    ListasPage,
+    CodigoAlumnos
   ],
   imports: [
     BrowserModule,
@@ -75,6 +81,7 @@ import { DatePipe } from '@angular/common';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpModule,
+    NgxQRCodeModule,
     IonicModule.forRoot(MyApp, {}, {
       links: [
         { component: HomePage, name: 'Inicio', segment: 'inicio' },
@@ -102,7 +109,9 @@ import { DatePipe } from '@angular/common';
     EncuestaDetallePage,
     AdmProf,
     nuevoAdmProf,
-    editarAdmProf
+    editarAdmProf,
+    ListasPage,
+    CodigoAlumnos
   ],
   providers: [
     StatusBar,
@@ -115,7 +124,8 @@ import { DatePipe } from '@angular/common';
     UserData,
     EncuestaDataProvider,
     AsistenciDataProvider,
-    DatePipe    
+    DatePipe ,   
+    BarcodeScanner 
   ]
 })
 export class AppModule {}

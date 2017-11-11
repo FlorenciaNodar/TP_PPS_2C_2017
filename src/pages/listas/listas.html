@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar color='favorite'> 
+   
+    <ion-buttons start>
+      <button ion-button icon-only (click)="elegirArchivos()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+    </ion-buttons>
+    <ion-title>
+      CSV Data
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="downloadCSV()">
+          <ion-icon name="download"></ion-icon>
+        </button>
+        <button ion-button icon-only (click)="guardarLista()">
+          <ion-icon name="cloud-upload"></ion-icon>
+        </button>
+    </ion-buttons >
+  </ion-navbar>
+</ion-header>
+ 
+<ion-content padding>
+  <p *ngIf="archivo == null">Presiona el botón + para elegir un archivo</p>
+  <ion-scroll scrollX="true" scrollY="true" class="data-scroll">
+    <table border="1" class="data-table" style="overflow-x:auto;">
+    
+      <th *ngIf="archivo != null">Legajo</th>
+      <th *ngIf="archivo != null">Nombre y apellido</th>
+      <th *ngIf="archivo != null">Horario</th>
+      <tr *ngFor="let row of csvData; let i = index">
+          <td *ngFor="let data of row; let j = index; trackBy: trackByFn">
+            <ion-input type="text" [(ngModel)]="csvData[i][j]"></ion-input>
+          </td>
+        </tr>
+    </table>
+  </ion-scroll>
+</ion-content>
