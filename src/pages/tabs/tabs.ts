@@ -7,7 +7,6 @@ import { EncuestaPage } from '../encuesta/encuesta';
 
 
 import { Alumno } from '../alumno/alumno';
-import { EncuestaPage } from '../encuesta/encuesta';
 import { EncuestaHomePage } from '../encuesta-home/encuesta-home';
 import { AdmProf } from '../admProf/admProf';
 import { CodigoAlumnos } from '../codigoAlumnos/codigoAlumnos';
