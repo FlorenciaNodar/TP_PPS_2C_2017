@@ -9,6 +9,7 @@ import { Alumno } from '../alumno/alumno';
 import { EncuestaPage } from '../encuesta/encuesta';
 import { EncuestaHomePage } from '../encuesta-home/encuesta-home';
 import { AdmProf } from '../admProf/admProf';
+import { CodigoAlumnos } from '../codigoAlumnos/codigoAlumnos';
 
 import { ListasPage } from '../listas/listas';
 
@@ -23,6 +24,7 @@ export class TabsPage {
   tab3Root = EncuestaHomePage;
   tab4Root = AdmProf;
   tab5Root = ListasPage;
+  tab6Root = CodigoAlumnos;
 
 
   constructor() {
