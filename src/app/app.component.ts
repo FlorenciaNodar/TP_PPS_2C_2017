@@ -75,8 +75,11 @@ export class MyApp {
     this.enableMenu(false);
 
     this.listenToLoginEvents();
-    this.RegisterNotification();
+    if (platform.is('cordova')) {
+         this.RegisterNotification();
     this.Notification();
+        }
+ 
 
   }
 
