@@ -20,8 +20,7 @@ export class CodigoAlumnos {
 
 items: FirebaseListObservable<any[]>;
 ref;
-qrData = "Aula: 3C - Materias: Laboratorio 3, Programación 3, Matemática I, Base de Datos" +
-            "  Aula: 4C - Materias: Laboratorio 4, Programación 4, Investigación Operativa"
+qrData = "Aula: 3C \n"+"Materias: \n"+"- Laboratorio 3,\n"+"- Programación 3,\n"+"- Matemática I,\n"+"- Base de Datos \n \n"+"Aula: 4C\n"+"Materias:\n"+"- Laboratorio 4,\n"+"- Programación 4,\n"+"- Investigación Operativa"
 createdCode = null;
 scannedCode = null;  
 materias;
