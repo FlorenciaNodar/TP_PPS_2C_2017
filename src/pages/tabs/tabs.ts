@@ -12,6 +12,7 @@ import { AdmProf } from '../admProf/admProf';
 import { CodigoAlumnos } from '../codigoAlumnos/codigoAlumnos';
 
 import { ListasPage } from '../listas/listas';
+import { Graficos } from '../graficos/graficos';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -25,6 +26,7 @@ export class TabsPage {
   tab4Root = AdmProf;
   tab5Root = ListasPage;
   tab6Root = CodigoAlumnos;
+  tab7Root = Graficos;
 
 
   constructor() {

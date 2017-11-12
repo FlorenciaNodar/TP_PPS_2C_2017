@@ -7,6 +7,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 //Vistas
 import { Login } from '../pages/login/login';
+import { Graficos } from '../pages/graficos/graficos';
 import { AboutPage } from '../pages/about/about';
 import { RegistroPage } from '../pages/registro/registro';
 import { HomePage } from '../pages/home/home';
