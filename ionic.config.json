@@ -1,6 +1,6 @@
 {
   "name": "MEducacion",
-  "app_id": "",
+  "app_id": "4880fcc1",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}
