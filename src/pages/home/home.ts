@@ -15,9 +15,9 @@ export class HomePage {
 
 
     if (platform.is('android') && this.usuario == "profesor@profesor.com" || this.usuario == "administrativo@administrativo.com") {
-         this.RegisterNotification();
+    this.RegisterNotification();
     this.Notification();
-        }
+    }
   }
 
   presentModal() {

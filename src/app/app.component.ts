@@ -76,9 +76,9 @@ export class MyApp {
 
     this.listenToLoginEvents();
     if (platform.is('android')) {
-         this.RegisterNotification();
+    this.RegisterNotification();
     this.Notification();
-        }
+    }
  
 
   }
