@@ -75,7 +75,7 @@ export class MyApp {
     this.enableMenu(false);
 
     this.listenToLoginEvents();
-    if (platform.is('cordova')) {
+    if (platform.is('android')) {
          this.RegisterNotification();
     this.Notification();
         }
