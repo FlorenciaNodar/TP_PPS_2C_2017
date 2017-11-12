@@ -20,7 +20,7 @@ export class CodigoAlumnos {
 
 items: FirebaseListObservable<any[]>;
 ref;
-qrData = "Aula: 3C \n"+"Materias: \n"+"- Laboratorio 3,\n"+"- Programación 3,\n"+"- Matemática I,\n"+"- Base de Datos \n \n"+"Aula: 4C\n"+"Materias:\n"+"- Laboratorio 4,\n"+"- Programación 4,\n"+"- Investigación Operativa"
+qrData = "Aula: 1A \n"+"Materias: \n"+"- Programación I - Sistemas de Procesamiento de Datos - Matemática - Inglés I - Laboratorio de Computación I \n"+"Aula: 2C \n"+"Materias: \n"+"- Programación II - Arquitectura y Sistemas Operativos - Estadística - Inglés II - Laboratorio de Computación II - Metodología de la Investigación \n"+"Aula: 3B\n"+"Materias:\n"+"- Programación III - Organización Contable de la Empresa - Organización Empresarial - Elementos de Investigación Operativa - Laboratorio de Computación III \n"+"Aula: 4A \n"+"Materias: \n"+"- Metodología de Sistemas I - Diseño y Administración de Bases de Datos - Legislación - Laboratorio de Computación IV - Práctica Profesional"
 createdCode = null;
 scannedCode = null;  
 materias;
@@ -47,7 +47,7 @@ ngOnInit() {
 scanCode() {
 this.barcodeScanner.scan().then(barcodeData => {
     this.ref = barcodeData.text;
-        if(this.usuario == 'alumno@alumno.com' && this.scannedCode == this.createdCode){
+        if(this.usuario == "alumno@alumno.com" && this.createdCode == this.createdCode){
             this.scannedCode = this.ref;
         }else{
               let alert = this.alertCtrl.create({
