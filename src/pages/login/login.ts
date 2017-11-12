@@ -36,6 +36,7 @@ export class Login {
     private events: Events, private iab: InAppBrowser, private http: Http,public userData: UserData,
     public navParams: NavParams, public platform: Platform, public actionsheetCtrl: ActionSheetController,
     public alertCtrl: AlertController, public facebook: Facebook,public googlePlus: GooglePlus) {
+        this.usuario=firebase.auth().currentUser.email;
 
   }
 

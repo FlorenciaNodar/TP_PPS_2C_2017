@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, MenuController, Nav , Events} from 'ionic-angular';
+import { AlertController,Platform, MenuController, Nav , Events} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -58,7 +58,7 @@ export class MyApp {
     public statusBar: StatusBar,
     public events: Events,
     public userData: UserData,
-    public splashScreen: SplashScreen, public push: Push) {
+    public splashScreen: SplashScreen, public push: Push, public alertCtrl: AlertController) {
 
       
      this.platform.ready().then(() => {
@@ -75,7 +75,7 @@ export class MyApp {
     this.enableMenu(false);
 
     this.listenToLoginEvents();
-    if (platform.is('cordova')) {
+    if (platform.is('android')) {
          this.RegisterNotification();
     this.Notification();
         }
@@ -96,7 +96,13 @@ export class MyApp {
   
   this.push.rx.notification()
   .subscribe((msg) => {
-    alert(msg.title + ': ' + msg.text);
+
+         let alert = this.alertCtrl.create({
+            title: msg.title,
+            subTitle: msg.text,
+            buttons: ['OK']
+          });
+          alert.present();
   });
 }
 
