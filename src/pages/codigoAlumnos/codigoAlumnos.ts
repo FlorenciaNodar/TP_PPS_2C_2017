@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,ModalController  } from 'ionic-angular';
+import { NavController,ModalController, AlertController  } from 'ionic-angular';
 import { AngularFireDatabaseModule, AngularFireList } from 'angularfire2/database';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { nuevoAlumno } from '../nuevoAlumno/nuevoAlumno';
@@ -25,14 +25,16 @@ qrData = "Aula: 3C - Materias: Laboratorio 3, Programación 3, Matemática I, Ba
 createdCode = null;
 scannedCode = null;  
 materias;
-constructor (private barcodeScanner: BarcodeScanner,public navCtrl: NavController, public af: AngularFireDatabase,public modalCtrl: ModalController) {
+usuario;
+constructor (private barcodeScanner: BarcodeScanner,public alertCtrl: AlertController ,public navCtrl: NavController, public af: AngularFireDatabase,public modalCtrl: ModalController) {
 // this.items = af.list('/Materias/');
 
 // this.ref = firebase.database().ref('/Materias/').child('3C').child('lab3');
 
 // this.createdCode = this.items.$ref;
                 
-  
+this.usuario=firebase.auth().currentUser.email;
+
 this.createCode();
    console.log(this.createdCode);
 
@@ -45,7 +47,18 @@ ngOnInit() {
 
 scanCode() {
 this.barcodeScanner.scan().then(barcodeData => {
-    this.scannedCode = barcodeData.text;
+    this.ref = barcodeData.text;
+        if(this.usuario == 'alumno@alumno.com' && this.scannedCode == this.createdCode){
+            this.scannedCode = this.ref;
+        }else{
+              let alert = this.alertCtrl.create({
+      title: 'ADVERTENCIA!',
+      subTitle: 'Está queriendo scanear un código de alumno!',
+      buttons: ['OK']
+    });
+    alert.present();
+        }
+
 }, (err) => {
     console.log('Error: ', err);
 });
