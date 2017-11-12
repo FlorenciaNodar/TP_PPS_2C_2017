@@ -7,6 +7,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 //Vistas
 import { Login } from '../pages/login/login';
+import { Graficos } from '../pages/graficos/graficos';
 import { AboutPage } from '../pages/about/about';
 import { RegistroPage } from '../pages/registro/registro';
 import { HomePage } from '../pages/home/home';
@@ -17,7 +18,7 @@ import { Alumno } from '../pages/alumno/alumno';
 import { EncuestaHomePage } from '../pages/encuesta-home/encuesta-home';
 import { nuevoAlumno } from '../pages/nuevoAlumno/nuevoAlumno';
 import { editarAlumno } from '../pages/editarAlumno/editarAlumno';
-
+import{ Push, PushToken } from '@ionic/cloud-angular';
 
 export interface PageInterface {
   title: string;
@@ -57,7 +58,7 @@ export class MyApp {
     public statusBar: StatusBar,
     public events: Events,
     public userData: UserData,
-    public splashScreen: SplashScreen) {
+    public splashScreen: SplashScreen, public push: Push) {
 
       
      this.platform.ready().then(() => {
@@ -74,8 +75,32 @@ export class MyApp {
     this.enableMenu(false);
 
     this.listenToLoginEvents();
+    if (platform.is('cordova')) {
+         this.RegisterNotification();
+    this.Notification();
+        }
+ 
 
   }
+
+  private RegisterNotification(){
+  
+  this.push.register().then((t: PushToken) => {
+    return this.push.saveToken(t);
+  }).then((t: PushToken) => {
+    console.log('Token saved:', t.token);
+  });
+}
+
+  private Notification(){
+  
+  this.push.rx.notification()
+  .subscribe((msg) => {
+    alert(msg.title + ': ' + msg.text);
+  });
+}
+
+  
   
 
   // initializeApp() {
