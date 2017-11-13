@@ -13,9 +13,10 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
 })
 export class EncuestaPage {
 
-  encuesta = { autor: '', enviada: false, preguntas: [{}], destinatarios: [{}], fechaIngreso: '', fechaEgreso: '' };
+  encuesta = { nombreEncuesta: '', autor: '', enviada: false, preguntas: [{isOpen: false, texto: ''}], destinatarios: [{}], fechaIngreso: '', fechaEgreso: '' };
   opcionesSelect = [{ valor: '1' }, { valor: '2' }, { valor: '3' }];
   creadorDelaEncuesta = '';
+  deshabilitar= false;
 
   public myForm: FormGroup;
 
@@ -48,8 +49,6 @@ export class EncuestaPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EncuestaPage');
-    console.log(this.encuesta);
   }
 
   siguiente() {
@@ -63,7 +62,11 @@ export class EncuestaPage {
 
   agregarPregunta() {
     // this.encuesta.preguntas.push({texto:''});
-    this.encuesta.preguntas.push({ isOpen: false });
+    //this.encuesta.preguntas.push({texto:'',isOpen: false });
+    this.encuesta.preguntas.forEach(pregunta=>{
+      pregunta.isOpen=false;
+    });
+    this.encuesta.preguntas.push({isOpen: false, texto: ''});
 
   }
 
@@ -109,6 +112,16 @@ export class EncuestaPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  validar(){
+    console.log(this.encuesta.nombreEncuesta);
+    console.log(this.encuesta.fechaEgreso);
+
+    if(this.encuesta.nombreEncuesta == ""){
+      alert("Se deben completar el nombre de la encuesta")
+    }
+    
   }
 
 }

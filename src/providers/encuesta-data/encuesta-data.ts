@@ -8,7 +8,6 @@ import * as firebase from 'firebase/app';
 export class EncuestaDataProvider {
 
   constructor(public afAuth: AngularFireAuth, public afDB: AngularFireDatabase) {
-    console.log('Hello EncuestaDataProvider Provider');
   }
 
   getEncuestas(){
@@ -27,4 +26,19 @@ export class EncuestaDataProvider {
     return this.afDB.database.ref('Encuestas/'+encuesta.$key).remove();
   }
 
+  getProfesorLogeado(){
+    return this.afDB.list('ProfesorMateria/');
+  }
+
+  enviarEncuestaRespuesta(respuesta){
+    return this.afDB.database.ref('EncuestaRespuesta/').push(respuesta);
+  }
+
+  enviarEncuestaMateria(encuestaKey,materias){
+    return this.afDB.database.ref('EncuestaMateria/'+encuestaKey).push(materias);
+  }
+
+  getMateriaAlumnos(){
+    return this.afDB.list('MateriasAlumnos/');
+  }
 }

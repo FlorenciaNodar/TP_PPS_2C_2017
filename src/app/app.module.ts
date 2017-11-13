@@ -40,6 +40,7 @@ import { EncuestaDetallePage } from '../pages/encuesta-detalle/encuesta-detalle'
 import { DatePipe } from '@angular/common';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { RespuestaEncuestaHomePage } from '../pages/respuesta-encuesta-home/respuesta-encuesta-home';
 
   // Initialize Firebase
   var config = {
@@ -73,7 +74,8 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     nuevoAdmProf,
     editarAdmProf,
     ListasPage,
-    CodigoAlumnos
+    CodigoAlumnos,
+    RespuestaEncuestaHomePage
   ],
   imports: [
     BrowserModule,
@@ -111,7 +113,8 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
     nuevoAdmProf,
     editarAdmProf,
     ListasPage,
-    CodigoAlumnos
+    CodigoAlumnos,
+    RespuestaEncuestaHomePage
   ],
   providers: [
     StatusBar,

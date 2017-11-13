@@ -60,7 +60,7 @@ export class Login {
         });
         this.userData.login(this.usuarioSelecionado.email);
         loader.present();
-        this.navCtrl.push(TabsPage);
+        this.navCtrl.push(TabsPage, {data: this.usuarioSelecionado.email});
       },
         error => {
           let alert = this.alertCtrl.create({

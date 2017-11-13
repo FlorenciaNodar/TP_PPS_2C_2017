@@ -29,4 +29,8 @@ export class AsistenciDataProvider {
     return this.afDB.database.ref('HistoricoAsistencias/'+aulaSeleccionada+'/'+materia+'/'+datePipe).push(listaAlumnos);
   }
 
+  getHistoricoAsistencias(){
+    return this.afDB.list('HistoricoAsistencias/');
+  }
+
 }

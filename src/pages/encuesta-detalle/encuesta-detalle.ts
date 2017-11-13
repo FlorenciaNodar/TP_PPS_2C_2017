@@ -17,13 +17,13 @@ export class EncuestaDetallePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EncuestaDetallePage');
     this.encuesta = this.navParams.get('encuesta');
     console.log(this.encuesta); 
   }
 
   enviarEncuesta(){
     this.enviarNewEncuestaYGuardar().then(res=>{
+      this.eDataProvider.enviarEncuestaMateria(this.encuesta.nom,this.encuesta.destinatarios);
       this.showAlerOK("La encuesta se envio exitosamente");
       this.navCtrl.push(EncuestaHomePage);
     })
