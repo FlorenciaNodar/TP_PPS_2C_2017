@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { Graficos } from '../pages/graficos/graficos';
 
 import { AboutPage } from '../pages/about/about';
 import { RegistroPage } from '../pages/registro/registro';
@@ -41,7 +42,29 @@ import { DatePipe } from '@angular/common';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { RespuestaEncuestaHomePage } from '../pages/respuesta-encuesta-home/respuesta-encuesta-home';
+import { ChartsModule } from 'ng2-charts';
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 
+
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': '4880fcc1',
+  },
+  'push': {
+    'sender_id': '548960747107',
+    'pluginConfig': {
+      'ios': {
+        'badge': true,
+        'sound': true
+      },
+      'android': {
+        'iconColor': '#343434',
+        'sound': true,
+        'vibrate': true
+      }
+    }
+  }
+};
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyABU4rSGpe9E5QfiOiAOB8Cxo1rlo6Hb8Q",
@@ -75,7 +98,8 @@ import { RespuestaEncuestaHomePage } from '../pages/respuesta-encuesta-home/resp
     editarAdmProf,
     ListasPage,
     CodigoAlumnos,
-    RespuestaEncuestaHomePage
+    RespuestaEncuestaHomePage,
+    Graficos
   ],
   imports: [
     BrowserModule,
@@ -84,6 +108,8 @@ import { RespuestaEncuestaHomePage } from '../pages/respuesta-encuesta-home/resp
     AngularFireAuthModule,
     HttpModule,
     NgxQRCodeModule,
+    ChartsModule,
+    CloudModule.forRoot(cloudSettings),
     IonicModule.forRoot(MyApp, {}, {
       links: [
         { component: HomePage, name: 'Inicio', segment: 'inicio' },
@@ -114,7 +140,8 @@ import { RespuestaEncuestaHomePage } from '../pages/respuesta-encuesta-home/resp
     editarAdmProf,
     ListasPage,
     CodigoAlumnos,
-    RespuestaEncuestaHomePage
+    RespuestaEncuestaHomePage,
+    Graficos
   ],
   providers: [
     StatusBar,
