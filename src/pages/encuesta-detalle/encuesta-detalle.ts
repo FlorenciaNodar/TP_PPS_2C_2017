@@ -23,7 +23,7 @@ export class EncuestaDetallePage {
 
   enviarEncuesta(){
     this.enviarNewEncuestaYGuardar().then(res=>{
-      this.eDataProvider.enviarEncuestaMateria(this.encuesta.nom,this.encuesta.destinatarios);
+      //this.eDataProvider.enviarEncuestaMateria(this.encuesta.nombreEncuesta,this.encuesta.destinatarios);
       this.showAlerOK("La encuesta se envio exitosamente");
       this.navCtrl.push(EncuestaHomePage);
     })
