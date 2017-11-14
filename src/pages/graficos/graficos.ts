@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
+import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database-deprecated";
+import firebase from 'firebase';
 
 @Component({
   selector: 'page-graficos',
@@ -19,10 +21,12 @@ public barChartData:any[] = [
   {data: [65, 59, 80, 81, 56, 55, 40], label: 'Presentes'},
   {data: [28, 48, 40, 19, 86, 27, 90], label: 'Ausentes'}
 ];
+dato;
+algo;
+listcodigos: FirebaseListObservable<any>;
+constructor(public navCtrl: NavController, public modalCtrl: ModalController,public af: AngularFireDatabase) {
 
-
-constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
-
+  
 }
 
 

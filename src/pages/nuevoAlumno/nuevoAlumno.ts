@@ -29,9 +29,15 @@ mailInsertado;
 fechaInsertado;
 nombreInsertado;
 apellidoInsertado;
+aulaInsertado;
+materiaInsertado;
 sexo:string;
 sexoInsertado;
 sexos: any;
+aula: string;
+aulas: any;
+materia: string;
+materias:any;
 options = [
 {
   "name": "Femenino"
@@ -40,6 +46,85 @@ options = [
   "name": "Masculino"
 }
 ];
+
+options2 =[
+{
+  "name": "Metodologia de Sistemas I"
+},
+{
+  "name": "Base de Datos"
+},
+{
+  "name": "Legislacion"
+},
+{
+  "name":"Laboratorio IV"
+},
+{
+  "name":"Practica Profesional"
+},
+{
+   "name": "Programacion I"
+},
+{
+  "name": "Sistemas de Procesamiento de Datos"
+},
+{
+  "name": "Ingles I"
+},
+{
+  "name": "Laboratorio I"
+},
+{
+  "name": "Programacion III"
+},
+{
+  "name": "Contabilidad"
+},
+{
+  "name": "Empresarial"
+},
+{
+  "name":"Investigacion operativa"
+},
+{
+  "name":"Laboratorio III"
+},
+{
+  "name": "Metodologia de la investigacion"
+},
+{
+  "name": "Programacion II"
+},
+{
+  "name": "Arquitectura y SO"
+},
+{
+  "name":"Estadistica"
+},
+{
+  "name":"Ingles II"
+},
+{
+  "name":"Laboratorio II"
+}
+];
+
+valores;
+
+options1= [{
+  "name": "1A"
+},
+{
+  "name": "2C"
+},
+{
+  "name": "3B"
+},
+{
+  "name": "4A"
+}];
+
 
 
 //Validaciones
@@ -50,12 +135,17 @@ ma;
 sexo1;
 fecha1;
 dni1;
-
+aula1;
+materia1;
+database;
+hola;
 constructor (public formbuilder: FormBuilder ,public navCtrl: NavController,public alertCtrl: AlertController, public af: AngularFireDatabase,public modalCtrl: ModalController,public viewCtrl: ViewController) {
 this.nome = new FormControl();
 this.ape = new FormControl();
 this.ma = new FormControl();
 this.sexo1 = new FormControl();
+//this.aula1 = new FormControl();
+this.materia1 = new FormControl();
 this.fecha1 = new FormControl();
 this.dni1 = new FormControl();
 
@@ -65,9 +155,22 @@ this.rForm = formbuilder.group({
 'ape': ['', Validators.compose([Validators.required, Validators.maxLength(25)])],
 'ma': ['',Validators.compose([Validators.required, Validators.email])],
 'sexo1': ['', Validators.required],
+//'aula1': ['', Validators.required],
+'materia1': ['', Validators.required],
 'fecha1': ['', Validators.required],
 'dni1': ['', Validators.compose([Validators.required, Validators.maxLength(11)]) ]
 });
+
+
+// this.af.list("/AulaMaterias/").subscribe(e=>{
+//   e.forEach(res=>{
+
+//     if(res.nombreAula == aulas.name){
+
+//     this.options2.push(res.nombreMateria);
+//     }
+//   })
+// });
 
 }
 ngOnInit() {
@@ -79,6 +182,19 @@ onChange()
   this.sexo = this.sexos.name;
 }
 
+
+onChange1()
+{
+  this.aula = this.aulas;
+
+  //this.buscarPorMateria(this.aula);
+}
+
+onChange2()
+{
+  this.materia = this.materias;
+}
+
 addNewAlumn(){
     
   this.nombreInsertado = this.nombre;
@@ -87,8 +203,10 @@ addNewAlumn(){
   this.mailInsertado = this.mail;
   this.sexoInsertado = this.sexo;
   this.dniInsertado = this.dni;
+  //this.aulaInsertado = this.aula;
+  this.materiaInsertado = this.materia;
 
-  if(this.nombreInsertado == "" || this.nombreInsertado==undefined||this.dniInsertado == "" || this.dniInsertado==undefined|| this.fechaInsertado==undefined || this.apellidoInsertado==undefined || this.apellidoInsertado == "" || this.sexoInsertado==undefined || this.sexoInsertado == "" || this.mailInsertado==undefined || this.mailInsertado == "" || this.fechaInsertado == "")
+  if(this.nombreInsertado == "" ||this.aulaInsertado == "" ||this.materiaInsertado == "" || this.nombreInsertado==undefined||this.dniInsertado == "" || this.dniInsertado==undefined|| this.fechaInsertado==undefined || this.apellidoInsertado==undefined || this.apellidoInsertado == "" || this.sexoInsertado==undefined || this.sexoInsertado == "" || this.mailInsertado==undefined || this.mailInsertado == "" || this.fechaInsertado == "")
   {
   let alert = this.alertCtrl.create({
       title: 'ADVERTENCIA!',
@@ -102,8 +220,9 @@ addNewAlumn(){
   apellido: this.apellidoInsertado,
   fechaNacimiento: this.fechaInsertado,
   sexo: this.sexoInsertado,
-  dni: this.dniInsertado,
-  mail: this.mailInsertado
+  legajo: this.dniInsertado,
+  mail: this.mailInsertado,
+   materia: this.materia
   });
 
   this.nombre = "";
@@ -112,6 +231,8 @@ addNewAlumn(){
   this.mail="";
   this.sexo ="";
   this.dni="";
+  this.aula= "";
+  this.materia="";
   this.ngOnInit();
   }
 

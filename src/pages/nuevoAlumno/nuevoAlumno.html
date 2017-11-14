@@ -22,21 +22,34 @@
     <ion-input type="text"  [formControl]="rForm.controls.ape"  [(ngModel)]="apellido" placeholder="Ingrese apellido"></ion-input>
     </ion-item>
     <ion-item>
-    <ion-input type="number"  [formControl]="rForm.controls.dni1" [(ngModel)]="dni" placeholder="Ingrese DNI"></ion-input>
+    <ion-input type="number"  [formControl]="rForm.controls.dni1" [(ngModel)]="dni" placeholder="Ingrese Legajo"></ion-input>
     </ion-item>
-     <ion-item>
-    <ion-label>Fecha de Nacimiento</ion-label>
-    <ion-datetime displayFormat="DD MMM YYYY" doneText="Aceptar" cancelText="Cancelar"  [formControl]="rForm.controls.fecha1" [(ngModel)]="fecha"></ion-datetime>
-    </ion-item> 
+
     <ion-item>
     <ion-input type="text"  [formControl]="rForm.controls.ma" [(ngModel)]="mail" placeholder="Ingrese correo"></ion-input>
     </ion-item>
+    <ion-item>
+    <ion-label>Fecha de Nacimiento</ion-label>
+    <ion-datetime displayFormat="DD MMM YYYY" doneText="Aceptar" cancelText="Cancelar"  [formControl]="rForm.controls.fecha1" [(ngModel)]="fecha"></ion-datetime>
+    </ion-item> 
      <ion-item>
     <ion-label>Seleccione un sexo</ion-label>
     <ion-select cancelText="Cancelar"  [formControl]="rForm.controls.sexo1"   [(ngModel)]="sexos" (ionChange)="onChange();">
     <ion-option [value]="item" *ngFor="let item of options">{{item.name}}</ion-option> 
     </ion-select> 
     </ion-item>  
+    <!-- <ion-item>
+    <ion-label>Seleccione un aula</ion-label>
+    <ion-select  multiple="true"  cancelText="Cancelar"  [formControl]="rForm.controls.aula1"    [(ngModel)]="aulas" (ionChange)="onChange1();">
+    <ion-option  *ngFor="let item of options1">{{item.name}}</ion-option>
+    </ion-select>
+    </ion-item> -->
+    <ion-item>
+    <ion-label>Seleccione una materia</ion-label>
+    <ion-select  multiple="true"  cancelText="Cancelar"  [formControl]="rForm.controls.materia1"    [(ngModel)]="materias" (ionChange)="onChange2();">
+    <ion-option  *ngFor="let item of options2">{{item.name}}</ion-option>
+    </ion-select>
+    </ion-item>
   </ion-list>
 
 </form>
