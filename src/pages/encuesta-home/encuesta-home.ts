@@ -28,7 +28,6 @@ export class EncuestaHomePage {
   }
 
   enviarEncuesta(e){
-    console.log(e);
     e.enviada=true;
     this.enviarEncuestaFB(e).then(res=>{
       this.showAlerOK("La encuesta se envio exitosamente");

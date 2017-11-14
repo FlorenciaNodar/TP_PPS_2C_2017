@@ -14,7 +14,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class EncuestaEnviarPage {
 
-  encuesta = { enviada: false, destinatarios: [{}] };
+  encuesta = { respondida: false, enviada: false, destinatarios: [{}] };
   //aulas = [{ descripcion: '4A' }, { descripcion: '4B' }, { descripcion: '4C' }, { descripcion: '4D' }];
   destinatarios = [];
   inhabilitar = true;
@@ -28,43 +28,43 @@ export class EncuestaEnviarPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
     public afDB: AngularFireDatabase, public alertCtrl: AlertController, public eDataProvider: EncuestaDataProvider,
     public storage: Storage, public afAuth: AngularFireAuth) {
-      //console.log(this.destinatarios);
+    //console.log(this.destinatarios);
   }
 
   ionViewDidLoad() {
     this.encuesta = this.navParams.get('encuesta');
     this.userLogeado = this.getUser();
-    
-    this.eDataProvider.getProfesorLogeado().subscribe(res=>{
-      console.log(res);
-      res.forEach(e=>{
-        if(e.email === this.userLogeado){
-          this.materias = e.Materias;
+
+    this.eDataProvider.getProfesorMateria().subscribe(res => {
+      res.forEach(e => {            
+        if (e.email === this.userLogeado) {         
+          e.Materias.forEach(m => {
+            this.materias.push(m);
+          })
         }
       });
     });
-   //console.log(this.materias);    
   }
 
   getUser() {
     return this.afAuth.auth.currentUser.email;
   }
 
-  getMateriasAsignadasProf(){
-    if(this.userLogeado == 'profesor@profesor.com'){
+  getMateriasAsignadasProf() {
+    if (this.userLogeado == 'profesor@profesor.com') {
 
     }
   }
 
-  siguiente(){    
+  siguiente() {
     this.encuesta.destinatarios = this.destinatarios;
-    var jsonEncuesta = {encuesta: this.encuesta};
-    this.navCtrl.push(EncuestaDetallePage,jsonEncuesta);
-  } 
+    var jsonEncuesta = { encuesta: this.encuesta };
+    this.navCtrl.push(EncuestaDetallePage, jsonEncuesta);
+  }
 
-  verificarDestinatarios(): boolean{
-    if(this.destinatarios.length > 0){
-      this.inhabilitar=false;
+  verificarDestinatarios(): boolean {
+    if (this.destinatarios.length > 0) {
+      this.inhabilitar = false;
       return false;
     }
     return true;

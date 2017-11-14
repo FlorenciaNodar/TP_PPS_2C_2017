@@ -26,7 +26,7 @@ export class EncuestaDataProvider {
     return this.afDB.database.ref('Encuestas/'+encuesta.$key).remove();
   }
 
-  getProfesorLogeado(){
+  getProfesorMateria(){
     return this.afDB.list('ProfesorMateria/');
   }
 
@@ -34,11 +34,15 @@ export class EncuestaDataProvider {
     return this.afDB.database.ref('EncuestaRespuesta/').push(respuesta);
   }
 
-  enviarEncuestaMateria(encuestaKey,materias){
-    return this.afDB.database.ref('EncuestaMateria/'+encuestaKey).push(materias);
+  enviarEncuestaMateria(encuesta,materias){
+    return this.afDB.database.ref('EncuestaMateria/'+encuesta.$key).push(materias);
   }
 
   getMateriaAlumnos(){
     return this.afDB.list('MateriasAlumnos/');
   }
+
+  actualizarEncuestaPorRespuesta(encuesta,key){
+    return firebase.database().ref('Encuestas/' + key).update(encuesta);
+  } 
 }

@@ -6,6 +6,7 @@ import { EncuestaDataProvider } from '../../providers/encuesta-data/encuesta-dat
 import { AngularFireAuth } from 'angularfire2/auth';
 import{ Push, PushToken } from '@ionic/cloud-angular';
 import firebase from 'firebase';
+import { ListaRespuestaEncuestaHomePage } from '../lista-respuesta-encuesta-home/lista-respuesta-encuesta-home';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -36,24 +37,13 @@ export class HomePage {
     if (this.usuarioActual == 'alumno@alumno.com') {
       this.getMateriasAlumnos();
       this.historialEncuestaNotification();
-    }
-    console.log(this.encuestaAlumno.length);
-    console.log(this.encuestaAlumno);
-
-    if (this.encuestaAlumno.length > 0) {
-      let alert = this.alertCtrl.create({
-        title: 'Info',
-        subTitle: 'Tienes ' + this.encuestaAlumno.length +' encuestas pendientes',
-        buttons: ['OK']
-      });
-      alert.present();
-    }
+    }    
   }
 
   historialEncuestaNotification() {
     this.eProvider.getEncuestas().subscribe(encuestas => {
       encuestas.forEach(encuesta => {
-        if (encuesta.enviada == true) {
+        if (encuesta.enviada == true && encuesta.respondida == false) {
           this.materiasQueCursaAlumno.forEach(misMat => {
             encuesta.destinatarios.forEach(d => {
               if (d.clave == misMat) {
@@ -79,23 +69,43 @@ export class HomePage {
     })
   }
 
+  verEncuestas(){
+    console.log(this.encuestaAlumno);
+    if(this.encuestaAlumno.length > 0){
+      let mensaje = this.encuestaAlumno.length == 1 ? 'Tenes 1 encuesta pendiente' : 'Tenes ' + this.encuestaAlumno.length +' encuestas pendientes';
+      let alert = this.alertCtrl.create({
+        title: 'Info',
+        subTitle: mensaje,
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Ok',
+            handler: () => {
+              console.log('Buy clicked');
+              this.navCtrl.push(ListaRespuestaEncuestaHomePage,{data: this.encuestaAlumno});
+            }
+          }
+        ]
+      });
+      alert.present();
+    }  
+  }
+
   getUser() {
     return this.afAuth.auth.currentUser.email;
   }
-
 
   presentModal() {
     let modal = this.modalCtrl.create(AsistenciaModalPage);
     modal.present();
   }
-
-  reponderEncuesta() {
-    this.navCtrl.push(RespuestaEncuestaHomePage);
-  }
-
-
-
-  
+    
   private RegisterNotification(){
   
   this.push.register().then((t: PushToken) => {

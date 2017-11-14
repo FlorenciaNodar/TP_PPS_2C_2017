@@ -8,7 +8,7 @@
 <ion-content padding>
 
   <ion-item>
-    <ion-label style="color : rgb(85, 158, 218)">Aulas</ion-label>
+    <ion-label style="color : rgb(85, 158, 218)">Materias</ion-label>
     <ion-select [(ngModel)]="destinatarios" multiple="true">
       <ion-option *ngFor="let a of materias" value="a" [value]="a">{{a.descripcion}}</ion-option>
     </ion-select>

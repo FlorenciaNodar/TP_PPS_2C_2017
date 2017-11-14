@@ -44,6 +44,7 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { RespuestaEncuestaHomePage } from '../pages/respuesta-encuesta-home/respuesta-encuesta-home';
 import { ChartsModule } from 'ng2-charts';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
+import { ListaRespuestaEncuestaHomePage } from '../pages/lista-respuesta-encuesta-home/lista-respuesta-encuesta-home';
 
 
 const cloudSettings: CloudSettings = {
@@ -99,7 +100,8 @@ const cloudSettings: CloudSettings = {
     ListasPage,
     CodigoAlumnos,
     RespuestaEncuestaHomePage,
-    Graficos
+    Graficos,
+    ListaRespuestaEncuestaHomePage
   ],
   imports: [
     BrowserModule,
@@ -141,7 +143,8 @@ const cloudSettings: CloudSettings = {
     ListasPage,
     CodigoAlumnos,
     RespuestaEncuestaHomePage,
-    Graficos
+    Graficos,
+    ListaRespuestaEncuestaHomePage
   ],
   providers: [
     StatusBar,

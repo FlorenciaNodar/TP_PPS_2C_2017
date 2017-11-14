@@ -13,7 +13,7 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
 })
 export class EncuestaPage {
 
-  encuesta = { nombreEncuesta: '', autor: '', enviada: false, preguntas: [{isOpen: false, texto: ''}], destinatarios: [{}], fechaIngreso: '', fechaEgreso: '' };
+  encuesta = { nombreEncuesta: '', autor: '', respondida: false, enviada: false, preguntas: [{isOpen: false, texto: ''}], destinatarios: [{}], fechaIngreso: '', fechaEgreso: '' };
   opcionesSelect = [{ valor: '1' }, { valor: '2' }, { valor: '3' }];
   creadorDelaEncuesta = '';
   deshabilitar= false;
