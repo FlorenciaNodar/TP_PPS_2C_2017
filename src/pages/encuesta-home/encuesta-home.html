@@ -32,6 +32,10 @@
 
       </ion-card-content>
 
+      <div *ngIf="e.fechaEgreso < fechaActual">        
+        <button ion-button style="float:right;" (click)="verEncuestaDetalle()">Detalle</button>
+        <div><ion-label style="color : rgb(223, 37, 47)">finalizada</ion-label></div>       
+      </div>
     </ion-card>
 
   </div>
