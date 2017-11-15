@@ -9,6 +9,10 @@ export class AsistenciDataProvider {
   constructor(public afDB: AngularFireDatabase) {
   }
 
+  getAulasMaterias(){
+    return this.afDB.list('AulaMateriasOrig/');
+  }
+
   getAulas(){
     return this.afDB.list('Aulas/');
   }
@@ -17,16 +21,24 @@ export class AsistenciDataProvider {
     return this.afDB.list('Materias/4A');
   }
 
-  getMateriasPorAula(aulaSeleccionada){
+  getMateriasPorAula(aulaSelected){
+    return this.afDB.list('AulaMateriasOrig/'+aulaSelected);
+  }
+
+  /*getMateriasPorAula(aulaSeleccionada){
     return this.afDB.list('Materias/'+aulaSeleccionada);
+  }*/
+
+  getAlumnos(){
+    return this.afDB.list('Alumno/');
   }
 
   getAlumnosRelacionAulaMateria(aulaSeleccionada,materia){
     return this.afDB.list('Alumnos/'+aulaSeleccionada+'/'+materia);
   }
 
-  guardarRegistroAsistenciaDelDia(aulaSeleccionada,materia,datePipe,listaAlumnos){
-    return this.afDB.database.ref('HistoricoAsistencias/'+aulaSeleccionada+'/'+materia+'/'+datePipe).push(listaAlumnos);
+  registroAsistenciaDelDia(datePipe,aulaSeleccionada,materia,listaAlumnos){
+    return this.afDB.database.ref('HistoricoAsistencias/'+datePipe+'/'+aulaSeleccionada+'/'+materia).push(listaAlumnos);
   }
 
   getHistoricoAsistencias(){
