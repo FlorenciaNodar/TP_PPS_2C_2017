@@ -69,8 +69,13 @@ export class AsistenciaModalPage {
         }        
         alumnosRegistroAsistencia.push(alumnoNew);
       });
+
       let datePipe = this.datePipeCtrl.transform(Date.now(), 'dd-MM-yyyy');
-      this.asisProvider.registroAsistenciaDelDia(datePipe,this.aulaSelected, this.materiaSelected, alumnosRegistroAsistencia);
+      let jsonAsistencia = {fecha:datePipe, aula: this.aulaSelected, materia: this.materiaSelected, alumnos: alumnosRegistroAsistencia};
+      
+      //this.asisProvider.registroAsistenciaDelDia(datePipe,this.aulaSelected, this.materiaSelected, alumnosRegistroAsistencia);
+      this.asisProvider.registroAsistenciaDelDia(jsonAsistencia);
+      
     }
     this.viewCtrl.dismiss();
   }
@@ -95,6 +100,16 @@ export class AsistenciaModalPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  prueba(){
+    this.asisProvider.getHistoricoAsistencias().subscribe(historial=>{
+      historial.forEach(elem=>{
+        elem.alumnos.forEach(a=>{
+          console.log(a.asistio);
+        })
+      })
+    })
   }
 
 }

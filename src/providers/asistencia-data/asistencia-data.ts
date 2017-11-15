@@ -37,8 +37,8 @@ export class AsistenciDataProvider {
     return this.afDB.list('Alumnos/'+aulaSeleccionada+'/'+materia);
   }
 
-  registroAsistenciaDelDia(datePipe,aulaSeleccionada,materia,listaAlumnos){
-    return this.afDB.database.ref('HistoricoAsistencias/'+datePipe+'/'+aulaSeleccionada+'/'+materia).push(listaAlumnos);
+  registroAsistenciaDelDia(json){
+    return this.afDB.database.ref('HistoricoAsistencias/').push(json);
   }
 
   getHistoricoAsistencias(){
