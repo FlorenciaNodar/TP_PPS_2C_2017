@@ -47,6 +47,7 @@ import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { ListaRespuestaEncuestaHomePage } from '../pages/lista-respuesta-encuesta-home/lista-respuesta-encuesta-home';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
+import { RespuestaEncuestaDetallePage } from '../pages/respuesta-encuesta-detalle/respuesta-encuesta-detalle';
 
 
 const cloudSettings: CloudSettings = {
@@ -103,7 +104,8 @@ const cloudSettings: CloudSettings = {
     CodigoAlumnos,
     RespuestaEncuestaHomePage,
     Graficos,
-    ListaRespuestaEncuestaHomePage
+    ListaRespuestaEncuestaHomePage,
+    RespuestaEncuestaDetallePage
   ],
   imports: [
     BrowserModule,
@@ -147,7 +149,8 @@ const cloudSettings: CloudSettings = {
     CodigoAlumnos,
     RespuestaEncuestaHomePage,
     Graficos,
-    ListaRespuestaEncuestaHomePage
+    ListaRespuestaEncuestaHomePage,
+    RespuestaEncuestaDetallePage
   ],
   providers: [
     StatusBar,
