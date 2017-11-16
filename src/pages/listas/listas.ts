@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angul
 import { Http } from '@angular/http';
 import * as papa from 'papaparse';
 import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database-deprecated";
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
 
 @IonicPage()
 @Component({
@@ -16,8 +18,10 @@ export class ListasPage {
   archivo: string;
   testRadioOpen: boolean;
   testRadioResult;
+  arch: any[] = [];
+  nombre: string;
 
-  constructor(public navCtrl: NavController, private http: Http,public af: AngularFireDatabase,public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController,private fileTransfer: FileTransfer, private file: File, private http: Http,public af: AngularFireDatabase,public alertCtrl: AlertController) {
     this.readCsvData();
     this.lista= af.list('/listas/');
   }
@@ -37,12 +41,13 @@ export class ListasPage {
   private extractData(res) {
     let csvData = res['_body'] || '';
     let parsedData = papa.parse(csvData).data;
- 
+    this.arch = parsedData;
     this.csvData = parsedData;
     console.log('respuesta ',  this.csvData);
   }
  
   downloadCSV() {
+    if(this.archivo != null){
     let csv = papa.unparse(this.csvData);
  
     var blob = new Blob([csv]);
@@ -52,7 +57,39 @@ export class ListasPage {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+    
+    var pathFile= this.file.externalDataDirectory + 'Download/';
+
+        const fileTransfer =  this.fileTransfer.create();
+        const imageLocation = `${this.file.applicationDirectory}www/assets/archivos/${this.archivo}`;
+        
+        fileTransfer.download(imageLocation, pathFile + this.archivo).then((entry) => {
+          const alertSuccess = this.alertCtrl.create({
+            title: `Descarga exitosa!`,
+            subTitle: ` Fue descargado con éxito a: ${entry.toNativeURL()}`,
+            buttons: ['Ok']
+          });
+      
+          alertSuccess.present();
+      
+        }, (error) => {
+      
+          const alertFailure = this.alertCtrl.create({
+            title: `Falló la descarga!`,
+            subTitle: ` No se descargó correctamente. Error: ${error.code}`,
+            buttons: ['Ok']
+          });
+      
+          alertFailure.present();
+      
+        });
+      
+  
+  }else{
+    this.AlertMensaje('Error', 'No seleccionó ningún archivo!');
   }
+  
+ }
  
   private handleError(err) {
     console.log('Error ', err);
@@ -62,13 +99,17 @@ export class ListasPage {
     return index;
   }
   public guardarLista()
-  {
-    this.af.list("/listas/").set(this.archivo,this.csvData).then((response)=>{
-      this.AlertMensaje("Éxito!", "Se guardó con éxito!!");
-    }).catch((error: any) => {
-      this.AlertMensaje("Error", error);
-    })
-
+  { 
+    if(this.archivo != null){
+      let arc = this.arch;
+      this.af.list("/listas/").set(this.nombre,arc).then((response)=>{
+        this.AlertMensaje("Éxito!", "Se guardó con éxito!!");
+      }).catch((error: any) => {
+        this.AlertMensaje("Error", error);
+      })
+    }else{
+      this.AlertMensaje('Error', 'No seleccionó ningún archivo!');
+    }
   }
   AlertMensaje(titulo: string, mens: string)
   {
@@ -117,10 +158,12 @@ export class ListasPage {
             switch (data) {
               case 'PPS -4A-2c2017':
                this.archivo ='PPS -4A-2c2017.csv';
+               this.nombre ='PPS -4A-2c2017';
                this.readCsvData();
                 break;
               case 'PPS-4b-2c2017':
               this.archivo ='PPS-4b-2c2017.csv';
+              this.nombre ='PPS-4b-2c2017';
               this.readCsvData();
                 break;
               

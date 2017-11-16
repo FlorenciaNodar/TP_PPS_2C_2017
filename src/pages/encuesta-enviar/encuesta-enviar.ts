@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams, ModalController, ViewController, A
 import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database-deprecated"
 import { EncuestaDataProvider } from '../../providers/encuesta-data/encuesta-data';
 import { EncuestaDetallePage } from '../encuesta-detalle/encuesta-detalle';
+import { Storage } from '@ionic/storage';
+import { AngularFireAuth } from 'angularfire2/auth';
+
 
 @IonicPage()
 @Component({
@@ -11,31 +14,57 @@ import { EncuestaDetallePage } from '../encuesta-detalle/encuesta-detalle';
 })
 export class EncuestaEnviarPage {
 
-  encuesta = { enviada: false, destinatarios: [{}] };
-  aulas = [{ descripcion: '4A' }, { descripcion: '4B' }, { descripcion: '4C' }, { descripcion: '4D' }];
+  encuesta = { respondida: false, enviada: false, destinatarios: [{}] };
+  //aulas = [{ descripcion: '4A' }, { descripcion: '4B' }, { descripcion: '4C' }, { descripcion: '4D' }];
   destinatarios = [];
   inhabilitar = true;
 
+  profesorMaterias: FirebaseListObservable<any[]>;
+
+  userLogeado = {};
+  userProfesorMateria = {};
+  materias = [];
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
-    public afDB: AngularFireDatabase, public alertCtrl: AlertController, public eDataProvider: EncuestaDataProvider) {
-      console.log(this.destinatarios);
+    public afDB: AngularFireDatabase, public alertCtrl: AlertController, public eDataProvider: EncuestaDataProvider,
+    public storage: Storage, public afAuth: AngularFireAuth) {
+    //console.log(this.destinatarios);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EncuestaEnviarPage');
     this.encuesta = this.navParams.get('encuesta');
-    console.log(this.encuesta);    
+    this.userLogeado = this.getUser();
+
+    this.eDataProvider.getProfesorMateria().subscribe(res => {
+      res.forEach(e => {            
+        if (e.email === this.userLogeado) {         
+          e.Materias.forEach(m => {
+            this.materias.push(m);
+          })
+        }
+      });
+    });
   }
 
-  siguiente(){    
-    this.encuesta.destinatarios = this.destinatarios;
-    var jsonEncuesta = {encuesta: this.encuesta};
-    this.navCtrl.push(EncuestaDetallePage,jsonEncuesta);
-  } 
+  getUser() {
+    return this.afAuth.auth.currentUser.email;
+  }
 
-  verificarDestinatarios(): boolean{
-    if(this.destinatarios.length > 0){
-      this.inhabilitar=false;
+  getMateriasAsignadasProf() {
+    if (this.userLogeado == 'profesor@profesor.com') {
+
+    }
+  }
+
+  siguiente() {
+    this.encuesta.destinatarios = this.destinatarios;
+    var jsonEncuesta = { encuesta: this.encuesta };
+    this.navCtrl.push(EncuestaDetallePage, jsonEncuesta);
+  }
+
+  verificarDestinatarios(): boolean {
+    if (this.destinatarios.length > 0) {
+      this.inhabilitar = false;
       return false;
     }
     return true;

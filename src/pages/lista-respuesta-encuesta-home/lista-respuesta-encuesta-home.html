@@ -1,0 +1,28 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>listaRespuestaEncuestaHome</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div *ngFor="let e of encuestasPendientes ; let i = index">
+    <ion-card>
+      <ion-card-header>        
+        <div style="color : rgb(26, 18, 92)">{{e.nombreEncuesta}}</div>
+      </ion-card-header>
+
+      <ion-card-content>
+          <button ion-button style="float:right;" (click)="responderEncuesta(e)">
+              responder
+            </button>
+      </ion-card-content>
+
+    </ion-card>
+
+  </div>
+
+</ion-content>

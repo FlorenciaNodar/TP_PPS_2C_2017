@@ -22,20 +22,26 @@
     <ion-input type="text" [formControl]="rForm.controls.ape"  [(ngModel)]="lista.apellido" placeholder="Ingrese apellido"></ion-input>
     </ion-item>
     <ion-item>
-    <ion-input type="number" [formControl]="rForm.controls.dni1" [(ngModel)]="lista.dni" placeholder="Ingrese DNI"></ion-input>
-    </ion-item>
-    <ion-item>
-    <ion-label>Fecha de Nacimiento</ion-label>
-    <ion-datetime displayFormat="DD MMM YYYY" doneText="Aceptar"   [formControl]="rForm.controls.fecha1" cancelText="Cancelar" [(ngModel)]="lista.fechaNacimiento"></ion-datetime>
+    <ion-input type="number" [formControl]="rForm.controls.dni1" [(ngModel)]="lista.dni" placeholder="Ingrese Legajo"></ion-input>
     </ion-item>
     <ion-item>
     <ion-input type="text"  [formControl]="rForm.controls.ma" [(ngModel)]="lista.mail" placeholder="Ingrese correo"></ion-input>
+    </ion-item>
+   <ion-item>
+    <ion-label>Fecha de Nacimiento</ion-label>
+    <ion-datetime displayFormat="DD MMM YYYY" doneText="Aceptar"   [formControl]="rForm.controls.fecha1" cancelText="Cancelar" [(ngModel)]="lista.fechaNacimiento"></ion-datetime>
     </ion-item>
     <ion-item>
     <ion-label>Seleccione un sexo</ion-label>
     <ion-select cancelText="Cancelar" [formControl]="rForm.controls.sexo1"   [(ngModel)]="lista.sexo" (ionChange)="onChange();">
     <ion-option  *ngFor="let item of options">{{item.name}}</ion-option> 
     </ion-select> 
+    </ion-item>
+    <ion-item>
+    <ion-label>Seleccione una materia</ion-label>
+    <ion-select  multiple="true"  cancelText="Cancelar"  [formControl]="rForm.controls.materia1"    [(ngModel)]="lista.materia" (ionChange)="onChange2();">
+    <ion-option  *ngFor="let item of options2">{{item.name}}</ion-option>
+    </ion-select>
     </ion-item>
 </ion-list>
 

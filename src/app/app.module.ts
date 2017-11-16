@@ -41,8 +41,12 @@ import { EncuestaDetallePage } from '../pages/encuesta-detalle/encuesta-detalle'
 import { DatePipe } from '@angular/common';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { RespuestaEncuestaHomePage } from '../pages/respuesta-encuesta-home/respuesta-encuesta-home';
 import { ChartsModule } from 'ng2-charts';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
+import { ListaRespuestaEncuestaHomePage } from '../pages/lista-respuesta-encuesta-home/lista-respuesta-encuesta-home';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
 
 
 const cloudSettings: CloudSettings = {
@@ -57,7 +61,9 @@ const cloudSettings: CloudSettings = {
         'sound': true
       },
       'android': {
-        'iconColor': '#343434'
+        'iconColor': '#343434',
+        'sound': true,
+        'vibrate': true
       }
     }
   }
@@ -95,7 +101,9 @@ const cloudSettings: CloudSettings = {
     editarAdmProf,
     ListasPage,
     CodigoAlumnos,
-    Graficos
+    RespuestaEncuestaHomePage,
+    Graficos,
+    ListaRespuestaEncuestaHomePage
   ],
   imports: [
     BrowserModule,
@@ -110,7 +118,8 @@ const cloudSettings: CloudSettings = {
       links: [
         { component: HomePage, name: 'Inicio', segment: 'inicio' },
         { component: Alumno, name: 'Alumno', segment: 'alumno' },
-        { component: EncuestaHomePage, name: 'Encuesta', segment: 'encuesta' }
+        { component: EncuestaHomePage, name: 'Encuesta', segment: 'encuesta' },
+        { component: Login, name: 'Logout', segment: 'log-out' }
          ]
     }),
     IonicStorageModule.forRoot()
@@ -136,7 +145,9 @@ const cloudSettings: CloudSettings = {
     editarAdmProf,
     ListasPage,
     CodigoAlumnos,
-    Graficos
+    RespuestaEncuestaHomePage,
+    Graficos,
+    ListaRespuestaEncuestaHomePage
   ],
   providers: [
     StatusBar,
@@ -150,7 +161,9 @@ const cloudSettings: CloudSettings = {
     EncuestaDataProvider,
     AsistenciDataProvider,
     DatePipe ,   
-    BarcodeScanner 
+    BarcodeScanner,
+    File,
+    FileTransfer
   ]
 })
 export class AppModule {}

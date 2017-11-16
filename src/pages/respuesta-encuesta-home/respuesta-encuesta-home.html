@@ -1,0 +1,54 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>respuestaEncuestaHome</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-label style="color : rgb(37, 16, 16)">{{encuesta.nombreEncuesta}}</ion-label>
+    </ion-card-header>
+
+    <ion-card-content *ngFor="let p of encuesta.preguntas">
+
+      <ion-item>
+        <ion-label style="color : rgb(235, 22, 22)">{{p.texto}}</ion-label>
+      </ion-item>
+
+      <!-- Aque estan las opciones de respuesta -->
+
+      <ion-item *ngIf="p.tipoRespuesta == 'OPINION'">
+        <ion-input [(ngModel)]="p.opinionValue" placeholder="Ingrese la respuesta"></ion-input>
+      </ion-item>
+
+      <ion-list *ngIf="p.tipoRespuesta == 'SI-NO'">
+        <ion-item>
+          <ion-label style="color : rgb(85, 158, 218)">SI</ion-label>
+          <ion-checkbox [(ngModel)]="p.siValue" value="si"></ion-checkbox>
+        </ion-item>
+        <ion-item>  
+          <ion-label style="color : rgb(85, 158, 218)">NO</ion-label>
+          <ion-checkbox [(ngModel)]="p.noValue" value="no"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+
+      <ion-list *ngIf="p.tipoRespuesta == 'OPCIONES'">
+        <ion-item *ngFor="let op of p.opciones ; let i = index">
+          <ion-label style="color : rgb(85, 158, 218)">{{op}}</ion-label>
+          <ion-checkbox (ionChange)="ngModelChange(p,i)" value="op"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <button ion-button style="float:right;" class="btnEnv" round (click)="enviarRespuesta()">Enviar</button>
+
+
+</ion-content>

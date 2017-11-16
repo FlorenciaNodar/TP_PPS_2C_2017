@@ -15,20 +15,19 @@ import { EncuestaEnviarPage } from '../encuesta-enviar/encuesta-enviar';
 export class EncuestaHomePage {
 
   encuestas: FirebaseListObservable<any[]>;
+
+  aulaMaterias = [];
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public eDataProvider: EncuestaDataProvider,
   public modalCtrl: ModalController, public alertCtrl: AlertController) {
 
-    this.encuestas = this.eDataProvider.getEncuestas();
-    
-    this.encuestas.forEach(e=>{
-      console.log (e);
-    })
+   this.encuestas = this.eDataProvider.getEncuestas();   
+
+   // console.log(this.navParams.get('data'));  
 
   }
 
   enviarEncuesta(e){
-    console.log(e);
     e.enviada=true;
     this.enviarEncuestaFB(e).then(res=>{
       this.showAlerOK("La encuesta se envio exitosamente");

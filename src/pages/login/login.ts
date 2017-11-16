@@ -36,7 +36,6 @@ export class Login {
     private events: Events, private iab: InAppBrowser, private http: Http,public userData: UserData,
     public navParams: NavParams, public platform: Platform, public actionsheetCtrl: ActionSheetController,
     public alertCtrl: AlertController, public facebook: Facebook,public googlePlus: GooglePlus) {
-        this.usuario=firebase.auth().currentUser.email;
 
   }
 
@@ -61,7 +60,7 @@ export class Login {
         });
         this.userData.login(this.usuarioSelecionado.email);
         loader.present();
-        this.navCtrl.push(TabsPage);
+        this.navCtrl.push(TabsPage, {data: this.usuarioSelecionado.email});
       },
         error => {
           let alert = this.alertCtrl.create({
@@ -163,8 +162,7 @@ export class Login {
                         firebase.auth().signInWithCredential(credential).then(result => {
 
                             console.log("Firebase success: " + JSON.stringify(result));
-                        
-                            firebase.database().ref('users').set(result.uid,result);
+                           
                             resolve(result);
                              
                         }).catch((error:any) => {
@@ -212,7 +210,9 @@ loginWithGithub() {
           this.showLoading();
   
           this.githubLogin().then(r => {
-              console.log('success: ', r);
+              console.log('success: ', JSON.stringify(r));
+              this.userData.login('usuarioGithub');
+              this.navCtrl.push(TabsPage, {data: 'usuarioGithub' });
           }, e => {
   
               let alert = this.alertCtrl.create({
@@ -226,7 +226,7 @@ loginWithGithub() {
               alert.present();
   
               this.loading.dismiss();
-  
+              
           })
 }
 showLoading(): Promise<any> {
@@ -235,6 +235,7 @@ showLoading(): Promise<any> {
       dismissOnPageChange: true
   });
   return this.loading.present();
+  
 }
 
    google() {
