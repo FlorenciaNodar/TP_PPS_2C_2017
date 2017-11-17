@@ -52,11 +52,6 @@ constructor(public navCtrl: NavController, public modalCtrl: ModalController,pub
 }
 
 
-
-guardarDato(dato1, dato2){
-
-}
-
 ngOnInit(dato1, dato2){
  this.barChartData = [
     {data: [dato1], label: 'Presentes'},
@@ -75,26 +70,32 @@ public chartHovered(e:any):void {
 
 public randomize():void {
   
- this.af.list('/HistoricoAsistencias/').subscribe(e=>{
-   e.forEach(res=>{
-      this.algo.push(res.alumnos);
-   })
-    this.algo.forEach(element => {
-       element.forEach(aux => {
-         if(aux.asistio == true)
-          {
-           this.contAsistio++;
-           
-            
-          }else{
-            this.contNoAsistio++;
-          }
-   
-       });
-        this.ngOnInit(this.contAsistio, this.contNoAsistio);
-             
-       });
+this.contAsistio = 0;
+this.contNoAsistio = 0;
+this.af.list('/HistoricoAsistencias/').subscribe(e=>{
+e.forEach(res=>{
+    this.algo.splice(res.alumnos,1)
+  this.algo.push(res.alumnos);
+})
+
+this.algo.forEach(element => {
+    element.forEach(aux => { 
+      if(aux.asistio == true)
+      {
+        this.contAsistio++;
+        
+        
+      }else{
+        this.contNoAsistio++;
+      }
+
+    });
+          
+    });
+
 });
+                this.ngOnInit(this.contAsistio, this.contNoAsistio);
+
 }
 
 }
