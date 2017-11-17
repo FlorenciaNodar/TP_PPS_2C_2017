@@ -27,7 +27,7 @@ contNoAsistio =0 ;
 listcodigos: FirebaseListObservable<any>;
 constructor(public navCtrl: NavController, public modalCtrl: ModalController,public af: AngularFireDatabase) {
 
-
+//comentario
   
  this.af.list('/HistoricoAsistencias/').subscribe(e=>{
    e.forEach(res=>{
