@@ -16,20 +16,53 @@ public barChartOptions:any = {
 public barChartLabels:string[] = ['2017'];
 public barChartType:string = 'bar';
 public barChartLegend:boolean = true;
+asistio;
+noAsistio;
+public barChartData:any[];
 
-public barChartData:any[] = [
-  {data: [65, 59, 80, 81, 56, 55, 40], label: 'Presentes'},
-  {data: [28, 48, 40, 19, 86, 27, 90], label: 'Ausentes'}
-];
 dato;
-algo;
+algo =[];
+contAsistio =0 ;
+contNoAsistio =0 ;
 listcodigos: FirebaseListObservable<any>;
 constructor(public navCtrl: NavController, public modalCtrl: ModalController,public af: AngularFireDatabase) {
 
+
   
+ this.af.list('/HistoricoAsistencias/').subscribe(e=>{
+   e.forEach(res=>{
+      this.algo.push(res.alumnos);
+   })
+    this.algo.forEach(element => {
+       element.forEach(aux => {
+         if(aux.asistio == true)
+          {
+           this.contAsistio++;
+           
+            
+          }else{
+            this.contNoAsistio++;
+          }
+   
+       });
+        this.ngOnInit(this.contAsistio, this.contNoAsistio);
+             
+       });
+});
 }
 
 
+
+guardarDato(dato1, dato2){
+
+}
+
+ngOnInit(dato1, dato2){
+ this.barChartData = [
+    {data: [dato1], label: 'Presentes'},
+  {data: [dato2], label: 'Ausentes'}
+]
+}
 
 // eventos
 public chartClicked(e:any):void {
@@ -41,17 +74,27 @@ public chartHovered(e:any):void {
 }
 
 public randomize():void {
-  let data = [
-    Math.round(Math.random() * 100),
-    59,
-    80,
-    (Math.random() * 100),
-    56,
-    (Math.random() * 100),
-    40];
-  let clone = JSON.parse(JSON.stringify(this.barChartData));
-  clone[0].data = data;
-  this.barChartData = clone;
+  
+ this.af.list('/HistoricoAsistencias/').subscribe(e=>{
+   e.forEach(res=>{
+      this.algo.push(res.alumnos);
+   })
+    this.algo.forEach(element => {
+       element.forEach(aux => {
+         if(aux.asistio == true)
+          {
+           this.contAsistio++;
+           
+            
+          }else{
+            this.contNoAsistio++;
+          }
+   
+       });
+        this.ngOnInit(this.contAsistio, this.contNoAsistio);
+             
+       });
+});
 }
 
 }
