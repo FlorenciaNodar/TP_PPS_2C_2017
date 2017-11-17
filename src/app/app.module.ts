@@ -45,6 +45,9 @@ import { RespuestaEncuestaHomePage } from '../pages/respuesta-encuesta-home/resp
 import { ChartsModule } from 'ng2-charts';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 import { ListaRespuestaEncuestaHomePage } from '../pages/lista-respuesta-encuesta-home/lista-respuesta-encuesta-home';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
+import { RespuestaEncuestaDetallePage } from '../pages/respuesta-encuesta-detalle/respuesta-encuesta-detalle';
 
 
 const cloudSettings: CloudSettings = {
@@ -101,7 +104,8 @@ const cloudSettings: CloudSettings = {
     CodigoAlumnos,
     RespuestaEncuestaHomePage,
     Graficos,
-    ListaRespuestaEncuestaHomePage
+    ListaRespuestaEncuestaHomePage,
+    RespuestaEncuestaDetallePage
   ],
   imports: [
     BrowserModule,
@@ -116,7 +120,8 @@ const cloudSettings: CloudSettings = {
       links: [
         { component: HomePage, name: 'Inicio', segment: 'inicio' },
         { component: Alumno, name: 'Alumno', segment: 'alumno' },
-        { component: EncuestaHomePage, name: 'Encuesta', segment: 'encuesta' }
+        { component: EncuestaHomePage, name: 'Encuesta', segment: 'encuesta' },
+        { component: Login, name: 'Logout', segment: 'log-out' }
          ]
     }),
     IonicStorageModule.forRoot()
@@ -144,7 +149,8 @@ const cloudSettings: CloudSettings = {
     CodigoAlumnos,
     RespuestaEncuestaHomePage,
     Graficos,
-    ListaRespuestaEncuestaHomePage
+    ListaRespuestaEncuestaHomePage,
+    RespuestaEncuestaDetallePage
   ],
   providers: [
     StatusBar,
@@ -158,7 +164,9 @@ const cloudSettings: CloudSettings = {
     EncuestaDataProvider,
     AsistenciDataProvider,
     DatePipe ,   
-    BarcodeScanner 
+    BarcodeScanner,
+    File,
+    FileTransfer
   ]
 })
 export class AppModule {}

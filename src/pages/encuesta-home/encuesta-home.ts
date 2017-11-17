@@ -6,6 +6,9 @@ import { EncuestaPage } from '../encuesta/encuesta';
 import { Observable } from 'rxjs/Observable';
 import { FirebaseListObservable } from 'angularfire2/database-deprecated';
 import { EncuestaEnviarPage } from '../encuesta-enviar/encuesta-enviar';
+import { DatePipe } from '@angular/common';
+import { RespuestaEncuestaDetallePage } from '../respuesta-encuesta-detalle/respuesta-encuesta-detalle';
+
 
 @IonicPage()
 @Component({
@@ -17,14 +20,18 @@ export class EncuestaHomePage {
   encuestas: FirebaseListObservable<any[]>;
 
   aulaMaterias = [];
+
+  fechaActual: string;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public eDataProvider: EncuestaDataProvider,
-  public modalCtrl: ModalController, public alertCtrl: AlertController) {
+  public modalCtrl: ModalController, public alertCtrl: AlertController, public datePipeCtrl: DatePipe) {
 
-   this.encuestas = this.eDataProvider.getEncuestas();   
+   this.encuestas = this.eDataProvider.getEncuestas();    
 
-   // console.log(this.navParams.get('data'));  
+   this.fechaActual = this.datePipeCtrl.transform(Date.now(), 'yyyy-MM-dd');
 
+   console.log(this.fechaActual);
+   
   }
 
   enviarEncuesta(e){
@@ -45,6 +52,10 @@ export class EncuestaHomePage {
   eliminarEncuesta(encuesta){
     console.log(encuesta.$key);
     this.eDataProvider.eliminarEncuesta(encuesta);
+  }
+
+  verEncuestaDetalle(){
+    this.navCtrl.push(RespuestaEncuestaDetallePage);
   }
 
   showAlerOK(mensaje: string) {

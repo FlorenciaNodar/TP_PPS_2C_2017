@@ -6,32 +6,33 @@
   <ion-item>
     <ion-label style="color : rgb(85, 158, 218)">Aulas</ion-label>
     <ion-select [(ngModel)]="aulaSelected" (ngModelChange)="getMateriasPorAulaSeleccionada()">
-      <ion-option *ngFor="let a of aulas | async; let i = index" value="a.nombre" [value]="a">{{a.nombre}}</ion-option>
+      <ion-option *ngFor="let a of aulas | async; let i = index" value="a.$key" [value]="a.$key">{{a.$key}}</ion-option>
     </ion-select>
   </ion-item>
 
   <ion-item>
     <ion-label style="color : rgb(85, 158, 218)">Materias</ion-label>
-    <ion-select [(ngModel)]="materiaSelected" [disabled]="!aulaSelected" (ngModelChange)="getAlumnosRelacionAulaMateria()">
-      <ion-option *ngFor="let m of materias | async ; let i = index" value="m.descripcion" [value]="m">{{m.descripcion}}</ion-option>
+    <ion-select [(ngModel)]="materiaSelected" [disabled]="!aulaSelected" (ngModelChange)="getAlumnosMateriaSelected()">
+      <ion-option *ngFor="let m of materias | async ; let i = index" value="m.descripcion" [value]="m.descripcion">{{m.descripcion}}</ion-option>
     </ion-select>
   </ion-item>
   <br>
   <br>
 
   <ion-list>
-    <ion-list-header *ngIf="alumnos" style="color : rgb(85, 158, 218)">
+    <ion-list-header *ngIf="listadoAlumnos.length > 0" style="color : rgb(85, 158, 218)">
         <ion-label style="color : rgb(85, 158, 218); float:right;"><h2>Alumnos</h2></ion-label>
     </ion-list-header>
 
-    <ion-item *ngFor="let alumno of alumnos | async ; let i = index">
+    <ion-item *ngFor="let alumno of listadoAlumnos ; let i = index">
       <ion-label style="color : rgb(85, 158, 218)">{{ alumno.nombre }} {{ alumno.apellido}}</ion-label>
-      <ion-checkbox [(ngModel)]="alumno.asistencia" (click)="asistencia(alumno)" value="alumno.asistencia"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="alumno.asistio"  value="alumno"></ion-checkbox>
     </ion-item>
   </ion-list>
 
   <button ion-button (click)="cancelar()">Cancelar</button>
 
-  <button ion-button (click)="ejecutar()" style="float:right;" class="btnEnv" [disabled]="!alumnos">Listo</button>
+  <button ion-button (click)="registrarAsistencia()" style="float:right;" class="btnEnv">Listo</button>
+
 
 </ion-content>

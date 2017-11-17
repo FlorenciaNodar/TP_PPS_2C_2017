@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { AlertController,Platform, MenuController, Nav , Events} from 'ionic-angular';
+import { AlertController,Platform, MenuController, Nav, Events} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -19,6 +19,7 @@ import { EncuestaHomePage } from '../pages/encuesta-home/encuesta-home';
 import { nuevoAlumno } from '../pages/nuevoAlumno/nuevoAlumno';
 import { editarAlumno } from '../pages/editarAlumno/editarAlumno';
 import{ Push, PushToken } from '@ionic/cloud-angular';
+import * as firebase from 'firebase/app';
 
 export interface PageInterface {
   title: string;
@@ -40,6 +41,8 @@ export class MyApp {
   isAppInitialized: boolean = false;
   user: any;
   rootPage:any = Login;
+  private platformReady = false;
+  private authReady = false;
 
   pages: PageInterface[] = [
     
@@ -61,13 +64,14 @@ export class MyApp {
     public splashScreen: SplashScreen, public push: Push, public alertCtrl: AlertController) {
 
       
-     this.platform.ready().then(() => {
-    
-      //this.statusBar.styleDefault();
-         setTimeout(() => {
-      this.splashScreen.hide();
-      }, 100);
+      platform.ready().then(() => {
+        console.log('platformReady');
+
+        statusBar.styleDefault();
+        this.platformReady = true;
+        this.hideSplashScreen();
     });
+    
     // qué elementos del menú deben estar ocultos según el estado de inicio de sesión actual 
     this.userData.hasLoggedIn().then((hasLoggedIn) => {
       this.enableMenu(hasLoggedIn === true);
@@ -75,14 +79,23 @@ export class MyApp {
     this.enableMenu(false);
 
     this.listenToLoginEvents();
+
     if (platform.is('android')) {
     this.RegisterNotification();
     this.Notification();
     }
- 
 
   }
 
+  hideSplashScreen() {
+
+    if (this.platformReady && this.authReady) {
+    
+        setTimeout(() => {
+          this.splashScreen.hide();
+        }, 100);  
+     }
+  }
   private RegisterNotification(){
   
   this.push.register().then((t: PushToken) => {
@@ -105,14 +118,6 @@ export class MyApp {
           alert.present();
   });
 }
-
-  
-  
-
-  // initializeApp() {
-   
-    
-  // }
 
   listenToLoginEvents() {
     this.events.subscribe('user:login', () => {
@@ -155,6 +160,7 @@ export class MyApp {
     if (page.logsOut === true) {
       console.log("Logout");
       this.userData.logout();
+      firebase.auth().signOut();
     }
   }
 
@@ -176,8 +182,26 @@ export class MyApp {
     return;
   }
 
-   ngOnInit() {
+  ngOnInit() {
+   
+      this.userData.getUsername().then(user => {
+                console.log('authReady');
+                this.authReady = true;
+                this.hideSplashScreen();
     
-  }
-  
+                console.log('MyApp :: authState: ', user);
+    
+                if (user) {
+                    // go to home page
+                    this.rootPage = HomePage;
+                } else {
+                    // go to login page
+                    this.rootPage = Login;
+                }
+    
+            }, error => {
+                this.rootPage = Login;
+            });
+        }
+        
 }
