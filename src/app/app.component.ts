@@ -20,6 +20,7 @@ import { nuevoAlumno } from '../pages/nuevoAlumno/nuevoAlumno';
 import { editarAlumno } from '../pages/editarAlumno/editarAlumno';
 import{ Push, PushToken } from '@ionic/cloud-angular';
 import * as firebase from 'firebase/app';
+import { PerfilPage } from '../pages/perfil/perfil';
 
 export interface PageInterface {
   title: string;
@@ -40,10 +41,9 @@ export class MyApp {
 
   isAppInitialized: boolean = false;
   user: any;
-  rootPage:any = Login;
   private platformReady = false;
   private authReady = false;
-
+  rootPage: any;
   pages: PageInterface[] = [
     
     { title: 'Inicio', name: 'TabsPage', component: TabsPage, tabComponent: HomePage, index: 0, icon: 'pie' },
@@ -53,6 +53,7 @@ export class MyApp {
   ];
 
   pagesLog: PageInterface[] = [
+    { title: 'Perfil', name: 'Perfil',  component: PerfilPage, icon: 'body' },
     { title: 'Logout', name: 'Login', component: Login, icon: 'log-out', logsOut: true }
   ];
 
@@ -76,14 +77,14 @@ export class MyApp {
     this.userData.hasLoggedIn().then((hasLoggedIn) => {
       this.enableMenu(hasLoggedIn === true);
     });
-    this.enableMenu(false);
+    this.enableMenu(true);
 
     this.listenToLoginEvents();
 
-    if (platform.is('android')) {
+    /*if (platform.is('android')) {
     this.RegisterNotification();
     this.Notification();
-    }
+    }*/
 
   }
 
@@ -186,19 +187,13 @@ export class MyApp {
    
       this.userData.getUsername().then(user => {
                 console.log('authReady');
-                this.authReady = true;
+                
                 this.hideSplashScreen();
     
                 console.log('MyApp :: authState: ', user);
     
-                if (user) {
-                    // go to home page
-                    this.rootPage = HomePage;
-                } else {
-                    // go to login page
-                    this.rootPage = Login;
-                }
-    
+                this.rootPage = Login;
+  
             }, error => {
                 this.rootPage = Login;
             });

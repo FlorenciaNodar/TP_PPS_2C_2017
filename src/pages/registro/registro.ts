@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { TabsPage } from '../tabs/tabs';
 
 import { NavController, NavParams, ActionSheetController, LoadingController, AlertController, Platform } from 'ionic-angular';
-import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database-deprecated";
 import { AngularFireAuth, AngularFireAuthProvider, AngularFireAuthModule } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { UserData } from '../../providers/userdata/userdata';
@@ -19,7 +19,7 @@ export class RegistroPage {
   
     constructor(public loadingCtrl: LoadingController, public navCtrl: NavController,private af: AngularFireAuth,
       public navParams: NavParams, public platform: Platform, public actionsheetCtrl: ActionSheetController,
-      public alertCtrl: AlertController,public userData: UserData) {
+      public alertCtrl: AlertController,public userData: UserData,public afdata: AngularFireDatabase) {
   
     }
     Registrar(){
@@ -27,7 +27,13 @@ export class RegistroPage {
       if(this.ValidaCamposReg())
       {
         this.af.auth.createUserWithEmailAndPassword(this.usuarioSelecionado.email,this.usuarioSelecionado.password).then((response)=>{
-        
+          this.afdata.list('users').update(response.uid, {
+            name: this.usuarioSelecionado.email,
+            email: this.usuarioSelecionado.email,
+            emailVerified: false,
+            provider: 'email',
+            image: this.usuarioSelecionado.email+'.jpg'
+          });
         this.AlertMensaje("Bienvenido", "Su perfil a sido guardado con exito!!!");
         this.userData.signup(this.usuarioSelecionado.email);
         this.navCtrl.push(HomePage);

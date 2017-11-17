@@ -1,0 +1,23 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Datos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding class="fondo">
+
+  <button ion-button full icon-left (click)="scanCode()" color="navbarColor"><ion-icon name="qr-scanner"></ion-icon>Escanear Código</button>
+ 
+ <ion-card *ngIf="createdCode">
+    <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
+
+  </ion-card> 
+ 
+  <ion-card *ngIf="scannedCode">
+    <ion-card-content>
+      {{ scannedCode }}
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

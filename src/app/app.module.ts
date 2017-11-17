@@ -19,6 +19,8 @@ import { nuevoAdmProf} from '../pages/nuevoAdmProf/nuevoAdmProf';
 import { editarAdmProf} from '../pages/editarAdmProf/editarAdmProf';
 import { ListasPage } from '../pages/listas/listas';
 import { CodigoAlumnos } from '../pages/codigoAlumnos/codigoAlumnos';
+import { CodigoProfesoresPage } from '../pages/codigo-profesores/codigo-profesores';
+import { PerfilPage } from '../pages/perfil/perfil';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -48,7 +50,7 @@ import { ListaRespuestaEncuestaHomePage } from '../pages/lista-respuesta-encuest
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { RespuestaEncuestaDetallePage } from '../pages/respuesta-encuesta-detalle/respuesta-encuesta-detalle';
-
+import { Zip } from '@ionic-native/zip';
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -105,7 +107,9 @@ const cloudSettings: CloudSettings = {
     RespuestaEncuestaHomePage,
     Graficos,
     ListaRespuestaEncuestaHomePage,
-    RespuestaEncuestaDetallePage
+    RespuestaEncuestaDetallePage,
+    CodigoProfesoresPage,
+    PerfilPage
   ],
   imports: [
     BrowserModule,
@@ -121,7 +125,8 @@ const cloudSettings: CloudSettings = {
         { component: HomePage, name: 'Inicio', segment: 'inicio' },
         { component: Alumno, name: 'Alumno', segment: 'alumno' },
         { component: EncuestaHomePage, name: 'Encuesta', segment: 'encuesta' },
-        { component: Login, name: 'Logout', segment: 'log-out' }
+        { component: PerfilPage, name: 'Perfil', segment: 'perfil' },
+        { component: Login, name: 'Login', segment: 'login' },
          ]
     }),
     IonicStorageModule.forRoot()
@@ -150,7 +155,9 @@ const cloudSettings: CloudSettings = {
     RespuestaEncuestaHomePage,
     Graficos,
     ListaRespuestaEncuestaHomePage,
-    RespuestaEncuestaDetallePage
+    RespuestaEncuestaDetallePage,
+    CodigoProfesoresPage,
+    PerfilPage
   ],
   providers: [
     StatusBar,
@@ -166,7 +173,8 @@ const cloudSettings: CloudSettings = {
     DatePipe ,   
     BarcodeScanner,
     File,
-    FileTransfer
+    FileTransfer,
+    Zip
   ]
 })
 export class AppModule {}
