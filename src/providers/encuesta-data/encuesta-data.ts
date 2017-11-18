@@ -34,6 +34,15 @@ export class EncuestaDataProvider {
     return this.afDB.database.ref('EncuestaRespuesta/').push(respuesta);
   }
 
+  getEncuestaRespuesta(encuestaKey){
+    return this.afDB.list('EncuestaRespuesta/',{
+      query: {
+        orderByChild: 'encuestaKey',
+        equalTo: encuestaKey
+      }
+    })
+  }
+
   enviarEncuestaMateria(encuesta,materias){
     return this.afDB.database.ref('EncuestaMateria/'+encuesta.$key).push(materias);
   }
