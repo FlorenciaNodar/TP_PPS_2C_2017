@@ -1,14 +1,45 @@
 page-home {
-    .boton{
-        font-size:10px;
-        font-family:Verdana,Helvetica;
-        font-weight:bold;
-        color:white;
-        background:#6d2269;
-        border:0px;
-        width:200px;
-        height:100px;
-       }
+    .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white; 
+        text-align: center;
+        font-size: 100%;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        height: 180px;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+    p {
+        font-size: 150%;
+    }
+    .container {
+        position: relative;
+        width: auto;
+      }
+       .button1 {
+        background-color: 	#8B008B; 
+        color: black;
+        border: 2px solid #4CAF50;
+        
+    }
+    .button1:hover {
+        background-color: #48D1CC;
+        color: black;
+    }
+      .button2 {
+        background-color: 	#48D1CC; 
+        color: black;
+        border: 2px solid #008CBA;
+    }
+    
+    .button2:hover {
+        background-color: #8B008B;
+        color: white;
+    }
        .fondo{
         background-image: url("../assets/img/fondo1.jpg");
         background-size: 100%;
