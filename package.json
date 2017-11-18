@@ -24,7 +24,7 @@
     "@ionic-native/core": "4.3.0",
     "@ionic-native/facebook": "^4.3.2",
     "@ionic-native/file": "^4.4.2",
-    "@ionic-native/file-transfer": "^4.4.0",
+    "@ionic-native/file-transfer": "^4.4.2",
     "@ionic-native/google-plus": "^4.3.2",
     "@ionic-native/in-app-browser": "^4.3.3",
     "@ionic-native/splash-screen": "4.3.0",
@@ -35,17 +35,17 @@
     "@types/papaparse": "^4.1.31",
     "angularfire2": "^5.0.0-rc.3",
     "chart.js": "^2.7.1",
-    "cordova-android": "^6.1.2",
+    "cordova-android": "6.3.0",
     "cordova-android-play-services-gradle-release": "~1.1.4",
     "cordova-android-support-gradle-release": "cordova_plugins/cordova-android-support-gradle-release",
-    "cordova-browser": "^4.1.0",
+    "cordova-browser": "4.1.0",
     "cordova-pdf-generator": "^1.9.2",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-datepicker": "^0.9.3",
     "cordova-plugin-device": "^1.1.7",
     "cordova-plugin-facebook4": "^1.9.1",
     "cordova-plugin-file": "^4.0.0",
-    "cordova-plugin-file-transfer": "^1.6.1",
+    "cordova-plugin-file-transfer": "^1.6.3",
     "cordova-plugin-googleplus": "^5.1.1",
     "cordova-plugin-inappbrowser": "^1.7.2",
     "cordova-plugin-ionic-webview": "^1.1.16",
@@ -56,6 +56,7 @@
     "cordova.plugins.diagnostic": "~3.7.1",
     "firebase": "^4.5.1",
     "ionic-angular": "3.7.1",
+    "ionic-native": "^2.9.0",
     "ionic-plugin-keyboard": "^2.2.1",
     "ionicons": "3.0.0",
     "ng2-charts": "^1.6.0",
@@ -70,7 +71,7 @@
     "zone.js": "0.8.18"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "3.0.0",
+    "@ionic/app-scripts": "^3.1.2",
     "typescript": "2.3.4"
   },
   "description": "An Ionic project",
@@ -105,8 +106,8 @@
       "cordova-pdf-generator": {}
     },
     "platforms": [
-      "android",
-      "browser"
+      "browser",
+      "android"
     ]
   }
 }
