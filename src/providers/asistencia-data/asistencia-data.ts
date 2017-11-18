@@ -25,6 +25,14 @@ export class AsistenciDataProvider {
     return this.afDB.list('AulaMateriasOrig/'+aulaSelected);
   }
 
+  getListaAlumnosExcel(){
+    return this.afDB.list('listas/');
+  }
+
+  getAlumnosPorAulaAelected(aulaKey){
+    return this.afDB.list('listas/'+aulaKey);
+  }
+
   /*getMateriasPorAula(aulaSeleccionada){
     return this.afDB.list('Materias/'+aulaSeleccionada);
   }*/

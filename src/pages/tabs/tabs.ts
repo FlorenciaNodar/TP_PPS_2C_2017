@@ -14,22 +14,45 @@ import { ListasPage } from '../listas/listas';
 import { Graficos } from '../graficos/graficos';
 import { PerfilPage } from '../perfil/perfil';
 import { Login } from '../login/login';
+import firebase from 'firebase';
 
 @Component({
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
 
-
-  tab1Root = HomePage;  
-  tab2Root = Alumno;
-  tab3Root = EncuestaHomePage;
-  tab4Root = AdmProf;
-  tab5Root = ListasPage;
-  tab6Root = CodigoAlumnos;
-  tab7Root = Graficos;
   
-  constructor() {
+  user;
+  tab1Root;
+  tab2Root;
+  tab3Root;
+  tab4Root;
+  tab5Root;
+  tab6Root;
+  tab7Root; 
 
+  constructor() {
+    this.user = firebase.auth().currentUser.email;
+
+  if(this.user == 'profesor@profesor.com'){
+    this.tab1Root = HomePage;  
+    this.tab2Root = Alumno;
+    this.tab3Root = EncuestaHomePage;
+    this.tab4Root = AdmProf;
+    this.tab5Root = ListasPage;
+    this.tab6Root = CodigoAlumnos;
+    this.tab7Root = Graficos;  
+  } else {
+    this.tab1Root = HomePage;  
+    this.tab2Root = Alumno;
+    this.tab4Root = AdmProf;
+    this.tab5Root = ListasPage;
+    this.tab6Root = CodigoAlumnos;
+    this.tab7Root = Graficos;  
   }
+    
+  }
+
+   
+  
 }

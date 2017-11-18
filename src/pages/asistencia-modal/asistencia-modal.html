@@ -5,17 +5,17 @@
   <br>
   <ion-item>
     <ion-label style="color : rgb(85, 158, 218)">Aulas</ion-label>
-    <ion-select [(ngModel)]="aulaSelected" (ngModelChange)="getMateriasPorAulaSeleccionada()">
-      <ion-option *ngFor="let a of aulas | async; let i = index" value="a.$key" [value]="a.$key">{{a.$key}}</ion-option>
+    <ion-select [(ngModel)]="aulaSelected" (ngModelChange)="getAlumnosPorAulaAelected()">
+      <ion-option *ngFor="let a of listExcel | async; let i = index" value="a.$key" [value]="a.$key">{{a.$key}}</ion-option>
     </ion-select>
   </ion-item>
 
-  <ion-item>
+  <!--<ion-item>
     <ion-label style="color : rgb(85, 158, 218)">Materias</ion-label>
     <ion-select [(ngModel)]="materiaSelected" [disabled]="!aulaSelected" (ngModelChange)="getAlumnosMateriaSelected()">
       <ion-option *ngFor="let m of materias | async ; let i = index" value="m.descripcion" [value]="m.descripcion">{{m.descripcion}}</ion-option>
     </ion-select>
-  </ion-item>
+  </ion-item>-->
   <br>
   <br>
 
@@ -25,7 +25,7 @@
     </ion-list-header>
 
     <ion-item *ngFor="let alumno of listadoAlumnos ; let i = index">
-      <ion-label style="color : rgb(85, 158, 218)">{{ alumno.nombre }} {{ alumno.apellido}}</ion-label>
+      <ion-label style="color : rgb(85, 158, 218)">{{ alumno[1]}}</ion-label>
       <ion-checkbox [(ngModel)]="alumno.asistio"  value="alumno"></ion-checkbox>
     </ion-item>
   </ion-list>

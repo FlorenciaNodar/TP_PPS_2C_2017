@@ -86,7 +86,7 @@
     <platform name="android">
         <resource-file src="google-services.json" target="google-services.json" />
     </platform>
-    <engine name="android" spec="^6.1.2" />
+    <engine name="android" spec="^6.2.3" />
     <engine name="browser" spec="^4.1.0" />
     <plugin name="cordova-android-play-services-gradle-release" spec="^1.1.4">
         <variable name="PLAY_SERVICES_VERSION" value="11.+" />

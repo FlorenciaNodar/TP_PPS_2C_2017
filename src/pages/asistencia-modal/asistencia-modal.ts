@@ -19,16 +19,16 @@ export class AsistenciaModalPage {
   materiaSelected: { descripcion: '' };
   alumnosAsistencia = [];
   checkin: boolean;
-
   listadoAlumnos = [];
-  listadosAlumnosPorMateria =[];
-
+  listadosAlumnosPorAula: FirebaseListObservable<any[]>;;
   listaFinal =[{asistio: false}];
-
   imag = '';
+  listExcel : FirebaseListObservable<any[]>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
     public asisProvider: AsistenciDataProvider, public alertCtrl: AlertController, public datePipeCtrl: DatePipe) {
+
+      this.getListaAlumnosExcel();
 
   }
 
@@ -42,6 +42,26 @@ export class AsistenciaModalPage {
 
   getMateriasPorAulaSeleccionada() {
     this.materias = this.asisProvider.getMateriasPorAula(this.aulaSelected);
+  }
+
+  getListaAlumnosExcel(){
+    this.listExcel = this.asisProvider.getListaAlumnosExcel();
+    this.listExcel.forEach(elem =>{
+      //console.log(elem);
+    });
+  }
+
+  getAlumnosPorAulaAelected(){
+    this.asisProvider.getAlumnosPorAulaAelected(this.aulaSelected).subscribe(alumnos=>{
+      this.listadoAlumnos=alumnos;
+      alumnos.forEach(alumno=>{
+        console.log(alumno[0]+ ' ' + alumno[1]);
+        /*alumno.forEach(a=>{
+          console.log(a);
+        })*/
+      })
+    });
+    
   }
 
   /*tomarFoto() {
@@ -81,22 +101,26 @@ export class AsistenciaModalPage {
   }    
 
   registrarAsistencia() {    
+    let cont=0;
     if (this.listadoAlumnos.length > 0) {
       let alumnosRegistroAsistencia = [];
       this.listadoAlumnos.forEach(alumno => {
-        let alumnoNew = { nombre: '', apellido: '', asistio: false }
-        alumnoNew.nombre = alumno.nombre;
-        alumnoNew.apellido = alumno.apellido;
-        if(alumno.asistio){
-          alumnoNew.asistio = alumno.asistio;
-        }else{
-          alumnoNew.asistio = false;
-        }        
-        alumnosRegistroAsistencia.push(alumnoNew);
+        if (alumno != ""){
+          let alumnoNew = { legajo: '', nombreYapellido: '', asistio: false }
+          alumnoNew.legajo = alumno[0];
+          alumnoNew.nombreYapellido = alumno[1];
+          if(alumno.asistio){
+            alumnoNew.asistio = alumno.asistio;
+          }else{
+            alumnoNew.asistio = false;
+          }        
+          alumnosRegistroAsistencia.push(alumnoNew);
+        }
+        
       });
 
       let datePipe = this.datePipeCtrl.transform(Date.now(), 'dd-MM-yyyy');
-      let jsonAsistencia = {fecha:datePipe, aula: this.aulaSelected, materia: this.materiaSelected, alumnos: alumnosRegistroAsistencia};
+      let jsonAsistencia = {fecha:datePipe, aula: this.aulaSelected, alumnos: alumnosRegistroAsistencia};
       
       //this.asisProvider.registroAsistenciaDelDia(datePipe,this.aulaSelected, this.materiaSelected, alumnosRegistroAsistencia);
       this.asisProvider.registroAsistenciaDelDia(jsonAsistencia);
