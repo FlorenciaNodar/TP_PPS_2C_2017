@@ -39,6 +39,7 @@ export class EncuestaPage {
 
 
   }
+  
 
   getUser() {
     return this.afAuth.auth.currentUser.email;
