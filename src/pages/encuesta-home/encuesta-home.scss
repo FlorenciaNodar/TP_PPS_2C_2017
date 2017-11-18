@@ -1,4 +1,9 @@
 page-encuesta-home {
+
+       .fondo{ background-image: url("../assets/img/fondo1.jpg");
+    background-size: 100%;
+    background-position-y: 50%;
+
     .btnEnv{
         background-color: rgb(78, 240, 191);
     }
@@ -7,4 +12,5 @@ page-encuesta-home {
         width:50px;
         height:30px;
     }
+}
 }
