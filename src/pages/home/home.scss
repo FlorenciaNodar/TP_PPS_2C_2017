@@ -9,4 +9,12 @@ page-home {
         width:200px;
         height:100px;
        }
+       .fondo{
+        background-image: url("../assets/img/fondo1.jpg");
+        background-size: 100%;
+        background-position-y: 50%;
+
+        body {
+            margin:auto;}
+    }
 }

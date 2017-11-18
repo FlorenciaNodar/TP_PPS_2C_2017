@@ -1,16 +1,16 @@
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>Encuestas</ion-title>
-  </ion-navbar>
-
+  <ion-navbar  color='favorite'>
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+  <ion-title>Encuesta</ion-title>
+</ion-navbar>
 </ion-header>
 
-
-<ion-content padding>
+<ion-content padding class="fondo">
 
   <button ion-button (click)="generarEncuesta()">
-    <ion-icon name="clipboard"></ion-icon> Nueva Encuesta</button>
+    <ion-icon name="clipboard"></ion-icon>  Nueva Encuesta</button>
 
   <div *ngFor="let e of encuestas | async; let i = index">
     <ion-card>

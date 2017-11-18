@@ -10,7 +10,6 @@ import { Alumno } from '../alumno/alumno';
 import { EncuestaHomePage } from '../encuesta-home/encuesta-home';
 import { AdmProf } from '../admProf/admProf';
 import { CodigoAlumnos } from '../codigoAlumnos/codigoAlumnos';
-import { CodigoProfesoresPage } from '../codigo-profesores/codigo-profesores';
 import { ListasPage } from '../listas/listas';
 import { Graficos } from '../graficos/graficos';
 import { PerfilPage } from '../perfil/perfil';
@@ -29,7 +28,6 @@ export class TabsPage {
   tab5Root = ListasPage;
   tab6Root = CodigoAlumnos;
   tab7Root = Graficos;
-  tab8Root = CodigoProfesoresPage;
   
   constructor() {
 

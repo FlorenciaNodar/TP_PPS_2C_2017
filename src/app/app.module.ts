@@ -127,6 +127,7 @@ const cloudSettings: CloudSettings = {
         { component: EncuestaHomePage, name: 'Encuesta', segment: 'encuesta' },
         { component: PerfilPage, name: 'Perfil', segment: 'perfil' },
         { component: Login, name: 'Login', segment: 'login' },
+        { component: TabsPage, name: 'TabsPage', segment: 'tabs' }
          ]
     }),
     IonicStorageModule.forRoot()

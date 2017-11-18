@@ -1,4 +1,4 @@
-<ion-content padding>
+<ion-content padding class="fondo">
   <div>
     <div style="display: block">
       <canvas baseChart
@@ -10,6 +10,6 @@
               (chartHover)="chartHovered($event)"
               (chartClick)="chartClicked($event)"></canvas>
     </div>
-    <button (click)="randomize()">Actualizar</button>
+    <button class="button button1" (click)="randomize()">Actualizar</button>
   </div>
 </ion-content>

@@ -1,10 +1,10 @@
-<ion-content padding>
+<ion-content padding class="fondo">
     <ion-fab top right bottom>
     <button ion-fab color="primary" (click)="presentModal()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 
 <br><br><br>
-<b><h4 style="text-align: center">Lista de Alumnos</h4></b>
+<b><h4 style="text-align: center;">Lista de Alumnos</h4></b>
  <ion-list>
 
 <ion-item *ngFor="let boca of items | async; let i = index" style=" text-align: left">
