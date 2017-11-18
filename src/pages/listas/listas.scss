@@ -19,8 +19,24 @@ page-listas {
         background-size: 100%;
         background-position-y: 50%;
 
-        body {
-            margin:auto;}
+     
     }
-   
+   .cars{
+    width:120px;
+    height:120px;
+
+    }
+    
+    .cars div {
+        //display: block;
+        margin: 8px 14px 0 14px;
+        //overflow: hidden;
+        font-size: 20px;
+       // line-height: 16px;
+        color: #737373;
+        //text-overflow: ellipsis;
+        position: center;
+        text-align: center;
+    }
+    
 }

@@ -62,4 +62,5 @@ this.barcodeScanner.scan().then(barcodeData => {
     console.log('Error: ', err);
 });
 }
+
 }
