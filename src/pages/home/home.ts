@@ -41,8 +41,13 @@ export class HomePage {
   }
   
 ionViewDidLoad() {
-
-<<<<<<< HEAD
+   this.usuarioActual = this.getUser();
+    if (this.usuarioActual == 'alumno@alumno.com') {
+      this.btnEncuestasPendientes=true;
+      this.getMateriasAlumnos();
+      this.historialEncuestaNotification();
+    }    
+  
 FCMPlugin.onNotification(function(data){
 if(data.wasTapped){
   //Notification was received on device tray and tapped by the user.
@@ -94,16 +99,7 @@ this.af.list(this.firemsg).push({
   //     this.historialEncuestaNotification();
   //   }    
   // }
-=======
-  ionViewDidLoad() {
-    this.usuarioActual = this.getUser();
-    if (this.usuarioActual == 'alumno@alumno.com') {
-      this.btnEncuestasPendientes=true;
-      this.getMateriasAlumnos();
-      this.historialEncuestaNotification();
-    }    
-  }
->>>>>>> 02770269707bf2658e82a698cdb548c72f9ca899
+ 
 
   historialEncuestaNotification() {
     this.eProvider.getEncuestas().subscribe(encuestas => {

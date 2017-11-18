@@ -35,13 +35,10 @@
     "@types/papaparse": "^4.1.31",
     "angularfire2": "^5.0.0-rc.3",
     "chart.js": "^2.7.1",
-<<<<<<< HEAD
     "cordova-android": "6.3.0",
     "cordova-android-play-services-gradle-release": "~1.1.4",
-=======
     "cordova-android": "^6.2.3",
     "cordova-android-play-services-gradle-release": "^1.1.4",
->>>>>>> 02770269707bf2658e82a698cdb548c72f9ca899
     "cordova-android-support-gradle-release": "cordova_plugins/cordova-android-support-gradle-release",
     "cordova-browser": "4.1.0",
     "cordova-pdf-generator": "^1.9.2",
