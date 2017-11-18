@@ -54,8 +54,8 @@ export class EncuestaHomePage {
     this.eDataProvider.eliminarEncuesta(encuesta);
   }
 
-  verEncuestaDetalle(){
-    this.navCtrl.push(RespuestaEncuestaDetallePage);
+  verEncuestaDetalle(encuesta){
+    this.navCtrl.push(RespuestaEncuestaDetallePage, {data: encuesta});
   }
 
   showAlerOK(mensaje: string) {

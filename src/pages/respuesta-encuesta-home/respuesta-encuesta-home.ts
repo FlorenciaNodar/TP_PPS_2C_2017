@@ -11,7 +11,7 @@ import { HomePage } from '../home/home';
 })
 export class RespuestaEncuestaHomePage {
 
-  encuesta = {$key: '', key: ''};
+  encuesta = {$key: '', encuestaKey: ''};
   encuestaKey = '';
   encuestaOrigin = {respondida: false};
 
@@ -31,7 +31,7 @@ export class RespuestaEncuestaHomePage {
 
   enviarRespuesta(){
     try{  
-      this.encuesta.key = this.encuesta.$key;       
+      this.encuesta.encuestaKey = this.encuesta.$key;       
       this.eProvider.enviarEncuestaRespuesta(this.encuesta);
       this.encuestaOrigin.respondida = true;
       this.eProvider.actualizarEncuestaPorRespuesta(this.encuestaOrigin,this.encuesta.$key);

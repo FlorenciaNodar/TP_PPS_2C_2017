@@ -43,7 +43,7 @@ export class HomePage {
   historialEncuestaNotification() {
     this.eProvider.getEncuestas().subscribe(encuestas => {
       encuestas.forEach(encuesta => {
-        if (encuesta.enviada == true && encuesta.respondida == false) {
+        if (encuesta.respondida == true) {
           this.materiasQueCursaAlumno.forEach(misMat => {
             encuesta.destinatarios.forEach(d => {
               if (d.clave == misMat) {
