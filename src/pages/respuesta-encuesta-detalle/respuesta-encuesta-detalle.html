@@ -1,15 +1,25 @@
 <ion-header>
 
-  <ion-navbar>
+    <ion-navbar  color='favorite'>
     <ion-title>respuestaEncuestaDetalle</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="fondo">
 
   <button ion-button (click)="estadistica()">Estadisticas</button>
+  <ion-card>
+    <ion-card-header>
+      {{encuesta.nombreEncuesta}}
+    </ion-card-header>
+    <ion-card-content>
+      Autor: profesor@profesor.com
+      Cantidad de respuestas: {{cantidadRespuestas}}
+    </ion-card-content>
+  </ion-card>
+
 
   <div *ngFor="let pRes of preguntaRespuestas ; let i= index">
     <ion-card>
@@ -17,7 +27,7 @@
         <p style="color : rgb(85, 158, 218)">{{pRes.pregunta.texto}}</p>
       </ion-card-header>
       <ion-card-content>
-       
+
         <div style="display: block" *ngIf="pRes.pregunta.tipoRespuesta != 'OPINION'">
           <canvas baseChart [data]="pRes.pregunta.chartData" [labels]="pRes.pregunta.chartLabels" [chartType]="chartType"></canvas>
         </div>

@@ -9,7 +9,7 @@
 
 <ion-content padding class="fondo">
 
-  <button ion-button (click)="generarEncuesta()">
+  <button class="button button1" (click)="generarEncuesta()">
     <ion-icon name="clipboard"></ion-icon>  Nueva Encuesta</button>
 
   <div *ngFor="let e of encuestas | async; let i = index">

@@ -25,6 +25,8 @@ export class AsistenciaModalPage {
 
   listaFinal =[{asistio: false}];
 
+  imag = '';
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
     public asisProvider: AsistenciDataProvider, public alertCtrl: AlertController, public datePipeCtrl: DatePipe) {
 
@@ -41,6 +43,29 @@ export class AsistenciaModalPage {
   getMateriasPorAulaSeleccionada() {
     this.materias = this.asisProvider.getMateriasPorAula(this.aulaSelected);
   }
+
+  /*tomarFoto() {
+    this.imag = { imagen: '', usuario: '', tipoImg: '', seleccionada: false };
+    this.cameraCtrl.getPicture({
+      destinationType: this.cameraCtrl.DestinationType.DATA_URL,
+      targetWidth: 800,
+      targetHeight: 800
+    }).then((imageData) => {
+      this.base64Image = "data:image/jpeg;base64," + imageData;
+      this.imag.imagen = this.base64Image;
+      this.imag.usuario = this.fireDbProvider.auth.getUser().email;
+      this.imag.tipoImg = this.tipoImg;
+      this.imag.seleccionada = false;
+      this.imagenes.push(this.imag);
+      this.mostrar = true;
+    }, (err) => {
+      console.log(err);
+      if (err.mensaje) {
+        this.showAlert("Error", err.mensaje);
+      }
+    });
+  }*/
+
 
   getAlumnosMateriaSelected(){
     this.asisProvider.getAlumnos().subscribe(alumnos=>{

@@ -8,10 +8,10 @@
 </ion-header>
 
 <ion-content padding align="center" class="fondo">
-  <button ion-button (click)="presentModal()" class="boton">Tomar Asistencia</button>
+  <button ion-button (click)="presentModal()" class="button1 button"><p>Tomar Asistencia</p></button>
 
 
-  <button ion-button (click)="verEncuestas()" class="boton">Encuestas</button>
+  <button ion-button (click)="verEncuestas()" class="boton" *ngIf="btnEncuestasPendientes">Encuestas</button>
   
   
 

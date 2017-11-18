@@ -21,6 +21,7 @@ export class RespuestaEncuestaDetallePage {
   preguntasRespuestas = [];
 
   preguntaRespuestas =[];
+  cantidadRespuestas = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public eProvider: EncuestaDataProvider) {
 
@@ -30,6 +31,7 @@ export class RespuestaEncuestaDetallePage {
     this.encuesta.preguntas.forEach(p => {
       var respuestas = [];
       this.encuestaR.forEach(er => {
+        this.cantidadRespuestas++;
         er.forEach(eRPreguntas => {
           var filter = eRPreguntas.preguntas.filter(function (pregunta) { return p.texto == pregunta.texto });
           respuestas.push(filter);
@@ -37,13 +39,17 @@ export class RespuestaEncuestaDetallePage {
       });
       this.preguntasRespuestas.push({ pregunta: p, respuestas: respuestas });
     });
-  }
+
+    }
 
   estadistica() {
-    //console.log(this.preguntasRespuestas);
     var siCant = 0;
     var noCant = 0;
     var respOp=[];
+    var cantOp=0;
+    var op0=0;
+    var op1=0;
+    var op2=0;
     this.preguntasRespuestas.forEach(pRespuestas => {
       pRespuestas.respuestas.forEach(res => {        
         res.forEach(r => {
@@ -54,21 +60,38 @@ export class RespuestaEncuestaDetallePage {
             } else if (r.noValue != undefined && r.noValue == true) {
               noCant++;
             }
+            pRespuestas.pregunta.chartData = [siCant, noCant];
           } else if (r.tipoRespuesta === "OPCIONES") {
             var ops = [];
-            r.opciones.forEach(op=>{
+            r.opciones.forEach(op=>{              
               ops.push(op);
             });
+
+            if(r.opcionValue == 0){
+              op0++;
+            }else if (r.opcionValue == 1){
+              op1++;
+            }else if (r.opcionValue == 2){
+              op2++;
+            }
             pRespuestas.pregunta.chartLabels = ops;
+            
+            if(r.opciones.length == 1){
+              pRespuestas.pregunta.chartData = [op0];
+            } else if (r.opciones.length == 2){
+              pRespuestas.pregunta.chartData = [op0, op1];
+            } else if (r.opciones.length == 3){
+              pRespuestas.pregunta.chartData = [op0, op1, op2];
+            }
+            
           } else if (r.tipoRespuesta === "OPINION") {
             respOp.push(r.opinionValue);
             pRespuestas.pregunta.opiniones = respOp;
           }
-        })
+        });
 
       });
-      pRespuestas.pregunta.chartData = [siCant, noCant];
-      //console.log(pRespuestas);
+      //pRespuestas.pregunta.chartData = [siCant, noCant];
       this.preguntaRespuestas.push(pRespuestas);
     });
 
