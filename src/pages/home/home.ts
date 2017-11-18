@@ -17,7 +17,7 @@ export class HomePage {
   usuarioActual: string;
   encuestaAlumno = [];
   cont= 0;
-
+  btnEncuestasPendientes=false;
  
   usuario;
   constructor(public platform: Platform,public navCtrl: NavController,public push: Push, public modalCtrl: ModalController,
@@ -35,6 +35,7 @@ export class HomePage {
   ionViewDidLoad() {
     this.usuarioActual = this.getUser();
     if (this.usuarioActual == 'alumno@alumno.com') {
+      this.btnEncuestasPendientes=true;
       this.getMateriasAlumnos();
       this.historialEncuestaNotification();
     }    

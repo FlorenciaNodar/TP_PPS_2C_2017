@@ -21,6 +21,7 @@ export class RespuestaEncuestaDetallePage {
   preguntasRespuestas = [];
 
   preguntaRespuestas =[];
+  cantidadRespuestas = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public eProvider: EncuestaDataProvider) {
 
@@ -30,6 +31,7 @@ export class RespuestaEncuestaDetallePage {
     this.encuesta.preguntas.forEach(p => {
       var respuestas = [];
       this.encuestaR.forEach(er => {
+        this.cantidadRespuestas++;
         er.forEach(eRPreguntas => {
           var filter = eRPreguntas.preguntas.filter(function (pregunta) { return p.texto == pregunta.texto });
           respuestas.push(filter);
@@ -37,10 +39,10 @@ export class RespuestaEncuestaDetallePage {
       });
       this.preguntasRespuestas.push({ pregunta: p, respuestas: respuestas });
     });
-  }
+
+    }
 
   estadistica() {
-    //console.log(this.preguntasRespuestas);
     var siCant = 0;
     var noCant = 0;
     var respOp=[];
@@ -68,7 +70,6 @@ export class RespuestaEncuestaDetallePage {
 
       });
       pRespuestas.pregunta.chartData = [siCant, noCant];
-      //console.log(pRespuestas);
       this.preguntaRespuestas.push(pRespuestas);
     });
 
