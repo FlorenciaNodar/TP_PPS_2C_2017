@@ -21,6 +21,7 @@ export class HomePage {
   encuestaAlumno = [];
   cont= 0;
   btnEncuestasPendientes=false;
+  btnAsistencia=false;
  
   usuario;
   firestore = firebase.database().ref('/pushtokens');
@@ -44,9 +45,11 @@ ionViewDidLoad() {
    this.usuarioActual = this.getUser();
     if (this.usuarioActual == 'alumno@alumno.com') {
       this.btnEncuestasPendientes=true;
-      this.getMateriasAlumnos();
+      //this.getMateriasAlumnos();
       this.historialEncuestaNotification();
-    }    
+    } else if (this.usuarioActual == 'profesor@profesor.com' || this.usuarioActual == 'administrativo@administrativo.com' ) {
+      this.btnAsistencia=true;
+    }  
   
 FCMPlugin.onNotification(function(data){
 if(data.wasTapped){
