@@ -253,7 +253,7 @@ showLoading(): Promise<any> {
           duration: 2600
         });
         loader.present();
-       this.navCtrl.setRoot(TabsPage);
+       this.navCtrl.push(TabsPage);
       }).catch(ns=>{
           let alert = this.alertCtrl.create({
           title: 'ERROR!',
