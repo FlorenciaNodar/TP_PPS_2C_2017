@@ -7,6 +7,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import{ Push, PushToken } from '@ionic/cloud-angular';
 import firebase from 'firebase';
 import { ListaRespuestaEncuestaHomePage } from '../lista-respuesta-encuesta-home/lista-respuesta-encuesta-home';
+import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database-deprecated";
+
+declare var FCMPlugin;
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -20,26 +23,83 @@ export class HomePage {
   btnEncuestasPendientes=false;
  
   usuario;
+  firestore = firebase.database().ref('/pushtokens');
+  firemsg = firebase.database().ref('/messages');
   constructor(public platform: Platform,public navCtrl: NavController,public push: Push, public modalCtrl: ModalController,
-    public alertCtrl:AlertController, public eProvider: EncuestaDataProvider, public afAuth: AngularFireAuth) {
+    public alertCtrl:AlertController, public eProvider: EncuestaDataProvider, public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
         this.usuario=firebase.auth().currentUser.email;
 
 
-    if (platform.is('android') && this.usuario == "profesor@profesor.com" || this.usuario == "administrativo@administrativo.com") {
-    this.RegisterNotification();
-    this.Notification();
-    }
+    // if (platform.is('android') && this.usuario == "profesor@profesor.com" || this.usuario == "administrativo@administrativo.com") {
+    // this.RegisterNotification();
+    // this.Notification();
+    // }
+
+     this.tokensetup().then((token) => {
+      this.storetoken(token);
+    })
   }
   
-
-  ionViewDidLoad() {
-    this.usuarioActual = this.getUser();
+ionViewDidLoad() {
+   this.usuarioActual = this.getUser();
     if (this.usuarioActual == 'alumno@alumno.com') {
       this.btnEncuestasPendientes=true;
       this.getMateriasAlumnos();
       this.historialEncuestaNotification();
     }    
-  }
+  
+FCMPlugin.onNotification(function(data){
+if(data.wasTapped){
+  //Notification was received on device tray and tapped by the user.
+  alert( JSON.stringify(data) );
+}else{
+  //Notification was received in foreground. Maybe the user needs to be notified.
+  alert( JSON.stringify(data) );
+}
+});
+
+FCMPlugin.onTokenRefresh(function(token){
+alert( token );
+});    
+}
+
+tokensetup() {
+var promise = new Promise((resolve, reject) => {
+  FCMPlugin.getToken(function(token){
+resolve(token);
+  }, (err) => {
+    reject(err);
+});
+})
+return promise;
+}
+
+storetoken(t) {
+this.af.list(this.firestore).push({
+  uid: firebase.auth().currentUser.uid,
+  devtoken: t
+    
+}).then(() => {
+  alert('Token stored');
+  })
+
+this.af.list(this.firemsg).push({
+  sendername: firebase.auth().currentUser.displayName,
+  message: 'hello'
+}).then(() => {
+  alert('Message stored');
+  })
+}
+
+
+  // ionViewDidLoad() {
+  //   this.usuarioActual = this.getUser();
+  //   if (this.usuarioActual == 'alumno@alumno.com') {
+  //     this.getMateriasAlumnos();
+  //     this.historialEncuestaNotification();
+  //   }    
+  // }
+ 
 
   historialEncuestaNotification() {
     this.eProvider.getEncuestas().subscribe(encuestas => {

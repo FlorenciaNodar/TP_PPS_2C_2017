@@ -51,6 +51,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { File } from '@ionic-native/file';
 import { RespuestaEncuestaDetallePage } from '../pages/respuesta-encuesta-detalle/respuesta-encuesta-detalle';
 import { Zip } from '@ionic-native/zip';
+import { FCM } from '@ionic-native/fcm';
 
 const cloudSettings: CloudSettings = {
   'core': {
