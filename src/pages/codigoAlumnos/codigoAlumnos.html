@@ -13,13 +13,13 @@
   </ion-item> -->
   <!-- <button ion-button full icon-left (click)="createCode()"><ion-icon name="barcode"></ion-icon>Create Code</button> -->
   <button class="button button1" (click)="scanCode()" color="primary"><ion-icon name="qr-scanner"></ion-icon> Escanear Código</button>
- 
+<!--  
  <ion-card *ngIf="createdCode">
     <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
     <!-- <ion-card-content>
       <p>Value: {{ createdCode }}</p>
     </ion-card-content>-->
-  </ion-card> 
+  <!-- </ion-card>  -->
  
   <ion-card *ngIf="scannedCode">
     <ion-card-content>
