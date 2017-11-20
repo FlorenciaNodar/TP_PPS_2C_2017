@@ -1,11 +1,11 @@
 <ion-content padding class="fondo">
   <ion-item>
-    <ion-label style="color : rgb(85, 158, 218)">Seleccione Aula y Materia</ion-label>
+    <ion-label style="color : rgb(85, 158, 218)">Seleccione Materia</ion-label>
   </ion-item>
   <br>
   <ion-item>
     <ion-label style="color : rgb(85, 158, 218)">Aulas</ion-label>
-    <ion-select [(ngModel)]="aulaSelected" (ngModelChange)="getAlumnosPorAulaAelected()">
+    <ion-select [(ngModel)]="destinatarios">
       <ion-option *ngFor="let a of listExcel | async; let i = index" value="a.$key" [value]="a.$key">{{a.$key}}</ion-option>
     </ion-select>
   </ion-item>

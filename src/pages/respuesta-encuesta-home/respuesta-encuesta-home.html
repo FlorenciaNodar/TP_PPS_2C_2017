@@ -26,21 +26,21 @@
         <ion-input [(ngModel)]="p.opinionValue" placeholder="Ingrese la respuesta"></ion-input>
       </ion-item>
 
-      <ion-list *ngIf="p.tipoRespuesta == 'SI-NO'">
-        <ion-item>
-          <ion-label style="color : rgb(85, 158, 218)">SI</ion-label>
-          <ion-checkbox [(ngModel)]="p.siValue" value="si"></ion-checkbox>
-        </ion-item>
-        <ion-item>  
-          <ion-label style="color : rgb(85, 158, 218)">NO</ion-label>
-          <ion-checkbox [(ngModel)]="p.noValue" value="no"></ion-checkbox>
+     
+     
+
+      <ion-list *ngIf="p.tipoRespuesta == 'UNASOLARESPUESTA'" radio-group [(ngModel)]="p.opcionValue">
+        <ion-item *ngFor="let op of p.opciones ; let i = index">
+          <ion-label style="color : rgb(85, 158, 218)">{{op}}</ion-label>
+          <ion-radio style="color : rgb(233, 67, 67)" value="{{i}}" ></ion-radio>
         </ion-item>
       </ion-list>
 
+      
       <ion-list *ngIf="p.tipoRespuesta == 'OPCIONES'">
         <ion-item *ngFor="let op of p.opciones ; let i = index">
           <ion-label style="color : rgb(85, 158, 218)">{{op}}</ion-label>
-          <ion-checkbox (ionChange)="ngModelChange(p,i)" value="op"></ion-checkbox>
+          <ion-checkbox (ionChange)="ngModelChange(p,$event.checked,i)" value="op"></ion-checkbox>
         </ion-item>
       </ion-list>
 

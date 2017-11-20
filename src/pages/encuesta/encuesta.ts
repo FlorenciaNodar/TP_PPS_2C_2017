@@ -15,6 +15,7 @@ export class EncuestaPage {
 
   encuesta = { nombreEncuesta: '', autor: '', respondida: false, enviada: false, preguntas: [{isOpen: false, texto: ''}], destinatarios: [{}], fechaIngreso: '', fechaEgreso: '' };
   opcionesSelect = [{ valor: '1' }, { valor: '2' }, { valor: '3' }];
+  cantidadOpcionesDisponiblesSelect = [{ valor: '1 a 2'}, { valor: '1 a 3'},{ valor: '1 a 4' }, { valor: '1 a 5'}, { valor: '1 a 6'}];
   creadorDelaEncuesta = '';
   deshabilitar= false;
 
@@ -74,7 +75,7 @@ export class EncuestaPage {
   tipoRespuestaSelected(pregunta){
     if(pregunta.tipoRespuesta == 'OPINION'){
       pregunta.opciones= [];
-    }else if (pregunta.tipoRespuesta == 'SI-NO'){
+    }else if (pregunta.tipoRespuesta == 'UNASOLARESPUESTA'){
       pregunta.opciones= [];
     }
   }
@@ -85,6 +86,22 @@ export class EncuestaPage {
     for (var i = 1; i <= pregunta.cantidadOpciones; i++) {
       pregunta.opciones.push("");
     }
+  }
+
+  generarItemsOpcionesParaUnaSolaRespuesta(pregunta) {
+    console.log(JSON.stringify(pregunta));
+    pregunta.opciones = [];
+    if (pregunta.opcionesUnaSolaRespuesta == '1 a 2'){
+      pregunta.opciones.push("","");
+    } else if (pregunta.opcionesUnaSolaRespuesta == '1 a 3'){
+      pregunta.opciones.push("","","");    
+    } else if (pregunta.opcionesUnaSolaRespuesta == '1 a 4'){
+      pregunta.opciones.push("","","","");     
+    } else if (pregunta.opcionesUnaSolaRespuesta == '1 a 5'){
+      pregunta.opciones.push("","","","","");     
+    } else if (pregunta.opcionesUnaSolaRespuesta == '1 a 6'){
+      pregunta.opciones.push("","","","","","");     
+    }    
   }
 
   eliminarPregunta(pregunta) {

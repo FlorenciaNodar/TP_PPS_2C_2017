@@ -42,47 +42,71 @@ export class RespuestaEncuestaDetallePage {
 
     }
 
-  estadistica() {
-    var siCant = 0;
-    var noCant = 0;
+  estadistica() {   
     var respOp=[];
-    var cantOp=0;
     var op0=0;
     var op1=0;
     var op2=0;
+    var op0Una=0;
+    var op1Una=0;
+    var op2Una=0;
     this.preguntasRespuestas.forEach(pRespuestas => {
       pRespuestas.respuestas.forEach(res => {        
         res.forEach(r => {
-          if (r.tipoRespuesta === "SI-NO") {
-            pRespuestas.pregunta.chartLabels = ['si', 'no'];
-            if (r.siValue != undefined && r.siValue == true) {
-              siCant++;
-            } else if (r.noValue != undefined && r.noValue == true) {
-              noCant++;
+          if (r.tipoRespuesta === "UNASOLARESPUESTA") {
+            let arrayOp=[];
+            r.opciones.forEach(op=>{
+              arrayOp.push(op);
+            });            
+            if(r.opcionValue == '0'){
+              op0Una++;
+            } else if (r.opcionValue == '1'){
+              op1Una++;
+            } else if (r.opcionValue == '2'){
+              op2Una++;
             }
-            pRespuestas.pregunta.chartData = [siCant, noCant];
+            pRespuestas.pregunta.chartLabels = arrayOp;
+            if(r.opciones.length == 1){
+              pRespuestas.pregunta.chartData = [op0Una];
+            } else if (r.opciones.length == 2){
+              pRespuestas.pregunta.chartData = [op0Una, op1Una];
+            } else if (r.opciones.length == 3){
+              pRespuestas.pregunta.chartData = [op0Una, op1Una, op2Una];
+            }            
           } else if (r.tipoRespuesta === "OPCIONES") {
             var ops = [];
             r.opciones.forEach(op=>{              
               ops.push(op);
             });
 
-            if(r.opcionValue == 0){
-              op0++;
-            }else if (r.opcionValue == 1){
-              op1++;
-            }else if (r.opcionValue == 2){
-              op2++;
+            if(r.opciones.length == 2){
+              r.opcionValues.forEach(op=>{
+                if(op == '0'){
+                  op0++;
+                } else if (op == '1'){
+                  op1++;
+                }
+              });
             }
+
+            if(r.opciones.length == 3){
+              r.opcionValues.forEach(op=>{
+                if(op == '0'){
+                  op0++;
+                } else if (op == '1'){
+                  op1++;
+                } else if (op == '2'){
+                  op2++;
+                }
+              });
+            }           
             pRespuestas.pregunta.chartLabels = ops;
             
-            if(r.opciones.length == 1){
-              pRespuestas.pregunta.chartData = [op0];
-            } else if (r.opciones.length == 2){
-              pRespuestas.pregunta.chartData = [op0, op1];
+            if(r.opciones.length == 2){
+              pRespuestas.pregunta.chartData = [op0,op1];
             } else if (r.opciones.length == 3){
-              pRespuestas.pregunta.chartData = [op0, op1, op2];
-            }
+              pRespuestas.pregunta.chartData = [op0, op1,op2];
+            } 
             
           } else if (r.tipoRespuesta === "OPINION") {
             respOp.push(r.opinionValue);
@@ -91,7 +115,6 @@ export class RespuestaEncuestaDetallePage {
         });
 
       });
-      //pRespuestas.pregunta.chartData = [siCant, noCant];
       this.preguntaRespuestas.push(pRespuestas);
     });
 

@@ -14,7 +14,7 @@ export class RespuestaEncuestaHomePage {
   encuesta = {$key: '', encuestaKey: ''};
   encuestaKey = '';
   encuestaOrigin = {respondida: false};
-
+  opcionesSeleccionados = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, public eProvider: EncuestaDataProvider,
   public alertCtrl: AlertController) {
   }
@@ -25,8 +25,17 @@ export class RespuestaEncuestaHomePage {
     console.log(this.encuesta.$key);
   }
 
-  ngModelChange(pregunta,op){
-    pregunta.opcionValue = op;
+  ngModelChange(pregunta,isChecked,op){
+    if(isChecked) {
+      this.opcionesSeleccionados.push(op);
+      pregunta.opcionValues = this.opcionesSeleccionados;
+    } else {
+      var index = this.opcionesSeleccionados.indexOf(op);
+      if(index > -1){
+        this.opcionesSeleccionados.splice(index,1);
+        pregunta.opcionValues = this.opcionesSeleccionados;
+      }
+    }
   }
 
   enviarRespuesta(){

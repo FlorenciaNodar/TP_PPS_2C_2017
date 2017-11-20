@@ -67,11 +67,27 @@
               <ion-radio (click)="tipoRespuestaSelected(pregunta)" value="OPINION"></ion-radio>
             </ion-item>
 
+            <!--UNA SOLA RESPUESTA RADIO BUTTON -->
             <ion-item>
-              <ion-label style="color : rgb(85, 158, 218)">si/no</ion-label>
-              <ion-radio (click)="tipoRespuestaSelected(pregunta)" value="SI-NO"></ion-radio>
+              <ion-label style="color : rgb(85, 158, 218)">Solo una respuesta</ion-label>
+              <ion-radio value="UNASOLARESPUESTA"></ion-radio>
             </ion-item>
 
+            <ion-item [hidden]="pregunta.tipoRespuesta != 'UNASOLARESPUESTA'">
+              <ion-label style="color : rgb(85, 158, 218)">Opciones</ion-label>
+              <ion-select [(ngModel)]="pregunta.opcionesUnaSolaRespuesta" (ngModelChange)="generarItemsOpcionesParaUnaSolaRespuesta(pregunta)">
+                <ion-option *ngFor="let op of cantidadOpcionesDisponiblesSelect">{{op.valor}}</ion-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item [hidden]="pregunta.tipoRespuesta != 'UNASOLARESPUESTA'">
+              <ion-item *ngFor="let itemOp of pregunta.opciones; let i = index; trackBy:trackByIndex">
+                <ion-label style="color : rgb(85, 158, 218)">{{i+1}}-</ion-label>
+                <ion-input [(ngModel)]="pregunta.opciones[i]" type="text"></ion-input>
+              </ion-item>
+            </ion-item>
+
+            <!-- MAS DE UNA RESPUESTA CHECK BOX-->
             <ion-item>
               <ion-label style="color : rgb(85, 158, 218)">Opciones</ion-label>
               <ion-radio value="OPCIONES"></ion-radio>

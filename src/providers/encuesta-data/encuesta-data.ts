@@ -52,6 +52,10 @@ export class EncuestaDataProvider {
   }
 
   actualizarEncuestaPorRespuesta(encuesta,key){
-    return firebase.database().ref('Encuestas/' + key).update(encuesta);
+    return firebase.database().ref('Encuestas/' + key).update({respondida: true});
   } 
+
+  getListaMatExcel(){
+    return this.afDB.list('listas/');
+  }
 }

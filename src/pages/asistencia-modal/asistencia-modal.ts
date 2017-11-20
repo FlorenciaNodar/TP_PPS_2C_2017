@@ -33,16 +33,16 @@ export class AsistenciaModalPage {
   }
 
   ionViewDidLoad() {
-    this.aulas = this.getAulasMaterias();   
+    //this.aulas = this.getAulasMaterias();   
   }
 
-  getAulasMaterias(){
+ /* getAulasMaterias(){
     return this.asisProvider.getAulasMaterias();
-  }
+  }*/
 
-  getMateriasPorAulaSeleccionada() {
+  /*getMateriasPorAulaSeleccionada() {
     this.materias = this.asisProvider.getMateriasPorAula(this.aulaSelected);
-  }
+  }*/
 
   getListaAlumnosExcel(){
     this.listExcel = this.asisProvider.getListaAlumnosExcel();
@@ -55,10 +55,7 @@ export class AsistenciaModalPage {
     this.asisProvider.getAlumnosPorAulaAelected(this.aulaSelected).subscribe(alumnos=>{
       this.listadoAlumnos=alumnos;
       alumnos.forEach(alumno=>{
-        console.log(alumno[0]+ ' ' + alumno[1]);
-        /*alumno.forEach(a=>{
-          console.log(a);
-        })*/
+        console.log(alumno[0]+ ' ' + alumno[1]);        
       })
     });
     

@@ -5,6 +5,7 @@ import { EncuestaDataProvider } from '../../providers/encuesta-data/encuesta-dat
 import { EncuestaDetallePage } from '../encuesta-detalle/encuesta-detalle';
 import { Storage } from '@ionic/storage';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AsistenciDataProvider } from '../../providers/asistencia-data/asistencia-data';
 
 
 @IonicPage()
@@ -14,47 +15,30 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class EncuestaEnviarPage {
 
-  encuesta = { respondida: false, enviada: false, destinatarios: [{}] };
-  //aulas = [{ descripcion: '4A' }, { descripcion: '4B' }, { descripcion: '4C' }, { descripcion: '4D' }];
-  destinatarios = [];
+  destinatarios: {};
+  encuesta = { respondida: false, enviada: false, destinatarios: {}};
   inhabilitar = true;
-
-  profesorMaterias: FirebaseListObservable<any[]>;
-
+  listExcel =[];
   userLogeado = {};
-  userProfesorMateria = {};
-  materias = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
     public afDB: AngularFireDatabase, public alertCtrl: AlertController, public eDataProvider: EncuestaDataProvider,
-    public storage: Storage, public afAuth: AngularFireAuth) {
-    //console.log(this.destinatarios);
+    public storage: Storage, public afAuth: AngularFireAuth, public asisProvider: AsistenciDataProvider) {
+
   }
 
   ionViewDidLoad() {
+    console.log(this.destinatarios);
     this.encuesta = this.navParams.get('encuesta');
-    this.userLogeado = this.getUser();
-
-    this.eDataProvider.getProfesorMateria().subscribe(res => {
-      res.forEach(e => {            
-        if (e.email === this.userLogeado) {         
-          e.Materias.forEach(m => {
-            this.materias.push(m);
-          })
-        }
-      });
+    this.userLogeado = this.getUser();    
+    this.asisProvider.getListaAlumnosExcel().subscribe(res=>{
+      this.listExcel = res;
     });
-  }
+  } 
 
   getUser() {
     return this.afAuth.auth.currentUser.email;
-  }
-
-  getMateriasAsignadasProf() {
-    if (this.userLogeado == 'profesor@profesor.com') {
-
-    }
-  }
+  } 
 
   siguiente() {
     this.encuesta.destinatarios = this.destinatarios;
@@ -63,11 +47,12 @@ export class EncuestaEnviarPage {
   }
 
   verificarDestinatarios(): boolean {
-    if (this.destinatarios.length > 0) {
+    if (this.destinatarios != undefined) {
       this.inhabilitar = false;
       return false;
     }
     return true;
+    
   }
 
 
