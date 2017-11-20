@@ -4,7 +4,7 @@ import { AsistenciaModalPage } from '../asistencia-modal/asistencia-modal';
 import { RespuestaEncuestaHomePage } from '../respuesta-encuesta-home/respuesta-encuesta-home';
 import { EncuestaDataProvider } from '../../providers/encuesta-data/encuesta-data';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Push, PushToken } from '@ionic/cloud-angular';
+import{ Push, PushToken } from '@ionic/cloud-angular';
 import firebase from 'firebase';
 import { ListaRespuestaEncuestaHomePage } from '../lista-respuesta-encuesta-home/lista-respuesta-encuesta-home';
 import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database-deprecated";
@@ -15,23 +15,20 @@ declare var FCMPlugin;
   templateUrl: 'home.html'
 })
 export class HomePage {
-  materiasAlumnoP = [];
-  materiasAlumno = [];
+
+  materiasQueCursaAlumno = [];
   usuarioActual: string;
-  encuestasP = [];
-  encuestasPendientes = [];
-  cont = 0;
-  btnEncuestasPendientes = false;
-  btnAsistencia = false;
-  infoUsuario ={};
-  legajo= "";
+  encuestaAlumno = [];
+  cont= 0;
+  btnEncuestasPendientes=false;
+  btnAsistencia=false;
+ 
   usuario;
   firestore = firebase.database().ref('/pushtokens');
   firemsg = firebase.database().ref('/messages');
-
-  constructor(public platform: Platform, public navCtrl: NavController, public push: Push, public modalCtrl: ModalController,
-    public alertCtrl: AlertController, public eProvider: EncuestaDataProvider, public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
-    this.usuario = firebase.auth().currentUser.email;
+  constructor(public platform: Platform,public navCtrl: NavController,public push: Push, public modalCtrl: ModalController,
+    public alertCtrl:AlertController, public eProvider: EncuestaDataProvider, public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
+        this.usuario=firebase.auth().currentUser.email;
 
 
     // if (platform.is('android') && this.usuario == "profesor@profesor.com" || this.usuario == "administrativo@administrativo.com") {
@@ -39,119 +36,111 @@ export class HomePage {
     // this.Notification();
     // }
 
-    this.tokensetup().then((token) => {
+     this.tokensetup().then((token) => {
       this.storetoken(token);
     })
   }
-
-  ionViewDidLoad() {
-    this.usuarioActual = this.getUser();
+  
+ionViewDidLoad() {
+   this.usuarioActual = this.getUser();
     if (this.usuarioActual == 'alumno@alumno.com') {
-      this.btnEncuestasPendientes = true;
-      this.obtenerLegajoUsuarioActual();      
-      this.materiasQueCursaElAmuno();
-      this.historialEncuestaNotification();    
-    } else if (this.usuarioActual == 'profesor@profesor.com' || this.usuarioActual == 'administrativo@administrativo.com') {
-      this.btnAsistencia = true;
-    }
+      this.btnEncuestasPendientes=true;
+      //this.getMateriasAlumnos();
+      this.historialEncuestaNotification();
+    } else if (this.usuarioActual == 'profesor@profesor.com' || this.usuarioActual == 'administrativo@administrativo.com' ) {
+      this.btnAsistencia=true;
+    }  
+  
+FCMPlugin.onNotification(function(data){
+if(data.wasTapped){
+  //Notification was received on device tray and tapped by the user.
+  alert( JSON.stringify(data) );
+}else{
+  //Notification was received in foreground. Maybe the user needs to be notified.
+  alert( JSON.stringify(data) );
+}
+});
 
-    FCMPlugin.onNotification(function (data) {
-      if (data.wasTapped) {
-        //Notification was received on device tray and tapped by the user.
-        alert(JSON.stringify(data));
-      } else {
-        //Notification was received in foreground. Maybe the user needs to be notified.
-        alert(JSON.stringify(data));
-      }
-    });
+FCMPlugin.onTokenRefresh(function(token){
+alert( token );
+});    
+}
 
-    FCMPlugin.onTokenRefresh(function (token) {
-      alert(token);
-    });
-  }
+tokensetup() {
+var promise = new Promise((resolve, reject) => {
+  FCMPlugin.getToken(function(token){
+resolve(token);
+  }, (err) => {
+    reject(err);
+});
+})
+return promise;
+}
 
-  tokensetup() {
-    var promise = new Promise((resolve, reject) => {
-      FCMPlugin.getToken(function (token) {
-        resolve(token);
-      }, (err) => {
-        reject(err);
-      });
-    })
-    return promise;
-  }
+storetoken(t) {
+this.af.list(this.firestore).push({
+  uid: firebase.auth().currentUser.uid,
+  devtoken: t
+    
+}).then(() => {
+//  alert('Token stored');
+  })
 
-  storetoken(t) {
-    this.af.list(this.firestore).push({
-      uid: firebase.auth().currentUser.uid,
-      devtoken: t
-
-    }).then(() => {
-      alert('Token stored');
-    })
-
+  if(this.usuario == "profesor@profesor.com" || this.usuario == "administrativo@administrativo.com")
+  {
     this.af.list(this.firemsg).push({
-      sendername: firebase.auth().currentUser.displayName,
-      message: 'hello'
+      sendername: this.usuario,
+      message: 'Ingresó el profesor o administrativo al aula!'
     }).then(() => {
-      alert('Message stored');
-    })
+      //alert('Message stored');
+      })
   }
 
-  obtenerLegajoUsuarioActual() {
-    this.infoAlumno().subscribe(alum=>{
-      alum.forEach(a=>{
-        this.legajo=a.legajo;
-      })
-    })
-    /*this.infoUsuario.forEach(alum=>{
-      alum.forEach(a=>{
-        this.legajo = a.legajo;
-      })
-    });*/
-  }
+}
 
-  materiasQueCursaElAmuno() {
-    this.eProvider.getListaMatExcel().subscribe(materias => {
-      materias.forEach(mat => {
-        this.materiasAlumnoP.push(mat);
-      });
-    });
-  }
+
+  // ionViewDidLoad() {
+  //   this.usuarioActual = this.getUser();
+  //   if (this.usuarioActual == 'alumno@alumno.com') {
+  //     this.getMateriasAlumnos();
+  //     this.historialEncuestaNotification();
+  //   }    
+  // }
+ 
 
   historialEncuestaNotification() {
     this.eProvider.getEncuestas().subscribe(encuestas => {
-      this.encuestasP = encuestas;
-    });
-  }  
-
-  verEncuestas() {        
-    this.encuestasPendientes=[];
-    this.materiasAlumno =[];
-
-    this.materiasAlumnoP.forEach(mat => {
-      mat.forEach(info => {
-        if (info[0] == this.legajo) {
-          this.materiasAlumno.push(mat.$key);
+      encuestas.forEach(encuesta => {
+        if (encuesta.respondida == true) {
+          this.materiasQueCursaAlumno.forEach(misMat => {
+            encuesta.destinatarios.forEach(d => {
+              if (d.clave == misMat) {
+                this.encuestaAlumno.push(encuesta);
+                this.cont++;
+              }
+            });
+          });
         }
       });
-    });
+    });    
+  }
 
-    this.encuestasP.forEach(encuesta => {
-      if (encuesta.respondida == false) {
-        this.materiasAlumno.forEach(misMat => {
-          encuesta.destinatarios.forEach(d => {
-            if (d == misMat) {
-              this.encuestasPendientes.push(encuesta);
-              this.cont++;
-            }
-          });
+  getMateriasAlumnos() {
+    this.eProvider.getMateriaAlumnos().subscribe(res => {
+      res.forEach(e => {
+        e.Alumnos.forEach(a => {
+          if (a.email == this.usuarioActual) {
+            this.materiasQueCursaAlumno.push(e.$key);
+          }
         });
-      }
-    }); 
-    
-    if (this.encuestasPendientes.length > 0) {
-      let mensaje = this.encuestasPendientes.length == 1 ? 'Tenes 1 encuesta pendiente' : 'Tenes ' + this.encuestasPendientes.length + ' encuestas pendientes';
+      });
+    })
+  }
+
+  verEncuestas(){
+    console.log(this.encuestaAlumno);
+    if(this.encuestaAlumno.length > 0){
+      let mensaje = this.encuestaAlumno.length == 1 ? 'Tenes 1 encuesta pendiente' : 'Tenes ' + this.encuestaAlumno.length +' encuestas pendientes';
       let alert = this.alertCtrl.create({
         title: 'Info',
         subTitle: mensaje,
@@ -167,13 +156,13 @@ export class HomePage {
             text: 'Ok',
             handler: () => {
               console.log('Buy clicked');
-              this.navCtrl.push(ListaRespuestaEncuestaHomePage, { data: this.encuestasPendientes });
+              this.navCtrl.push(ListaRespuestaEncuestaHomePage,{data: this.encuestaAlumno});
             }
           }
         ]
       });
       alert.present();
-    }
+    }  
   }
 
   getUser() {
@@ -184,38 +173,29 @@ export class HomePage {
     let modal = this.modalCtrl.create(AsistenciaModalPage);
     modal.present();
   }
+    
+  private RegisterNotification(){
+  
+  this.push.register().then((t: PushToken) => {
+    return this.push.saveToken(t);
+  }).then((t: PushToken) => {
+    console.log('Token saved:', t.token);
+  });
+}
 
-  private RegisterNotification() {
-
-    this.push.register().then((t: PushToken) => {
-      return this.push.saveToken(t);
-    }).then((t: PushToken) => {
-      console.log('Token saved:', t.token);
-    });
-  }
-
-  private Notification() {
-
-    this.push.rx.notification()
-      .subscribe((msg) => {
-
-        let alert = this.alertCtrl.create({
-          title: "Aviso de Importancia",
-          subTitle: "Ingresaste al aula!",
-          buttons: ['OK']
-        });
-        alert.present();
-      });
-  }
-
-  infoAlumno(){
-    return this.af.list('Alumno/', {
-      query: {
-        orderByChild: 'mail',
-        equalTo: 'alumno@alumno.com'
-      }
-    })
-  }
+  private Notification(){
+  
+  this.push.rx.notification()
+  .subscribe((msg) => {
+    
+         let alert = this.alertCtrl.create({
+            title: "Aviso de Importancia",
+            subTitle: "Ingresaste al aula!",
+            buttons: ['OK']
+          });
+          alert.present();
+  });
+}
 
 
 }
