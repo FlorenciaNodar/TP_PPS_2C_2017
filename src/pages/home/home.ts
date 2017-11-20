@@ -83,15 +83,19 @@ this.af.list(this.firestore).push({
   devtoken: t
     
 }).then(() => {
-  alert('Token stored');
+//  alert('Token stored');
   })
 
-this.af.list(this.firemsg).push({
-  sendername: firebase.auth().currentUser.displayName,
-  message: 'hello'
-}).then(() => {
-  alert('Message stored');
-  })
+  if(this.usuario == "profesor@profesor.com" || this.usuario == "administrativo@administrativo.com")
+  {
+    this.af.list(this.firemsg).push({
+      sendername: this.usuario,
+      message: 'Ingresó el profesor o administrativo al aula!'
+    }).then(() => {
+      //alert('Message stored');
+      })
+  }
+
 }
 
 
