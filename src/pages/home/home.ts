@@ -90,7 +90,7 @@ this.af.list(this.firestore).push({
   {
     this.af.list(this.firemsg).push({
       sendername: this.usuario,
-      message: 'Ingresó el profesor o administrativo al aula!'
+      message: 'Ingresé al aula!'
     }).then(() => {
       //alert('Message stored');
       })
