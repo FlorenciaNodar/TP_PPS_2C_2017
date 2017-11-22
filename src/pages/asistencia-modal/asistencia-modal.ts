@@ -74,20 +74,6 @@ export class AsistenciaModalPage {
     });
   }*/
 
-
-  getAlumnosMateriaSelected(){
-    this.asisProvider.getAlumnos().subscribe(alumnos=>{
-      alumnos.forEach(alumno=>{
-        alumno.materia.forEach(m=>{
-          console.log(m);
-          if(this.materiaSelected == m){
-            this.listadoAlumnos.push(alumno);
-          }
-        })
-      });
-    });
-  }    
-
   registrarAsistencia() {    
     let cont=0;
     if (this.listadoAlumnos.length > 0) {
