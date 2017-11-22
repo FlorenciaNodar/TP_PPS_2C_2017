@@ -33,17 +33,8 @@ export class AsistenciaModalPage {
   }
 
   ionViewDidLoad() {
-    //this.aulas = this.getAulasMaterias();   
   }
-
- /* getAulasMaterias(){
-    return this.asisProvider.getAulasMaterias();
-  }*/
-
-  /*getMateriasPorAulaSeleccionada() {
-    this.materias = this.asisProvider.getMateriasPorAula(this.aulaSelected);
-  }*/
-
+  
   getListaAlumnosExcel(){
     this.listExcel = this.asisProvider.getListaAlumnosExcel();
     this.listExcel.forEach(elem =>{

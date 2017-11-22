@@ -20,16 +20,21 @@ export class EncuestaEnviarPage {
   inhabilitar = true;
   listExcel =[];
   userLogeado = {};
+  modificar = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
     public afDB: AngularFireDatabase, public alertCtrl: AlertController, public eDataProvider: EncuestaDataProvider,
     public storage: Storage, public afAuth: AngularFireAuth, public asisProvider: AsistenciDataProvider) {
-
+     
   }
 
   ionViewDidLoad() {
-    console.log(this.destinatarios);
+    this.modificar = this.navParams.get('modificar');
+    console.log(this.modificar);
     this.encuesta = this.navParams.get('encuesta');
+    if(this.modificar){
+      this.destinatarios = this.encuesta.destinatarios;
+    }
     this.userLogeado = this.getUser();    
     this.asisProvider.getListaAlumnosExcel().subscribe(res=>{
       this.listExcel = res;
@@ -42,7 +47,7 @@ export class EncuestaEnviarPage {
 
   siguiente() {
     this.encuesta.destinatarios = this.destinatarios;
-    var jsonEncuesta = { encuesta: this.encuesta };
+    var jsonEncuesta = { encuesta: this.encuesta , modificar: this.modificar };
     this.navCtrl.push(EncuestaDetallePage, jsonEncuesta);
   }
 

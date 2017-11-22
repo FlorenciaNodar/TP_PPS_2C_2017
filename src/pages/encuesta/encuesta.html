@@ -1,10 +1,10 @@
 <ion-header>
-  <ion-navbar  color='favorite'>
+  <ion-navbar color='favorite'>
     <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-  <ion-title>Nueva Encuesta</ion-title>
-</ion-navbar>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Nueva Encuesta</ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding class="fondo">
@@ -27,19 +27,18 @@
         <div style="color : rgb(26, 18, 92)">Datos:</div>
       </ion-card-header>
       <ion-card-content>
+
         <ion-item>
           <ion-input [(ngModel)]="encuesta.nombreEncuesta" type="text" placeholder="Nombre de la Encuesta"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label style="color : rgb(85, 158, 218)">Fecha Ingreso</ion-label>
-          <ion-datetime [(ngModel)]="encuesta.fechaIngreso" displayFormat="MM/DD/YYYY" placeholder="dia/mes/año"></ion-datetime>
+          <ion-label style="color : rgb(85, 158, 218)">Duracion(minutos)</ion-label>
+          <ion-select [(ngModel)]="encuesta.duracion">
+            <ion-option *ngFor="let d of duracion; let i = index" value="d.valor" [value]="d.valor">{{d.valor}}</ion-option>
+          </ion-select>
         </ion-item>
 
-        <ion-item>
-          <ion-label style="color : rgb(85, 158, 218)">Fecha Egreso</ion-label>
-          <ion-datetime [(ngModel)]="encuesta.fechaEgreso" displayFormat="MM/DD/YYYY" placeholder="dia/mes/año"></ion-datetime>
-        </ion-item>
       </ion-card-content>
     </ion-card>
 
@@ -60,7 +59,7 @@
             <h2>Tipo de respuesta:</h2>
           </div>
 
-          <ion-list radio-group  [(ngModel)]="pregunta.tipoRespuesta">
+          <ion-list radio-group [(ngModel)]="pregunta.tipoRespuesta">
 
             <ion-item>
               <ion-label style="color : rgb(85, 158, 218)">Opinion</ion-label>
@@ -113,7 +112,7 @@
       </ion-card>
     </div>
   </div>
-    <!--<button ion-button  (click)="guardarEncuesta()" round><ion-icon  name="md-archive"></ion-icon></button>-->
-    <button ion-button style="float:right;" class="btnEnv" (click)="siguiente()" round>Siguiente</button>
-  
+  <!--<button ion-button  (click)="guardarEncuesta()" round><ion-icon  name="md-archive"></ion-icon></button>-->
+  <button ion-button style="float:right;" class="btnEnv" (click)="siguiente()" round>Siguiente</button>
+
 </ion-content>

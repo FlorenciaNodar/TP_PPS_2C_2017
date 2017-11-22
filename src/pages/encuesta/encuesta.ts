@@ -5,6 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { EncuestaEnviarPage } from '../encuesta-enviar/encuesta-enviar';
 import { EncuestaDataProvider } from '../../providers/encuesta-data/encuesta-data';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @IonicPage()
 @Component({
@@ -13,19 +14,22 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
 })
 export class EncuestaPage {
 
-  encuesta = { nombreEncuesta: '', autor: '', respondida: false, enviada: false, preguntas: [{isOpen: false, texto: ''}], destinatarios: [{}], fechaIngreso: '', fechaEgreso: '' };
+  encuesta = { nombreEncuesta: '', autor: '', respondida: false, enviada: false, preguntas: [{ isOpen: false, texto: '' }], destinatarios: [{}], fechaIngreso: ''};
   opcionesSelect = [{ valor: '1' }, { valor: '2' }, { valor: '3' }];
-  cantidadOpcionesDisponiblesSelect = [{ valor: '1 a 2'}, { valor: '1 a 3'},{ valor: '1 a 4' }, { valor: '1 a 5'}, { valor: '1 a 6'}];
+  cantidadOpcionesDisponiblesSelect = [{ valor: '1 a 2' }, { valor: '1 a 3' }];
   creadorDelaEncuesta = '';
-  deshabilitar= false;
-
+  deshabilitar = false;
+  modificar = false;
+  seModifica = null;
+  duracion = [{ valor: 5 },{ valor: 10 },{ valor: 15 },{ valor: 20 },{ valor: 25 },{ valor: 30 },{ valor: 35 },
+              { valor: 40 },{ valor: 45 },{ valor: 50 },{ valor: 55 },{ valor: 60 }, ]
   public myForm: FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public afDB: AngularFireDatabase,
     public alertCtrl: AlertController, public afAuth: AngularFireAuth, public modalCtrl: ModalController,
-    public eDataProvider: EncuestaDataProvider, public formBuilder: FormBuilder) {
+    public eDataProvider: EncuestaDataProvider, public formBuilder: FormBuilder, public datePipeCtrl: DatePipe) {
     //this.creadorDelaEncuesta = this.getUser();
-    //console.log(this.creadorDelaEncuesta);   
+    //console.log(this.creadorDelaEncuesta);      
 
     this.myForm = formBuilder.group({
       nombreEncuesta: ['', Validators.compose([Validators.required])],
@@ -38,9 +42,12 @@ export class EncuestaPage {
 
     });
 
-
+    this.seModifica = this.navParams.get('data');
+    if(this.seModifica){
+      this.encuesta = this.seModifica;
+      this.modificar = true;
+    }
   }
-  
 
   getUser() {
     return this.afAuth.auth.currentUser.email;
@@ -54,29 +61,25 @@ export class EncuestaPage {
   }
 
   siguiente() {
-    if (this.encuesta.fechaEgreso <= this.encuesta.fechaIngreso) {
-      this.showAlertError("La fecha de egreso debe ser mayor a la fecha de ingreso");
-    } else {
-      var jsonEncuesta = { encuesta: this.encuesta };
-      this.navCtrl.push(EncuestaEnviarPage, jsonEncuesta);
-    }
+    var jsonEncuesta = { encuesta: this.encuesta , modificar: this.modificar};
+    this.navCtrl.push(EncuestaEnviarPage, jsonEncuesta);
   }
 
   agregarPregunta() {
     // this.encuesta.preguntas.push({texto:''});
     //this.encuesta.preguntas.push({texto:'',isOpen: false });
-    this.encuesta.preguntas.forEach(pregunta=>{
-      pregunta.isOpen=false;
+    this.encuesta.preguntas.forEach(pregunta => {
+      pregunta.isOpen = false;
     });
-    this.encuesta.preguntas.push({isOpen: false, texto: ''});
+    this.encuesta.preguntas.push({ isOpen: false, texto: '' });
 
   }
 
-  tipoRespuestaSelected(pregunta){
-    if(pregunta.tipoRespuesta == 'OPINION'){
-      pregunta.opciones= [];
-    }else if (pregunta.tipoRespuesta == 'UNASOLARESPUESTA'){
-      pregunta.opciones= [];
+  tipoRespuestaSelected(pregunta) {
+    if (pregunta.tipoRespuesta == 'OPINION') {
+      pregunta.opciones = [];
+    } else if (pregunta.tipoRespuesta == 'UNASOLARESPUESTA') {
+      pregunta.opciones = [];
     }
   }
 
@@ -91,17 +94,11 @@ export class EncuestaPage {
   generarItemsOpcionesParaUnaSolaRespuesta(pregunta) {
     console.log(JSON.stringify(pregunta));
     pregunta.opciones = [];
-    if (pregunta.opcionesUnaSolaRespuesta == '1 a 2'){
-      pregunta.opciones.push("","");
-    } else if (pregunta.opcionesUnaSolaRespuesta == '1 a 3'){
-      pregunta.opciones.push("","","");    
-    } else if (pregunta.opcionesUnaSolaRespuesta == '1 a 4'){
-      pregunta.opciones.push("","","","");     
-    } else if (pregunta.opcionesUnaSolaRespuesta == '1 a 5'){
-      pregunta.opciones.push("","","","","");     
-    } else if (pregunta.opcionesUnaSolaRespuesta == '1 a 6'){
-      pregunta.opciones.push("","","","","","");     
-    }    
+    if (pregunta.opcionesUnaSolaRespuesta == '1 a 2') {
+      pregunta.opciones.push("", "");
+    } else if (pregunta.opcionesUnaSolaRespuesta == '1 a 3') {
+      pregunta.opciones.push("", "", "");
+    } 
   }
 
   eliminarPregunta(pregunta) {
@@ -132,14 +129,11 @@ export class EncuestaPage {
     alert.present();
   }
 
-  validar(){
-    console.log(this.encuesta.nombreEncuesta);
-    console.log(this.encuesta.fechaEgreso);
-
-    if(this.encuesta.nombreEncuesta == ""){
+  validar() {
+    if (this.encuesta.nombreEncuesta == "") {
       alert("Se deben completar el nombre de la encuesta")
     }
-    
+
   }
 
 }

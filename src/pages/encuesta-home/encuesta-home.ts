@@ -49,9 +49,31 @@ export class EncuestaHomePage {
     this.navCtrl.push(EncuestaPage);
   }
 
+  modificarEncuesta(encuesta){
+    this.navCtrl.push(EncuestaPage, {data : encuesta});
+  }
+
   eliminarEncuesta(encuesta){
-    console.log(encuesta.$key);
-    this.eDataProvider.eliminarEncuesta(encuesta);
+    let alert = this.alertCtrl.create({
+      title: 'Alerta',
+      subTitle: 'Esta seguro que desea eliminar la encuesta',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Ok',
+          handler: () => {
+            this.eDataProvider.eliminarEncuesta(encuesta);
+          }
+        }
+      ]
+    });
+    alert.present();    
   }
 
   verEncuestaDetalle(encuesta){

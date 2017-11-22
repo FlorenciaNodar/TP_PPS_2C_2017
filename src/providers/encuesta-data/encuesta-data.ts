@@ -34,6 +34,10 @@ export class EncuestaDataProvider {
     return this.afDB.database.ref('EncuestaRespuesta/').push(respuesta);
   }
 
+  getEncuesta(key){
+    return this.afDB.list('Encuestas/');
+  }
+
   getEncuestaRespuesta(encuestaKey){
     return this.afDB.list('EncuestaRespuesta/',{
       query: {

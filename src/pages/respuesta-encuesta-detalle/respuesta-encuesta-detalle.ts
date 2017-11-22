@@ -22,27 +22,28 @@ export class RespuestaEncuestaDetallePage {
 
   preguntaRespuestas =[];
   cantidadRespuestas = 0;
+  habilitar = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public eProvider: EncuestaDataProvider) {
 
     this.encuesta = this.navParams.get('data');
     this.encuestaR = this.eProvider.getEncuestaRespuesta(this.encuesta.$key);
 
-    this.encuesta.preguntas.forEach(p => {
+    this.encuesta.preguntas.forEach(p => {     
       var respuestas = [];
-      this.encuestaR.forEach(er => {
-        this.cantidadRespuestas++;
+      this.encuestaR.forEach(er => {                
         er.forEach(eRPreguntas => {
+          this.cantidadRespuestas++;
           var filter = eRPreguntas.preguntas.filter(function (pregunta) { return p.texto == pregunta.texto });
           respuestas.push(filter);
         });
       });
       this.preguntasRespuestas.push({ pregunta: p, respuestas: respuestas });
-    });
-
+    });   
     }
 
-  estadistica() {   
+  estadistica() { 
+    this.habilitar = true;  
     var respOp=[];
     var op0=0;
     var op1=0;

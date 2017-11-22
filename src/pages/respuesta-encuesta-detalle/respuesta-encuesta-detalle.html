@@ -9,14 +9,14 @@
 
 <ion-content padding class="fondo">
 
-  <button ion-button (click)="estadistica()">Estadisticas</button>
+  <button ion-button (click)="estadistica()" class="center" [hidden]="cantidadRespuestas == 0" [disabled]="habilitar">Estadisticas</button>
   <ion-card>
     <ion-card-header>
       {{encuesta.nombreEncuesta}}
     </ion-card-header>
     <ion-card-content>
-      Autor: profesor@profesor.com
-      Cantidad de respuestas: {{cantidadRespuestas}}
+      <p>Autor: profesor@profesor.com</p>
+      <p>Cantidad de respuestas: {{cantidadRespuestas}}</p>
     </ion-card-content>
   </ion-card>
 
