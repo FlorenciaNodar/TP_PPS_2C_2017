@@ -25,7 +25,7 @@ export class CodigoAlumnos {
 items: FirebaseListObservable<any[]>;
 ref;
 qrData = "Aula: 1A \n"+"Materias: \n"+"- Programación I - Sistemas de Procesamiento de Datos - Matemática - Inglés I - Laboratorio de Computación I \n"+"Aula: 2C \n"+"Materias: \n"+"- Programación II - Arquitectura y Sistemas Operativos - Estadística - Inglés II - Laboratorio de Computación II - Metodología de la Investigación \n"+"Aula: 3B\n"+"Materias:\n"+"- Programación III - Organización Contable de la Empresa - Organización Empresarial - Elementos de Investigación Operativa - Laboratorio de Computación III \n"+"Aula: 4A \n"+"Materias: \n"+"- Metodología de Sistemas I - Diseño y Administración de Bases de Datos - Legislación - Laboratorio de Computación IV - Práctica Profesional"
-qrEncuesta = "-KzKyyVjPgNoaycFg9GV";
+qrEncuesta = "-KzRLWnrIUmHVPfFSWIC";
 encuesta = null;
 createdCode = null;
 scannedCode = null;  
