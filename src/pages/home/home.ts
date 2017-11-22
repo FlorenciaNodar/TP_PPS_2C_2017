@@ -18,10 +18,14 @@ export class HomePage {
 
   materiasQueCursaAlumno = [];
   usuarioActual: string;
-  encuestaAlumno = [];
   cont= 0;
   btnEncuestasPendientes=false;
   btnAsistencia=false;
+  materiasAlumnoP = [];
+  encuestasP = [];
+  legajo= "";
+  encuestasPendientes = [];
+  materiasAlumno = [];
  
   usuario;
   firestore = firebase.database().ref('/pushtokens');
@@ -44,9 +48,10 @@ export class HomePage {
 ionViewDidLoad() {
    this.usuarioActual = this.getUser();
     if (this.usuarioActual == 'alumno@alumno.com') {
-      this.btnEncuestasPendientes=true;
-      //this.getMateriasAlumnos();
-      this.historialEncuestaNotification();
+      this.btnEncuestasPendientes = true;
+      this.obtenerLegajoUsuarioActual();      
+      this.materiasQueCursaElAmuno();
+      this.historialEncuestaNotification();  
     } else if (this.usuarioActual == 'profesor@profesor.com' || this.usuarioActual == 'administrativo@administrativo.com' ) {
       this.btnAsistencia=true;
     }  
@@ -98,49 +103,54 @@ this.af.list(this.firestore).push({
 
 }
 
+obtenerLegajoUsuarioActual() {
+  this.infoAlumno().subscribe(alum=>{
+    alum.forEach(a=>{
+      this.legajo=a.legajo;
+    })
+  })  
+}
 
-  // ionViewDidLoad() {
-  //   this.usuarioActual = this.getUser();
-  //   if (this.usuarioActual == 'alumno@alumno.com') {
-  //     this.getMateriasAlumnos();
-  //     this.historialEncuestaNotification();
-  //   }    
-  // }
- 
+materiasQueCursaElAmuno() {
+  this.eProvider.getListaMatExcel().subscribe(materias => {
+    materias.forEach(mat => {
+      this.materiasAlumnoP.push(mat);
+    });
+  });
+}
 
-  historialEncuestaNotification() {
-    this.eProvider.getEncuestas().subscribe(encuestas => {
-      encuestas.forEach(encuesta => {
-        if (encuesta.respondida == true) {
-          this.materiasQueCursaAlumno.forEach(misMat => {
-            encuesta.destinatarios.forEach(d => {
-              if (d.clave == misMat) {
-                this.encuestaAlumno.push(encuesta);
-                this.cont++;
-              }
-            });
-          });
+historialEncuestaNotification() {
+  this.eProvider.getEncuestas().subscribe(encuestas => {
+    this.encuestasP = encuestas;
+  });
+}  
+
+notificationEncuestas(){
+    this.encuestasPendientes=[];
+    this.materiasAlumno =[];
+
+    this.materiasAlumnoP.forEach(mat => {
+      mat.forEach(info => {
+        if (info[0] == this.legajo) {
+          this.materiasAlumno.push(mat.$key);
         }
       });
-    });    
-  }
+    });
 
-  getMateriasAlumnos() {
-    this.eProvider.getMateriaAlumnos().subscribe(res => {
-      res.forEach(e => {
-        e.Alumnos.forEach(a => {
-          if (a.email == this.usuarioActual) {
-            this.materiasQueCursaAlumno.push(e.$key);
-          }
+    this.encuestasP.forEach(encuesta => {
+      if (encuesta.respondida == false) {
+        this.materiasAlumno.forEach(misMat => {
+          encuesta.destinatarios.forEach(d => {
+            if (d == misMat) {
+              this.encuestasPendientes.push(encuesta);
+              this.cont++;
+            }
+          });
         });
-      });
-    })
-  }
-
-  verEncuestas(){
-    console.log(this.encuestaAlumno);
-    if(this.encuestaAlumno.length > 0){
-      let mensaje = this.encuestaAlumno.length == 1 ? 'Tenes 1 encuesta pendiente' : 'Tenes ' + this.encuestaAlumno.length +' encuestas pendientes';
+      }
+    }); 
+    if(this.encuestasPendientes.length > 0){
+      let mensaje = this.encuestasPendientes.length == 1 ? 'Tenes 1 encuesta pendiente' : 'Tenes ' + this.encuestasPendientes.length +' encuestas pendientes';
       let alert = this.alertCtrl.create({
         title: 'Info',
         subTitle: mensaje,
@@ -156,7 +166,7 @@ this.af.list(this.firestore).push({
             text: 'Ok',
             handler: () => {
               console.log('Buy clicked');
-              this.navCtrl.push(ListaRespuestaEncuestaHomePage,{data: this.encuestaAlumno});
+              this.navCtrl.push(ListaRespuestaEncuestaHomePage,{data: this.encuestasPendientes});
             }
           }
         ]
@@ -195,6 +205,16 @@ this.af.list(this.firestore).push({
           });
           alert.present();
   });
+}
+
+
+infoAlumno(){
+  return this.af.list('Alumno/', {
+    query: {
+      orderByChild: 'mail',
+      equalTo: 'alumno@alumno.com'
+    }
+  })
 }
 
 
