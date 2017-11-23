@@ -48,9 +48,12 @@ export class RespuestaEncuestaDetallePage {
     var op0=0;
     var op1=0;
     var op2=0;
+    var op3=0;
+    var op4=0;
+    var op5=0;
     var op0Una=0;
     var op1Una=0;
-    var op2Una=0;
+    var op2Una=0;    
     this.preguntasRespuestas.forEach(pRespuestas => {
       pRespuestas.respuestas.forEach(res => {        
         res.forEach(r => {
@@ -100,13 +103,67 @@ export class RespuestaEncuestaDetallePage {
                   op2++;
                 }
               });
-            }           
+            }    
+            
+            if(r.opciones.length == 4){
+              r.opcionValues.forEach(op=>{
+                if(op == '0'){
+                  op0++;
+                } else if (op == '1'){
+                  op1++;
+                } else if (op == '2'){
+                  op2++;
+                } else if (op == '3'){
+                  op3++;
+                }
+              });
+            }  
+            
+            if(r.opciones.length == 5){
+              r.opcionValues.forEach(op=>{
+                if(op == '0'){
+                  op0++;
+                } else if (op == '1'){
+                  op1++;
+                } else if (op == '2'){
+                  op2++;
+                } else if (op == '3'){
+                  op3++;
+                } else if (op == '4'){
+                  op4++;
+                }
+              });
+            }  
+
+            if(r.opciones.length == 6){
+              r.opcionValues.forEach(op=>{
+                if(op == '0'){
+                  op0++;
+                } else if (op == '1'){
+                  op1++;
+                } else if (op == '2'){
+                  op2++;
+                } else if (op == '3'){
+                  op3++;
+                } else if (op == '4'){
+                  op4++;
+                } else if (op == '5'){
+                  op5++;
+                }
+              });
+            }  
             pRespuestas.pregunta.chartLabels = ops;
             
             if(r.opciones.length == 2){
               pRespuestas.pregunta.chartData = [op0,op1];
             } else if (r.opciones.length == 3){
               pRespuestas.pregunta.chartData = [op0, op1,op2];
+            } else if (r.opciones.length == 4){
+              pRespuestas.pregunta.chartData = [op0, op1,op2,op3];
+            } else if (r.opciones.length == 5){
+              pRespuestas.pregunta.chartData = [op0, op1,op2,op3,op4];
+            } else if (r.opciones.length == 6){
+              pRespuestas.pregunta.chartData = [op0, op1,op2,op3,op4,op5];
             } 
             
           } else if (r.tipoRespuesta === "OPINION") {

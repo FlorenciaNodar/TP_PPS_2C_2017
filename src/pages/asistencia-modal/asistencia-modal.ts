@@ -53,18 +53,14 @@ export class AsistenciaModalPage {
   }
 
   /*tomarFoto() {
-    this.imag = { imagen: '', usuario: '', tipoImg: '', seleccionada: false };
+    this.imag = { imagen: ''};
     this.cameraCtrl.getPicture({
       destinationType: this.cameraCtrl.DestinationType.DATA_URL,
       targetWidth: 800,
       targetHeight: 800
     }).then((imageData) => {
       this.base64Image = "data:image/jpeg;base64," + imageData;
-      this.imag.imagen = this.base64Image;
-      this.imag.usuario = this.fireDbProvider.auth.getUser().email;
-      this.imag.tipoImg = this.tipoImg;
-      this.imag.seleccionada = false;
-      this.imagenes.push(this.imag);
+      this.imag = this.base64Image;
       this.mostrar = true;
     }, (err) => {
       console.log(err);
@@ -94,7 +90,7 @@ export class AsistenciaModalPage {
       });
 
       let datePipe = this.datePipeCtrl.transform(Date.now(), 'dd-MM-yyyy');
-      let jsonAsistencia = {fecha:datePipe, aula: this.aulaSelected, alumnos: alumnosRegistroAsistencia};
+      let jsonAsistencia = {fecha:datePipe, aula: this.aulaSelected, alumnos: alumnosRegistroAsistencia, imagen: this.imag};
       
       //this.asisProvider.registroAsistenciaDelDia(datePipe,this.aulaSelected, this.materiaSelected, alumnosRegistroAsistencia);
       this.asisProvider.registroAsistenciaDelDia(jsonAsistencia);

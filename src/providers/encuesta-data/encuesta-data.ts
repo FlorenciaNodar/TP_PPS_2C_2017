@@ -35,7 +35,7 @@ export class EncuestaDataProvider {
   }
 
   getEncuesta(key){
-    return this.afDB.list('Encuestas/');
+    return this.afDB.list('Encuestas/'+key);
   }
 
   getEncuestaRespuesta(encuestaKey){

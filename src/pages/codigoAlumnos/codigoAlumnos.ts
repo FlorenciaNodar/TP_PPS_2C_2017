@@ -25,7 +25,7 @@ export class CodigoAlumnos {
     items: FirebaseListObservable<any[]>;
     ref;
     qrData = "Aula: 1A \n" + "Materias: \n" + "- Programación I - Sistemas de Procesamiento de Datos - Matemática - Inglés I - Laboratorio de Computación I \n" + "Aula: 2C \n" + "Materias: \n" + "- Programación II - Arquitectura y Sistemas Operativos - Estadística - Inglés II - Laboratorio de Computación II - Metodología de la Investigación \n" + "Aula: 3B\n" + "Materias:\n" + "- Programación III - Organización Contable de la Empresa - Organización Empresarial - Elementos de Investigación Operativa - Laboratorio de Computación III \n" + "Aula: 4A \n" + "Materias: \n" + "- Metodología de Sistemas I - Diseño y Administración de Bases de Datos - Legislación - Laboratorio de Computación IV - Práctica Profesional"
-    qrEncuesta = "-KzZjlMRelmlS0ZEfXtv";
+    qrEncuesta = "-KzaiULRvFrIW2P1YE7U";
     encuesta = null;
     createdCode = null;
     scannedCode = null;
@@ -49,38 +49,41 @@ export class CodigoAlumnos {
         this.createdCode = this.qrEncuesta;
     }
     ngOnInit() {
-    }   
-
+    }
+    
     scanCode() {
         this.barcodeScanner.scan().then(barcodeData => {
             this.ref = barcodeData.text;
-            if(this.ref[0] == '-'){
-                var finalizo = false;
-                this.eDataProvider.getEncuesta(this.qrEncuesta).subscribe(encuestas => {
-                    encuestas.forEach(encuesta => {
-                        if (Date.now() > encuesta.finalizacion) {
-                            let alert = this.alertCtrl.create({
-                                title: 'INFO!',
-                                subTitle: 'Finalizo el tiempo de respuesta para esta encuesta!',
-                                buttons: ['OK']
-                            });
-                            alert.present();
-                            finalizo = true;
-                        } else {
-                            if (encuesta.$key == this.qrEncuesta) {
-                                this.encuesta = encuesta;
+            if (this.ref[0] == '-') {
+                if (this.usuario == 'alumno@alumno.com') {
+                    this.eDataProvider.getEncuestas().subscribe(encuestas => {
+                        encuestas.forEach(encuesta => {
+                            if (encuesta.$key == this.ref && Date.now() > encuesta.finalizacion) {
+                                let alert = this.alertCtrl.create({
+                                    title: 'INFO!',
+                                    subTitle: 'Finalizo el tiempo de respuesta para esta encuesta!',
+                                    buttons: ['aceptar']
+                                });
+                                alert.present();
+                            } else {
+                                if (encuesta.$key == this.ref && Date.now() < encuesta.finalizacion) {
+                                    this.encuesta = encuesta;
+                                    this.navCtrl.push(RespuestaEncuestaHomePage, { data: this.encuesta });
+                                }
                             }
-                        }
-        
+                        });
                     });
-                });
-                //luego que me devuelva el contenido del codigo qr que en mi caso sera el codigo de la encuesta
-                if (this.usuario == "alumno@alumno.com" && !finalizo) {
-                    this.navCtrl.push(RespuestaEncuestaHomePage, { data: this.encuesta });
                 } else if (this.usuario == "profesor@profesor.com") {
-                    this.navCtrl.push(RespuestaEncuestaDetallePage, { data: this.encuesta });
+                    this.eDataProvider.getEncuestas().subscribe(encuestas => {
+                        encuestas.forEach(encuesta => {
+                            if (encuesta.$key == this.ref) {
+                                this.encuesta = encuesta;
+                                this.navCtrl.push(RespuestaEncuestaDetallePage, { data: this.encuesta });
+                            }
+                        });
+                    });
                 }
-            }else{
+            } else {
                 if (this.usuario == "alumno@alumno.com" && this.createdCode == this.createdCode) {
                     this.scannedCode = this.ref;
                 } else {
@@ -91,7 +94,7 @@ export class CodigoAlumnos {
                     });
                     alert.present();
                 }
-            }      
+            }
 
         }, (err) => {
             console.log('Error: ', err);

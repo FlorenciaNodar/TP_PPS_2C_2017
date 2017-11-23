@@ -9,20 +9,32 @@
       <ion-option *ngFor="let a of listExcel | async; let i = index" value="a.$key" [value]="a.$key">{{a.$key}}</ion-option>
     </ion-select>
   </ion-item>
-  
+
   <br>
   <br>
 
   <ion-list>
     <ion-list-header *ngIf="listadoAlumnos.length > 0" style="color : rgb(85, 158, 218)">
-        <ion-label style="color : rgb(85, 158, 218); float:right;"><h2>Alumnos</h2></ion-label>
+      <ion-label style="color : rgb(85, 158, 218); float:right;">
+        <h2>Alumnos</h2>
+      </ion-label>
     </ion-list-header>
 
     <ion-item *ngFor="let alumno of listadoAlumnos ; let i = index">
       <ion-label style="color : rgb(85, 158, 218)">{{ alumno[1]}}</ion-label>
-      <ion-checkbox [(ngModel)]="alumno.asistio"  value="alumno"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="alumno.asistio" value="alumno"></ion-checkbox>
     </ion-item>
   </ion-list>
+
+  <div style="background-image: url('img/icon.png')"></div>
+
+  <div class="avatar center">
+      <img alt="" src="./assets/img/icon.png">
+  </div>
+
+  <div class="image-container">
+    <img class="ImagenGrande" [src]="imag"/>
+  </div>
 
   <button ion-button (click)="cancelar()">Cancelar</button>
 
