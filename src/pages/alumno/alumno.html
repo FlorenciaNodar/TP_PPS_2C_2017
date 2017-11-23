@@ -8,9 +8,7 @@
  <ion-list>
 
 <ion-item *ngFor="let boca of items | async; let i = index" style=" text-align: left">
-<ion-thumbnail item-start style="margin:12px 0px 0px" >
-<img style="width: 50px;height:50px;"  src="assets/icono.jpg">
-</ion-thumbnail>
+
 <h2 style="color: black">{{boca.nombre}}</h2>
 <p style="color: black"> {{boca.apellido}}</p>
 <button  style="color: black" ion-button clear item-end icon-only (click)="delete(boca)">
