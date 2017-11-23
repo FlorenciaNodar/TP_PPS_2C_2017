@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController,ModalController  } from 'ionic-angular';
+import { NavController,ModalController, AlertController  } from 'ionic-angular';
 import { AngularFireDatabaseModule, AngularFireList } from 'angularfire2/database';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { nuevoAdmProf } from '../nuevoAdmProf/nuevoAdmProf';
@@ -24,7 +24,7 @@ apellidoInsertado;
 hola;
 lista: any;
 pet;
-constructor (public navCtrl: NavController, public af: AngularFireDatabase,public modalCtrl: ModalController) {
+constructor (public navCtrl: NavController, public af: AngularFireDatabase,public modalCtrl: ModalController,public alertCtrl: AlertController) {
 
   this.itemsAdm= af.list('/Administrativos/');
   this.itemsProf= af.list('/Profesores/');
@@ -41,16 +41,64 @@ let modal = this.modalCtrl.create(nuevoAdmProf);
 modal.present();
 }
 
-deleteProf(boca){
+// deleteProf(boca){
 
-this.af.list('/Profesores/').remove(boca.$key);
-this.ngOnInit();
+// this.af.list('/Profesores/').remove(boca.$key);
+// this.ngOnInit();
+// }
+deleteProf(boca) {
+  let alert = this.alertCtrl.create({
+    title: 'Borrar profesor',
+    message: 'Está seguro que desea eliminar éste registro?',
+    buttons: [
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Aceptar',
+        handler: () => {
+          this.af.list('/Profesores/').remove(boca.$key);
+          this.ngOnInit();
+        }
+      }
+    ]
+  });
+  alert.present();
 }
 
-delete(boca){
 
-this.af.list('/Administrativos/').remove(boca.$key);
-this.ngOnInit();
+// delete(boca){
+
+// this.af.list('/Administrativos/').remove(boca.$key);
+// this.ngOnInit();
+// }
+
+delete(boca) {
+  let alert = this.alertCtrl.create({
+    title: 'Borrar administrativo',
+    message: 'Está seguro que desea eliminar éste registro?',
+    buttons: [
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Aceptar',
+        handler: () => {
+          this.af.list('/Administrativos/').remove(boca.$key);
+          this.ngOnInit();
+        }
+      }
+    ]
+  });
+  alert.present();
 }
 
 modifyProf(boca){
