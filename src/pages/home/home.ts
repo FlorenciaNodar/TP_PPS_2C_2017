@@ -138,7 +138,7 @@ notificationEncuestas(){
     });
 
     this.encuestasP.forEach(encuesta => {
-      if (encuesta.respondida == false) {
+      if (encuesta.respondida == false && Date.now() < encuesta.finalizada ) {
         this.materiasAlumno.forEach(misMat => {
           encuesta.destinatarios.forEach(d => {
             if (d == misMat) {
