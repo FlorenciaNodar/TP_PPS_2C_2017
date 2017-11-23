@@ -138,7 +138,7 @@ notificationEncuestas(){
     });
 
     this.encuestasP.forEach(encuesta => {
-      if (encuesta.respondida == false && Date.now() < encuesta.finalizada ) {
+      if (encuesta.respondida == false && Date.now() < encuesta.finalizacion ) {
         this.materiasAlumno.forEach(misMat => {
           encuesta.destinatarios.forEach(d => {
             if (d == misMat) {
@@ -156,14 +156,14 @@ notificationEncuestas(){
         subTitle: mensaje,
         buttons: [
           {
-            text: 'Cancel',
+            text: 'cancelar',
             role: 'cancel',
             handler: () => {
               console.log('Cancel clicked');
             }
           },
           {
-            text: 'Ok',
+            text: 'aceptar',
             handler: () => {
               console.log('Buy clicked');
               this.navCtrl.push(ListaRespuestaEncuestaHomePage,{data: this.encuestasPendientes});
