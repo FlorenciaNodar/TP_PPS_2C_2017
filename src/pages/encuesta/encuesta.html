@@ -73,7 +73,7 @@
             </ion-item>
 
             <ion-item [hidden]="pregunta.tipoRespuesta != 'UNASOLARESPUESTA'">
-              <ion-label style="color : rgb(85, 158, 218)">Opciones</ion-label>
+              <ion-label style="color : rgb(85, 158, 218)">Cantidad de Opciones</ion-label>
               <ion-select [(ngModel)]="pregunta.opcionesUnaSolaRespuesta" (ngModelChange)="generarItemsOpcionesParaUnaSolaRespuesta(pregunta)">
                 <ion-option *ngFor="let op of cantidadOpcionesDisponiblesSelect">{{op.valor}}</ion-option>
               </ion-select>
@@ -88,12 +88,12 @@
 
             <!-- MAS DE UNA RESPUESTA CHECK BOX-->
             <ion-item>
-              <ion-label style="color : rgb(85, 158, 218)">Opciones</ion-label>
+              <ion-label style="color : rgb(85, 158, 218)">Varias respuestas</ion-label>
               <ion-radio value="OPCIONES"></ion-radio>
             </ion-item>
 
             <ion-item [hidden]="pregunta.tipoRespuesta != 'OPCIONES'">
-              <ion-label style="color : rgb(85, 158, 218)">Mis Opciones</ion-label>
+              <ion-label style="color : rgb(85, 158, 218)">Cantidad de Opciones</ion-label>
               <ion-select [(ngModel)]="pregunta.cantidadOpciones" (ngModelChange)="generarItemsOpciones(pregunta)">
                 <ion-option *ngFor="let op of opcionesSelect">{{op.valor}}</ion-option>
               </ion-select>

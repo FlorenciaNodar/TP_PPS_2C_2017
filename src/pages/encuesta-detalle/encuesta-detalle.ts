@@ -72,7 +72,7 @@ export class EncuestaDetallePage {
     let alert = this.alertCtrl.create({
       title: 'Info',
       subTitle: mensaje,
-      buttons: ['OK']
+      buttons: ['aceptar']
     });
     alert.present();
   }
@@ -81,7 +81,7 @@ export class EncuestaDetallePage {
     let alert = this.alertCtrl.create({
       title: 'ERROR!',
       subTitle: mensaje,
-      buttons: ['OK']
+      buttons: ['aceptar']
     });
     alert.present();
   }

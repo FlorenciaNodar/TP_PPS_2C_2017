@@ -15,7 +15,7 @@ import { DatePipe } from '@angular/common';
 export class EncuestaPage {
 
   encuesta = { nombreEncuesta: '', autor: '', respondida: false, enviada: false, preguntas: [{ isOpen: false, texto: '' }], destinatarios: [{}], fechaIngreso: '' };
-  opcionesSelect = [{ valor: '1' }, { valor: '2' }, { valor: '3' }];
+  opcionesSelect = [{ valor: '1' }, { valor: '2' }, { valor: '3' },{ valor: '4' },{ valor: '5' },{ valor: '6' }];
   cantidadOpcionesDisponiblesSelect = [{ valor: '1 a 2' }, { valor: '1 a 3' }];
   creadorDelaEncuesta = '';
   deshabilitar = false;
@@ -115,7 +115,7 @@ export class EncuestaPage {
     let alert = this.alertCtrl.create({
       title: 'ERROR!',
       subTitle: mensaje,
-      buttons: ['OK']
+      buttons: ['aceptar']
     });
     alert.present();
   }
@@ -124,7 +124,7 @@ export class EncuestaPage {
     let alert = this.alertCtrl.create({
       title: 'Info',
       subTitle: mensaje,
-      buttons: ['OK']
+      buttons: ['aceptar']
     });
     alert.present();
   }
