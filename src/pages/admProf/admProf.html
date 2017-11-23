@@ -43,12 +43,13 @@
 </ion-thumbnail>
 <h2 style="color: black">{{boca.nombre}}</h2>
 <p style="color: black"> {{boca.apellido}}</p>
+<button  style="color: black" ion-button clear item-end icon-only (click)="deleteProf(boca)">
+  <ion-icon name="trash"></ion-icon>
+</button>
  <button  style="color: black" ion-button clear item-end icon-only (click)="modifyProf(boca)">
   <ion-icon name="create" ></ion-icon>
 </button>
- <button  style="color: black" ion-button clear item-end icon-only (click)="deleteProf(boca)">
-  <ion-icon name="trash"></ion-icon>
-</button>
+
     
     </ion-item>
   </ion-list>
