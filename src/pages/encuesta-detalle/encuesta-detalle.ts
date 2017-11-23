@@ -12,7 +12,7 @@ import { DatePipe } from '@angular/common';
 })
 export class EncuestaDetallePage {
 
-  encuesta = { respondida: false, nombreEncuesta: '', destinatarios: [{}], enviada: false, fechaIngreso:'' ,timeCreate: ''};
+  encuesta = { respondida: false, nombreEncuesta: '', destinatarios: [{}], enviada: false, fechaIngreso:'' , duracion:0, finalizacion: 0};
   modificar = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public eDataProvider: EncuestaDataProvider,
@@ -22,12 +22,10 @@ export class EncuestaDetallePage {
 
   ionViewDidLoad() {
     this.encuesta = this.navParams.get('encuesta');
-    console.log(this.encuesta);
   }
 
   enviarEncuesta() {
-    let timeCreate = this.datePipeCtrl.transform(Date.now(), 'hh:mm');
-    this.encuesta.timeCreate = timeCreate;
+    this.encuesta.finalizacion = Date.now() + (this.encuesta.duracion*60000);
     if (this.modificar) {
       this.eDataProvider.enviarEncuestaGuardadaFB(this.encuesta);
       this.showAlerOK("La encuesta se modifico e envio exitosamente");

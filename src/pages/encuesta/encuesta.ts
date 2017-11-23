@@ -14,15 +14,15 @@ import { DatePipe } from '@angular/common';
 })
 export class EncuestaPage {
 
-  encuesta = { nombreEncuesta: '', autor: '', respondida: false, enviada: false, preguntas: [{ isOpen: false, texto: '' }], destinatarios: [{}], fechaIngreso: ''};
+  encuesta = { nombreEncuesta: '', autor: '', respondida: false, enviada: false, preguntas: [{ isOpen: false, texto: '' }], destinatarios: [{}], fechaIngreso: '' };
   opcionesSelect = [{ valor: '1' }, { valor: '2' }, { valor: '3' }];
   cantidadOpcionesDisponiblesSelect = [{ valor: '1 a 2' }, { valor: '1 a 3' }];
   creadorDelaEncuesta = '';
   deshabilitar = false;
   modificar = false;
   seModifica = null;
-  duracion = [{ valor: 5 },{ valor: 10 },{ valor: 15 },{ valor: 20 },{ valor: 25 },{ valor: 30 },{ valor: 35 },
-              { valor: 40 },{ valor: 45 },{ valor: 50 },{ valor: 55 },{ valor: 60 }, ]
+  duracion = [{ valor: 5 }, { valor: 10 }, { valor: 15 }, { valor: 20 }, { valor: 25 }, { valor: 30 }, { valor: 35 },
+  { valor: 40 }, { valor: 45 }, { valor: 50 }, { valor: 55 }, { valor: 60 },]
   public myForm: FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public afDB: AngularFireDatabase,
@@ -43,7 +43,7 @@ export class EncuestaPage {
     });
 
     this.seModifica = this.navParams.get('data');
-    if(this.seModifica){
+    if (this.seModifica) {
       this.encuesta = this.seModifica;
       this.modificar = true;
     }
@@ -60,8 +60,8 @@ export class EncuestaPage {
   ionViewDidLoad() {
   }
 
-  siguiente() {
-    var jsonEncuesta = { encuesta: this.encuesta , modificar: this.modificar};
+  siguiente() {    
+    var jsonEncuesta = { encuesta: this.encuesta, modificar: this.modificar };
     this.navCtrl.push(EncuestaEnviarPage, jsonEncuesta);
   }
 
@@ -98,7 +98,7 @@ export class EncuestaPage {
       pregunta.opciones.push("", "");
     } else if (pregunta.opcionesUnaSolaRespuesta == '1 a 3') {
       pregunta.opciones.push("", "", "");
-    } 
+    }
   }
 
   eliminarPregunta(pregunta) {
@@ -133,6 +133,11 @@ export class EncuestaPage {
     if (this.encuesta.nombreEncuesta == "") {
       alert("Se deben completar el nombre de la encuesta")
     }
+
+    let fecha = new Date();
+
+    console.log(fecha.getHours);
+    console.log(fecha.getMinutes);
 
   }
 
