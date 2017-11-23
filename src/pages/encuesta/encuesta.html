@@ -35,7 +35,7 @@
         <ion-item>
           <ion-label style="color : rgb(85, 158, 218)">Duracion(minutos)</ion-label>
           <ion-select [(ngModel)]="encuesta.duracion">
-            <ion-option *ngFor="let d of duracion; let i = index" value="d.valor" [value]="d.valor">{{d.valor}}</ion-option>
+            <ion-option *ngFor="let d of duracion; let i = index" type="number" value="d.valor" [value]="d.valor">{{d.valor}}</ion-option>
           </ion-select>
         </ion-item>
 
