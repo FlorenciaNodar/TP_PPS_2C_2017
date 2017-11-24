@@ -1,7 +1,9 @@
 <ion-content padding class="fondo">
-  <ion-item>
-    <ion-label style="color : rgb(85, 158, 218)">Seleccione Materia</ion-label>
-  </ion-item>
+
+  <div class="avatar center">
+    <img alt="" src="./assets/img/icon.png">
+  </div>
+  
   <br>
   <ion-item>
     <ion-label style="color : rgb(85, 158, 218)">Aulas</ion-label>
@@ -26,19 +28,13 @@
     </ion-item>
   </ion-list>
 
-  <div style="background-image: url('img/icon.png')"></div>
-
-  <div class="avatar center">
-      <img alt="" src="./assets/img/icon.png">
-  </div>
-
   <div class="image-container">
-    <img class="ImagenGrande" [src]="imag"/>
+    <img class="ImagenGrande" [src]="imag" />
   </div>
 
   <button ion-button (click)="cancelar()">Cancelar</button>
 
-  <button ion-button (click)="registrarAsistencia()" style="float:right;" class="btnEnv">Listo</button>
+  <button ion-button (click)="registrarAsistencia()" style="float:right;" class="btnEnv" [disabled]="listadoAlumnos.length == 0">Listo</button>
 
 
 </ion-content>
