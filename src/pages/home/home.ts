@@ -8,14 +8,16 @@ import{ Push, PushToken } from '@ionic/cloud-angular';
 import firebase from 'firebase';
 import { ListaRespuestaEncuestaHomePage } from '../lista-respuesta-encuesta-home/lista-respuesta-encuesta-home';
 import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database-deprecated";
-
+import { Graficos } from '../graficos/graficos';
+import { PerfilPage } from '../perfil/perfil';
+import { CodigoAlumnos } from '../codigoAlumnos/codigoAlumnos';
 declare var FCMPlugin;
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  conferenceDate = '2017-11-25';
   materiasQueCursaAlumno = [];
   usuarioActual: string;
   cont= 0;
@@ -30,6 +32,12 @@ export class HomePage {
   usuario;
   firestore = firebase.database().ref('/pushtokens');
   firemsg = firebase.database().ref('/messages');
+  estateProperty = {
+    image: 'https://previews.123rf.com/images/iconicbestiary/iconicbestiary1602/iconicbestiary160200010/53122279-aula-de-la-escuela-vac-a-con-pizarra-verde-mesa-de-los-profesores-alumnos-mesas-y-sillas-ilustraci-n-Foto-de-archivo.jpg',
+    style: 'Modern Interior',
+    size: '25\' Lot',
+    
+  };
   constructor(public platform: Platform,public navCtrl: NavController,public push: Push, public modalCtrl: ModalController,
     public alertCtrl:AlertController, public eProvider: EncuestaDataProvider, public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
         this.usuario=firebase.auth().currentUser.email;
@@ -218,6 +226,14 @@ infoAlumno(){
     }
   })
 }
-
+graficoclick(){
+  this.navCtrl.push(Graficos); 
+}
+qrclick(){
+  this.navCtrl.push(CodigoAlumnos); 
+}
+perfilclick(){
+  this.navCtrl.push(PerfilPage); 
+}
 
 }

@@ -70,7 +70,7 @@ export class MyApp {
 
         statusBar.styleDefault();
         this.platformReady = true;
-        //this.hideSplashScreen();
+        this.hideSplashScreen();
     });
     
     // qué elementos del menú deben estar ocultos según el estado de inicio de sesión actual 
@@ -90,12 +90,12 @@ export class MyApp {
 
   hideSplashScreen() {
 
-    if (this.platformReady && this.authReady) {
+    //if (this.platformReady && this.authReady) {
     
         setTimeout(() => {
           this.splashScreen.hide();
         }, 100);  
-     }
+     //}
   }
   private RegisterNotification(){
   

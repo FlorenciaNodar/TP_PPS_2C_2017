@@ -1,18 +1,5 @@
 page-home {
-    .button {
-        background-color: #4CAF50; /* Green */
-        border: none;
-        color: white; 
-        text-align: center;
-        font-size: 100%;
-        text-decoration: none;
-        display: block;
-        width: 100%;
-        height: 180px;
-        -webkit-transition-duration: 0.4s; /* Safari */
-        transition-duration: 0.4s;
-        cursor: pointer;
-    }
+ 
     p {
         font-size: 150%;
     }
@@ -20,26 +7,7 @@ page-home {
         position: relative;
         width: auto;
       }
-       .button1 {
-        background-color: 	#8B008B; 
-        color: black;
-        border: 2px solid #4CAF50;
-        
-    }
-    .button1:hover {
-        background-color: #48D1CC;
-        color: black;
-    }
-      .button2 {
-        background-color: 	#48D1CC; 
-        color: black;
-        border: 2px solid #008CBA;
-    }
-    
-    .button2:hover {
-        background-color: #8B008B;
-        color: white;
-    }
+      
        .fondo{
         background-image: url("../assets/img/fondo1.jpg");
         background-size: 100%;
@@ -48,4 +16,73 @@ page-home {
         body {
             margin:auto;}
     }
+    .image__padding {
+        padding: 60px;
+      }
+      .padding_helper {
+        margin: 15px;
+        padding: 15px;
+        border-radius: 5px;
+        background-color: white;
+      }
+      .category__image {
+        background-image: url('../assets/img/img1.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 5px;
+      }
+      .category__image2 {
+        background-image: url('../assets/img/img2.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 5px;
+      }
+      .section__headline {
+        font-size: 1.5rem;
+        font-weight: bold;
+        letter-spacing: .8px;
+        margin: 0;
+        text-transform: uppercase;
+        color: grey;
+      }
+      .category__headline {
+        font-size: 2.3rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: white;
+        line-height: 1.1;
+        margin: 5px;
+      }
+      color: color($colors, primary) !important;
+      font-size: 1.4rem !important;
+
+      .about-header img {
+        background-size: cover;
+        height: 50vh;
+        position: relative;
+      }
+      $black-overlay: rgba(0,0,0,.3);
+      $text-color: #666;
+      $banner-text-color: white;
+      $content-color: whitesmoke;
+      $detail-background: rgba(236,236,236,.8);
+ 
+     /* Header */
+     .toolbar-background {
+         border-color: transparent;
+         background: $black-overlay;
+     }
+ 
+     .bar-button,
+     .toolbar-title {
+         color: $banner-text-color;
+     }
+ 
+     /* Image */
+     .housing-image{
+         background-size: cover;
+         height: 25vh;
+         position: relative;
+     }
+
 }

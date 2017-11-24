@@ -176,7 +176,8 @@ const cloudSettings: CloudSettings = {
     BarcodeScanner,
     File,
     FileTransfer,
-    Zip
+    Zip,
+    FCM
   ]
 })
 export class AppModule {}
