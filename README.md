@@ -3,6 +3,35 @@ TP Final de la practica profesional supervisada
 
 Responsabilidades:
 
+*Florencia
+
+*Nodar
+
+*Objetivos:
+    * Creación de la pantalla de Login (maqueta)
+    * Autenticación con los usuarios Profesor, Administrativo, Alumno, Administrador con firebase. 
+    * E - Aviso de Importancia de que Profesor o administrativo ingresó al aula.
+    * F- Login con red social (GMAIL)
+    * G- ABM –Alumno
+    * J- ABM Profesor y Administrativo
+    * L- Gráficos estadísticos ( datos estadísticos de las faltas -Barra)
+    * M- QR para Alumnos
+    
+*Fecha Entrega: 25/11/2017
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 --------------------------------------------------------------------------------------
 *Florencia
 
