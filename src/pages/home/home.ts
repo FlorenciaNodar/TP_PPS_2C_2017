@@ -40,9 +40,7 @@ export class HomePage {
     // this.Notification();
     // }
 
-     this.tokensetup().then((token) => {
-      this.storetoken(token);
-    })
+   
   }
   
 ionViewDidLoad() {
@@ -180,6 +178,10 @@ notificationEncuestas(){
   }
 
   presentModal() {
+
+    this.tokensetup().then((token) => {
+      this.storetoken(token);
+    })
     let modal = this.modalCtrl.create(AsistenciaModalPage);
     modal.present();
   }
