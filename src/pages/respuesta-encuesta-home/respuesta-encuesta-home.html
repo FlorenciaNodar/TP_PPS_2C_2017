@@ -8,7 +8,6 @@
 
 
 <ion-content padding class="fondo">
-
   <ion-card>
     <ion-card-header>
       <ion-label style="color : rgb(37, 16, 16)">{{encuesta.nombreEncuesta}}</ion-label>
@@ -24,10 +23,7 @@
 
       <ion-item *ngIf="p.tipoRespuesta == 'OPINION'">
         <ion-input [(ngModel)]="p.opinionValue" placeholder="Ingrese la respuesta"></ion-input>
-      </ion-item>
-
-     
-     
+      </ion-item>     
 
       <ion-list *ngIf="p.tipoRespuesta == 'UNASOLARESPUESTA'" radio-group [(ngModel)]="p.opcionValue">
         <ion-item *ngFor="let op of p.opciones ; let i = index">
@@ -35,7 +31,6 @@
           <ion-radio style="color : rgb(233, 67, 67)" value="{{i}}" ></ion-radio>
         </ion-item>
       </ion-list>
-
       
       <ion-list *ngIf="p.tipoRespuesta == 'OPCIONES'">
         <ion-item *ngFor="let op of p.opciones ; let i = index">
@@ -49,6 +44,5 @@
   </ion-card>
 
   <button ion-button style="float:right;" class="btnEnv" round (click)="enviarRespuesta()">Enviar</button>
-
 
 </ion-content>

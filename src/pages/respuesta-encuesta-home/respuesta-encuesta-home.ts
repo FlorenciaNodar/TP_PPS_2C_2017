@@ -11,12 +11,12 @@ import { HomePage } from '../home/home';
 })
 export class RespuestaEncuestaHomePage {
 
-  encuesta = {$key: '', encuestaKey: ''};
+  encuesta = {$key: '', encuestaKey: '', preguntas: [{tipoRespuesta: '', opinionValue: '',opcionValue: '', opcionValues: []}]};
   encuestaKey = '';
   encuestaOrigin = {respondida: false};
   opcionesSeleccionados = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, public eProvider: EncuestaDataProvider,
-  public alertCtrl: AlertController) {
+  public alertCtrl: AlertController) {   
   }
 
   ionViewDidLoad() {
@@ -39,16 +39,24 @@ export class RespuestaEncuestaHomePage {
   }
 
   enviarRespuesta(){
-    try{  
+    try{
+      this.encuesta.preguntas.forEach(p =>{
+        if(p.tipoRespuesta == 'OPCIONES' && p.opcionValues == undefined){
+          throw 'Debe responder todas las preguntas';
+        } else if (p.tipoRespuesta == 'OPINION' && p.opinionValue == undefined){
+          throw 'Debe responder todas las preguntas';
+        } else if (p.tipoRespuesta == 'UNASOLARESPUESTA'  && p.opcionValue == undefined){
+          throw 'Debe responder todas las preguntas';
+        }
+      });
       this.encuesta.encuestaKey = this.encuesta.$key;       
       this.eProvider.enviarEncuestaRespuesta(this.encuesta);
       this.encuestaOrigin.respondida = true;
       this.eProvider.actualizarEncuestaPorRespuesta(this.encuestaOrigin,this.encuesta.$key);
       this.showAlert('La respuesta se envio correctamente');
-    }catch(e){
-      this.showAlert(e);
-    }
-    
+    } catch(e){
+      this.showAlert(e);      
+    }        
   }
 
   showAlert(mensaje: string) {
@@ -56,7 +64,7 @@ export class RespuestaEncuestaHomePage {
       title: 'INFO!',
       subTitle: mensaje,
       buttons: [{
-        text:'OK',
+        text:'aceptar',
         handler:()=>{
           this.navCtrl.push(HomePage);
         }}]
