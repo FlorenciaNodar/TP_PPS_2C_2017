@@ -28,6 +28,7 @@ export class CodigoAlumnos {
     qrEncuesta = "-KzaiULRvFrIW2P1YE7U";
     encuesta = null;
     createdCode = null;
+    createdCodeAlumno = null;
     scannedCode = null;
     materias;
     usuario;
@@ -46,6 +47,7 @@ export class CodigoAlumnos {
     }
     createCode() {
         //this.createdCode = this.qrData;
+        this.createdCodeAlumno = this.qrData;
         this.createdCode = this.qrEncuesta;
     }
     ngOnInit() {
@@ -84,7 +86,7 @@ export class CodigoAlumnos {
                     });
                 }
             } else {
-                if (this.usuario == "alumno@alumno.com" && this.createdCode == this.createdCode) {
+                if (this.usuario == "alumno@alumno.com" && this.createdCodeAlumno == this.ref) {
                     this.scannedCode = this.ref;
                 } else {
                     let alert = this.alertCtrl.create({
