@@ -33,10 +33,16 @@
       </ion-card-header>
 
       <ion-card-content [hidden]="e.isOpen">
-        <div *ngFor="let pregunta of e.preguntas; let i = index">
+        <!--<div *ngFor="let pregunta of e.preguntas; let i = index" class="jumbotron">
           <ion-item>
             <ion-label style="color : rgb(85, 158, 218)">*{{pregunta.texto}}</ion-label>
           </ion-item>
+        </div>-->
+
+        <div class="container" *ngFor="let pregunta of e.preguntas; let i = index" >
+          <div class="jumbotron" style="color : rgb(85, 158, 218)">
+            {{pregunta.texto}}            
+          </div>
         </div>
 
       </ion-card-content>
