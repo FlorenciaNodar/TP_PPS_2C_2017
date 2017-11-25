@@ -23,7 +23,7 @@ export class UserData {
   ) {
     this.user = firebase.auth().currentUser;
   }
-
+ 
   login(username: string): void {
     this.storage.set(this.HAS_LOGGED_IN, true);
     this.setUsername(username);

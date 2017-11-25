@@ -21,17 +21,6 @@ Responsabilidades:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 --------------------------------------------------------------------------------------
 *Florencia
 
@@ -60,6 +49,30 @@ Responsabilidades:
     *Creación de menu + estilos
     
 *Fecha de inicio y finalización: 1/11/2017
+
+*Objetivos:
+   *Punto F: autenticación con GitHub (corregido y finalizado)
+   *Validaciones para mostrar el login (usuario loggeado)
+   *Modificaciones en el menu
+*Fecha Entrega: 4/11/2017
+
+*Objetivos:
+   *Importar excel y descargar listas
+   *Elección de descarga 
+   *Estilos de los archivos
+*Fecha Entrega: 11/11/2017
+
+*Objetivos:
+   *Descarga de archivos (plugin)
+   *Código de profesor 
+   *Estandarización de estilos
+   *Perfil usuario
+*Fecha Entrega: 18/11/2017
+
+*Objetivos:
+   *Estilos (inicio)
+   *Permisos en menu
+*Fecha Entrega: 25/11/2017
 ---------------------------------------------------------------------------------------
 *Hernán
 

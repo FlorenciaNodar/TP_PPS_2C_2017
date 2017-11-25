@@ -11,13 +11,14 @@ import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/databa
 import { Graficos } from '../graficos/graficos';
 import { PerfilPage } from '../perfil/perfil';
 import { CodigoAlumnos } from '../codigoAlumnos/codigoAlumnos';
+import { DatePipe } from '@angular/common';
 declare var FCMPlugin;
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  conferenceDate = '2017-11-25';
+  conferenceDate: string;
   materiasQueCursaAlumno = [];
   usuarioActual: string;
   cont= 0;
@@ -38,10 +39,10 @@ export class HomePage {
     size: '25\' Lot',
     
   };
-  constructor(public platform: Platform,public navCtrl: NavController,public push: Push, public modalCtrl: ModalController,
+  constructor(public platform: Platform,public navCtrl: NavController,public push: Push, public modalCtrl: ModalController,public datePipeCtrl: DatePipe,
     public alertCtrl:AlertController, public eProvider: EncuestaDataProvider, public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
         this.usuario=firebase.auth().currentUser.email;
-
+        this.conferenceDate = this.datePipeCtrl.transform(Date.now(), 'yyyy-MM-dd');
 
     // if (platform.is('android') && this.usuario == "profesor@profesor.com" || this.usuario == "administrativo@administrativo.com") {
     // this.RegisterNotification();

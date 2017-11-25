@@ -12,7 +12,7 @@ import { AboutPage } from '../pages/about/about';
 import { RegistroPage } from '../pages/registro/registro';
 import { HomePage } from '../pages/home/home';
 import { EncuestaPage } from '../pages/encuesta/encuesta';
-
+import { AdmProf } from '../pages/admProf/admProf';
 import { UserData } from '../providers/userdata/userdata';
 import { Alumno } from '../pages/alumno/alumno';
 import { EncuestaHomePage } from '../pages/encuesta-home/encuesta-home';
@@ -21,6 +21,8 @@ import { editarAlumno } from '../pages/editarAlumno/editarAlumno';
 import{ Push, PushToken } from '@ionic/cloud-angular';
 import * as firebase from 'firebase/app';
 import { PerfilPage } from '../pages/perfil/perfil';
+import { Content } from 'ionic-angular'; 
+
 
 export interface PageInterface {
   title: string;
@@ -38,20 +40,14 @@ export interface PageInterface {
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
+  @ViewChild(Content) component: Content;
 
   isAppInitialized: boolean = false;
   user: any;
   private platformReady = false;
   private authReady = false;
   rootPage: any;
-  pages: PageInterface[] = [
-    
-    { title: 'Inicio', name: 'TabsPage', component: TabsPage, tabComponent: HomePage, index: 0, icon: 'pie' },
-    { title: 'Alumno', name: 'TabsPage', component: TabsPage, tabComponent: Alumno, index: 1, icon: 'school' },
-    { title: 'Encuesta', name: 'TabsPage', component: TabsPage, tabComponent: EncuestaHomePage, index: 2, icon: 'clipboard' }
-
-  ];
-
+  pages: PageInterface[];
   pagesLog: PageInterface[] = [
     { title: 'Perfil', name: 'Perfil',  component: PerfilPage, icon: 'body' },
     { title: 'Logout', name: 'Login', component: Login, icon: 'log-out', logsOut: true }
@@ -78,16 +74,23 @@ export class MyApp {
       this.enableMenu(hasLoggedIn === true);
     });
     this.enableMenu(true);
-
+    
     this.listenToLoginEvents();
 
     if (platform.is('android')) {
     this.RegisterNotification();
     this.Notification();
     }
-
+  
   }
-
+  ionViewCanEnter() {
+    this.cargarMenu();
+    this.events.subscribe('user:created', (user) => {
+      // user and time are the same arguments passed in `events.publish(user, time)`
+      this.user = user;
+      console.log('Welcome', user);
+    });
+  }
   hideSplashScreen() {
 
     //if (this.platformReady && this.authReady) {
@@ -120,6 +123,53 @@ export class MyApp {
   });
 }
 
+cargarMenu(){
+  this.events.subscribe('user:created', (user) => {
+  if(user == 'administrativo@administrativo.com')
+  {
+    this.pages= [
+      
+      { title: 'Inicio', name: 'Inicio', component: TabsPage, tabComponent: HomePage, index: 0, icon: 'pie' },
+      { title: 'QR', name: 'QR', component: TabsPage, tabComponent: Alumno, index: 1, icon: 'barcode' },
+      { title:'Graficos' , name: 'Graficos', component: TabsPage, tabComponent: EncuestaHomePage, index: 2, icon: 'podium' },
+      { title: 'Alumnos' , name: 'Alumnos', component: TabsPage, tabComponent: AdmProf, index: 3, icon: 'school' },
+      { title:'Listas', name: 'Listas', component: TabsPage, tabComponent: nuevoAlumno, index: 4, icon: 'clipboard' }
+    ];
+  }
+  if(user == 'profesor@profesor.com')
+  {
+    this.pages= [
+      
+      { title: 'Inicio', name: 'Inicio', component: TabsPage, tabComponent: HomePage, index: 0, icon: 'pie' },
+      { title: 'QR', name: 'QR', component: TabsPage, tabComponent: Alumno, index: 1, icon: 'barcode' },
+      { title:'Graficos' , name: 'Graficos', component: TabsPage, tabComponent: EncuestaHomePage, index: 2, icon: 'podium' },
+      { title: 'Encuesta' , name: 'Encuesta', component: TabsPage, tabComponent: AdmProf, index: 3, icon: 'clipboard' }
+      
+    ];
+  }
+  if(user == 'alumno@alumno.com')
+  {
+    this.pages= [
+      
+      { title: 'Inicio', name: 'Inicio', component: TabsPage, tabComponent: HomePage, index: 0, icon: 'pie' },
+      { title: 'QR', name: 'QR', component: TabsPage, tabComponent: Alumno, index: 1, icon: 'barcode' },
+      { title:'Graficos' , name: 'Graficos', component: TabsPage, tabComponent: EncuestaHomePage, index: 2, icon: 'podium' } 
+    ];
+  }
+  if(user == 'administrador@administrador.com')
+  {
+    this.pages= [
+      
+      { title: 'Inicio', name: 'Inicio', component: TabsPage, tabComponent: HomePage, index: 0, icon: 'pie' },
+      { title: 'QR', name: 'QR', component: TabsPage, tabComponent: Alumno, index: 1, icon: 'barcode' },
+      { title:'Graficos' , name: 'Graficos', component: TabsPage, tabComponent: EncuestaHomePage, index: 2, icon: 'podium' },
+      { title: 'Admin/Prof' , name: 'Admin/Prof', component: TabsPage, tabComponent: AdmProf, index: 3, icon: 'ribbon' }
+      
+    ];
+  }
+});
+}
+
   listenToLoginEvents() {
     this.events.subscribe('user:login', () => {
       this.enableMenu(true);
@@ -132,6 +182,12 @@ export class MyApp {
     this.events.subscribe('user:logout', () => {
       this.enableMenu(false);
     });
+    this.events.subscribe('user:created', (user) => {
+      // user and time are the same arguments passed in `events.publish(user, time)`
+      this.user = user;
+      console.log('Welcome', user);
+      console.log('user', this.user);
+    });
   }
 
   enableMenu(loggedIn: boolean) {
@@ -140,31 +196,34 @@ export class MyApp {
   }
 
   openPage(page: PageInterface) {
-
+    // the nav component was found using @ViewChild(Nav)
+    // reset the nav to remove previous pages and only have this page
+    // we wouldn't want the back button to show in this scenario
     this.menu.close();
+
     let params = {};
-
-    if (page.index) {
-      params = { tabIndex: page.index };
-    }
-
-    if (this.nav.getActiveChildNavs().length && page.index != undefined) {
-      this.nav.getActiveChildNavs()[0].select(page.index);
-      console.log("LLego");
-    } else {
- 
-      this.nav.setRoot(page.name, params).catch((err: any) => {
-        console.log(err);
+    
+        if (page.index) {
+          params = { tabIndex: page.index };
+        }
+    
+        if (this.nav.getActiveChildNavs().length && page.index != undefined) {
+          
+          this.nav.getActiveChildNavs()[0].select(page.index);
+          
+          console.log("LLego");
+        }else {
+      this.nav.setRoot(page.component).catch(() => {
+        console.log("Didn't set nav root");
       });
     }
-
     if (page.logsOut === true) {
       console.log("Logout");
       this.userData.logout();
       firebase.auth().signOut();
     }
-  }
 
+  }
 
   isActive(page: PageInterface) {
     let childNav = this.nav.getActiveChildNavs()[0];
@@ -182,21 +241,24 @@ export class MyApp {
     }
     return;
   }
-
+ 
   ngOnInit() {
-   
+
+  this.cargarMenu();
       this.userData.getUsername().then(user => {
                 console.log('authReady');
                 
                 this.hideSplashScreen();
     
                 console.log('MyApp :: authState: ', user);
-    
+                
                 this.rootPage = Login;
   
             }, error => {
+             
                 this.rootPage = Login;
+                
             });
-        }
+  }
         
 }
