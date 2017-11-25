@@ -116,33 +116,44 @@ export class CodigoAlumnos {
                     alert.present();
                 }
             } 
-            if (this.usuario == "profesor@profesor.com"  && barcodeData.text == this.codigo1) {
-                let codigo = barcodeData.text;
-                if (codigo == this.codigo1) {
-                    this.encodeText(this.codigo1);
+            if (this.usuario == "profesor@profesor.com") 
+            {
+                if (this.usuario == "profesor@profesor.com"  && barcodeData.text == this.codigo1) {
+                    let codigo = barcodeData.text;
+                    if (codigo == this.codigo1) {
+                        this.encodeText(this.codigo1);
+                    }
+                    else {
+                        let alert = this.alertCtrl.create({
+                            title: 'ADVERTENCIA!',
+                            subTitle: 'Está queriendo scanear un código de un profesor!',
+                            buttons: ['OK']
+                        });
+                        alert.present();
+                    }
                 }
-                else {
-                    let alert = this.alertCtrl.create({
-                        title: 'ADVERTENCIA!',
-                        subTitle: 'Está queriendo scanear un código de un profesor!',
-                        buttons: ['OK']
-                    });
-                    alert.present();
-                }
-            }
-            if (this.usuario == "profesor@profesor.com"  && barcodeData.text == this.codigo2) {
-                let codigo = barcodeData.text;
-                if (codigo == this.codigo2) {
-                    this.encodeText(this.codigo2);
-                }
-                else {
-                    let alert = this.alertCtrl.create({
-                        title: 'ADVERTENCIA!',
-                        subTitle: 'Está queriendo scanear un código de un profesor!',
-                        buttons: ['OK']
-                    });
-                    alert.present();
-                }
+                if (this.usuario == "profesor@profesor.com"  && barcodeData.text == this.codigo2) {
+                    let codigo = barcodeData.text;
+                    if (codigo == this.codigo2) {
+                        this.encodeText(this.codigo2);
+                    }
+                    else {
+                        let alert = this.alertCtrl.create({
+                            title: 'ADVERTENCIA!',
+                            subTitle: 'Está queriendo scanear un código de un profesor!',
+                            buttons: ['OK']
+                        });
+                        alert.present();
+                    }
+                }  
+            }else if(barcodeData.text == this.codigo2 || barcodeData.text == this.codigo1)
+            {
+                let alert = this.alertCtrl.create({
+                    title: 'ADVERTENCIA!',
+                    subTitle: 'Está queriendo scanear un código de un profesor!',
+                    buttons: ['OK']
+                });
+                alert.present();
             }
             else {
                 if (this.usuario == "alumno@alumno.com" && this.createdCodeAlumno == this.ref) {
