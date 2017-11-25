@@ -132,12 +132,13 @@ historialEncuestaNotification() {
 }  
 
 notificationEncuestas(){
+  console.log(this.legajo);
     this.encuestasPendientes=[];
     this.materiasAlumno =[];
 
     this.materiasAlumnoP.forEach(mat => {
       mat.forEach(info => {
-        if (info[0] == this.legajo) {
+        if (info[0] != "" && info[0] == this.legajo) {
           this.materiasAlumno.push(mat.$key);
         }
       });
