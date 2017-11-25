@@ -15,6 +15,7 @@ import { Graficos } from '../graficos/graficos';
 import { PerfilPage } from '../perfil/perfil';
 import { Login } from '../login/login';
 import firebase from 'firebase';
+import { NavParams } from 'ionic-angular';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -30,9 +31,11 @@ export class TabsPage {
   tab5Root;
   tab6Root;
   tab7Root; 
+  mySelectedIndex: number;
 
-  constructor() {
+  constructor(navParams: NavParams) {
     this.user = firebase.auth().currentUser.email;
+    this.mySelectedIndex = navParams.data.tabIndex || 0;
 
   if(this.user == 'profesor@profesor.com'){
     this.tab1Root = HomePage;  
