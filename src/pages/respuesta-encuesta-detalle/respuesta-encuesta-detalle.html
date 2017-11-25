@@ -29,7 +29,7 @@
       <ion-card-content>
 
         <div style="display: block" *ngIf="pRes.pregunta.tipoRespuesta != 'OPINION'">
-          <canvas baseChart [data]="pRes.pregunta.chartData" [labels]="pRes.pregunta.chartLabels" [chartType]="chartType"></canvas>
+          <canvas baseChart [data]="pRes.pregunta.chartData" [legend]="false" [labels]="pRes.pregunta.chartLabels" [chartType]="chartType"></canvas>
         </div>
 
         <div *ngIf="pRes.pregunta.tipoRespuesta == 'OPINION'">
