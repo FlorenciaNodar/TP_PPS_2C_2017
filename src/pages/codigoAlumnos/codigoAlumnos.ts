@@ -33,6 +33,8 @@ export class CodigoAlumnos {
     materias;
     usuario;
     existeEncuesta = false;
+    public codigo1: string ="Aula: 1A \n"+"Materias: \n"+"- Programación I - Sistemas de Procesamiento de Datos - Matemática - Inglés I - Laboratorio de Computación I \n"+"Aula: 2C \n"+"Materias: \n"+"- Programación II - Arquitectura y Sistemas Operativos - Estadística - Inglés II - Laboratorio de Computación II - Metodología de la Investigación \n"+"Aula: 3B\n"+"Materias:\n"+"- Programación III - Organización Contable de la Empresa - Organización Empresarial - Elementos de Investigación Operativa - Laboratorio de Computación III \n";
+    public codigo2: string ="Aula: 1A \n"+"Materias: \n"+"- Programación I - Sistemas de Procesamiento de Datos - Matemática - Inglés I - Laboratorio de Computación I \n"+"Aula: 3B\n"+"Materias:\n"+"- Programación III - Organización Contable de la Empresa - Organización Empresarial - Elementos de Investigación Operativa - Laboratorio de Computación III \n";
     constructor(private barcodeScanner: BarcodeScanner, public alertCtrl: AlertController, public navCtrl: NavController, public af: AngularFireDatabase, public modalCtrl: ModalController, public eDataProvider: EncuestaDataProvider) {
         // this.items = af.list('/Materias/');
 
@@ -53,7 +55,16 @@ export class CodigoAlumnos {
     }
     ngOnInit() {
     }
-    
+    encodeText(Data){
+        this.barcodeScanner.encode(this.barcodeScanner.Encode.TEXT_TYPE,Data).then((encodedData) => {
+            
+                    console.log(encodedData);
+                    this.scannedCode = encodedData;
+            
+                }, (err) => {
+                    console.log("Error occured : " + err);
+        });               
+    }
     scanCode() {
         this.barcodeScanner.scan().then(barcodeData => {
             this.ref = barcodeData.text;
@@ -104,7 +115,36 @@ export class CodigoAlumnos {
                     });
                     alert.present();
                 }
-            } else {
+            } 
+            if (this.usuario == "profesor@profesor.com"  && barcodeData.text == this.codigo1) {
+                let codigo = barcodeData.text;
+                if (codigo == this.codigo1) {
+                    this.encodeText(this.codigo1);
+                }
+                else {
+                    let alert = this.alertCtrl.create({
+                        title: 'ADVERTENCIA!',
+                        subTitle: 'Está queriendo scanear un código de un profesor!',
+                        buttons: ['OK']
+                    });
+                    alert.present();
+                }
+            }
+            if (this.usuario == "profesor@profesor.com"  && barcodeData.text == this.codigo2) {
+                let codigo = barcodeData.text;
+                if (codigo == this.codigo2) {
+                    this.encodeText(this.codigo2);
+                }
+                else {
+                    let alert = this.alertCtrl.create({
+                        title: 'ADVERTENCIA!',
+                        subTitle: 'Está queriendo scanear un código de un profesor!',
+                        buttons: ['OK']
+                    });
+                    alert.present();
+                }
+            }
+            else {
                 if (this.usuario == "alumno@alumno.com" && this.createdCodeAlumno == this.ref) {
                     this.scannedCode = this.ref;
                 } else {
