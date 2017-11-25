@@ -1,7 +1,7 @@
 <ion-content padding class="fondo">
 
   <div class="avatar center">
-    <img alt="" src="./assets/img/icon.png">
+    <img alt="" src="./assets/img/camara.png" (click)="tomarFoto()">
   </div>
   
   <br>
@@ -28,9 +28,17 @@
     </ion-item>
   </ion-list>
 
-  <div class="image-container">
-    <img class="ImagenGrande" [src]="imag" />
-  </div>
+  
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 col-md-4 col-xl-3>
+        <div class="image-container">
+          <img class="ImagenGrande" [src]="imag" />
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>  
 
   <button ion-button (click)="cancelar()">Cancelar</button>
 

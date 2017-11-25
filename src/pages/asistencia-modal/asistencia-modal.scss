@@ -26,4 +26,20 @@ page-asistencia-modal {
         border-radius: 50%;
         background-size: 100% auto;
     }
+
+    .ImagenGrande{
+        width: 200px; height: 200px;
+    }
+
+    .image-container {
+        background-size: cover;
+        min-height: 200px;
+    }
+
+    .img-selected
+    {
+    border: 1px  #099a9f;
+    margin:5px;
+    padding:5px;
+    }
 }

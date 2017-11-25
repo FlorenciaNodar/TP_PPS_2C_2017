@@ -4,6 +4,8 @@ import { FirebaseListObservable } from 'angularfire2/database-deprecated';
 import { AsistenciDataProvider } from '../../providers/asistencia-data/asistencia-data';
 import { DatePipe } from '@angular/common';
 import 'rxjs/add/operator/map';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+
 
 @IonicPage()
 @Component({
@@ -24,9 +26,13 @@ export class AsistenciaModalPage {
   listaFinal =[{asistio: false}];
   imag = '';
   listExcel : FirebaseListObservable<any[]>;
+  //imag = {};
+  base64Image: string;  
+  mostrar = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
-    public asisProvider: AsistenciDataProvider, public alertCtrl: AlertController, public datePipeCtrl: DatePipe) {
+    public asisProvider: AsistenciDataProvider, public alertCtrl: AlertController, public datePipeCtrl: DatePipe,
+  public cameraCtrl: Camera) {
 
       this.getListaAlumnosExcel();
 
@@ -52,8 +58,7 @@ export class AsistenciaModalPage {
     
   }
 
-  /*tomarFoto() {
-    this.imag = { imagen: ''};
+  tomarFoto() {
     this.cameraCtrl.getPicture({
       destinationType: this.cameraCtrl.DestinationType.DATA_URL,
       targetWidth: 800,
@@ -65,10 +70,10 @@ export class AsistenciaModalPage {
     }, (err) => {
       console.log(err);
       if (err.mensaje) {
-        this.showAlert("Error", err.mensaje);
+        this.showAlertError("Error al procesar la imagen");
       }
     });
-  }*/
+  }
 
   registrarAsistencia() {    
     let cont=0;
@@ -107,7 +112,7 @@ export class AsistenciaModalPage {
     let alert = this.alertCtrl.create({
       title: 'ERROR!',
       subTitle: mensaje,
-      buttons: ['OK']
+      buttons: ['aceptar']
     });
     alert.present();
   }
@@ -116,7 +121,7 @@ export class AsistenciaModalPage {
     let alert = this.alertCtrl.create({
       title: 'Info',
       subTitle: mensaje,
-      buttons: ['OK']
+      buttons: ['aceptar']
     });
     alert.present();
   }

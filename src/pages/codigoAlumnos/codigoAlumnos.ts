@@ -32,6 +32,7 @@ export class CodigoAlumnos {
     scannedCode = null;
     materias;
     usuario;
+    existeEncuesta = false;
     constructor(private barcodeScanner: BarcodeScanner, public alertCtrl: AlertController, public navCtrl: NavController, public af: AngularFireDatabase, public modalCtrl: ModalController, public eDataProvider: EncuestaDataProvider) {
         // this.items = af.list('/Materias/');
 
@@ -60,10 +61,11 @@ export class CodigoAlumnos {
                 if (this.usuario == 'alumno@alumno.com') {
                     this.eDataProvider.getEncuestas().subscribe(encuestas => {
                         encuestas.forEach(encuesta => {
+                            this.existeEncuesta=true;
                             if (encuesta.$key == this.ref && Date.now() > encuesta.finalizacion) {
                                 let alert = this.alertCtrl.create({
                                     title: 'INFO!',
-                                    subTitle: 'Finalizo el tiempo de respuesta para esta encuesta!',
+                                    subTitle: 'Finalizo el tiempo de respuesta para esta encuesta',
                                     buttons: ['aceptar']
                                 });
                                 alert.present();
@@ -75,15 +77,32 @@ export class CodigoAlumnos {
                             }
                         });
                     });
+                    if(this.existeEncuesta == false){
+                        let alert = this.alertCtrl.create({
+                            title: 'INFO!',
+                            subTitle: 'La encuesta no existe o quizas fue eliminada',
+                            buttons: ['aceptar']
+                        });
+                        alert.present();
+                    }
                 } else if (this.usuario == "profesor@profesor.com") {
                     this.eDataProvider.getEncuestas().subscribe(encuestas => {
                         encuestas.forEach(encuesta => {
+                            this.existeEncuesta=true;
                             if (encuesta.$key == this.ref) {
                                 this.encuesta = encuesta;
                                 this.navCtrl.push(RespuestaEncuestaDetallePage, { data: this.encuesta });
                             }
                         });
                     });
+                }
+                if(this.existeEncuesta == false){
+                    let alert = this.alertCtrl.create({
+                        title: 'INFO!',
+                        subTitle: 'La encuesta no existe o quizas fue eliminada',
+                        buttons: ['aceptar']
+                    });
+                    alert.present();
                 }
             } else {
                 if (this.usuario == "alumno@alumno.com" && this.createdCodeAlumno == this.ref) {
