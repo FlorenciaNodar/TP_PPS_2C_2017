@@ -11,7 +11,7 @@ import { HomePage } from '../home/home';
 })
 export class RespuestaEncuestaHomePage {
 
-  encuesta = {$key: '', encuestaKey: '', preguntas: [{tipoRespuesta: '', opinionValue: '',opcionValue: '', opcionValues: []}]};
+  encuesta = {$key: '', encuestaKey: '',finalizacion: 0, preguntas: [{tipoRespuesta: '', opinionValue: '',opcionValue: '', opcionValues: []}]};
   encuestaKey = '';
   encuestaOrigin = {respondida: false};
   opcionesSeleccionados = [];
@@ -22,7 +22,12 @@ export class RespuestaEncuestaHomePage {
   ionViewDidLoad() {
     this.encuesta = this.navParams.get('data');
     this.encuestaOrigin = this.navParams.get('data');
-    console.log(this.encuesta.$key);
+    console.log(this.encuesta.finalizacion-Date.now());
+    let diff = this.encuesta.finalizacion-Date.now();
+
+    setTimeout(()=>{
+      this.showAlert('El tiempo de respuesta de la encuesta a terminado');
+    },diff);
   }
 
   ngModelChange(pregunta,isChecked,op){
