@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, NavController, ModalController, AlertController } from 'ionic-angular';
+import { Platform, NavController, ModalController, AlertController, ToastController} from 'ionic-angular';
 import { AsistenciaModalPage } from '../asistencia-modal/asistencia-modal';
 import { RespuestaEncuestaHomePage } from '../respuesta-encuesta-home/respuesta-encuesta-home';
 import { EncuestaDataProvider } from '../../providers/encuesta-data/encuesta-data';
@@ -11,6 +11,7 @@ import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/databa
 import { Graficos } from '../graficos/graficos';
 import { PerfilPage } from '../perfil/perfil';
 import { CodigoAlumnos } from '../codigoAlumnos/codigoAlumnos';
+import { ToastCmp } from 'ionic-angular/components/toast/toast-component';
 declare var FCMPlugin;
 @Component({
   selector: 'page-home',
@@ -38,7 +39,7 @@ export class HomePage {
     size: '25\' Lot',
     
   };
-  constructor(public platform: Platform,public navCtrl: NavController,public push: Push, public modalCtrl: ModalController,
+  constructor(public toast: ToastController,public platform: Platform,public navCtrl: NavController,public push: Push, public modalCtrl: ModalController,
     public alertCtrl:AlertController, public eProvider: EncuestaDataProvider, public afAuth: AngularFireAuth, public af: AngularFireDatabase) {
         this.usuario=firebase.auth().currentUser.email;
 
@@ -65,15 +66,39 @@ ionViewDidLoad() {
 FCMPlugin.onNotification(function(data){
 if(data.wasTapped){
   //Notification was received on device tray and tapped by the user.
-  alert( JSON.stringify(data) );
+  let toast = this.toastCtrl.create({
+    message: JSON.stringify(data) ,
+    duration: 3000,
+    position: "bottom"
+    
+  });
+  toast.present();
+  //alert( JSON.stringify(data) );
 }else{
   //Notification was received in foreground. Maybe the user needs to be notified.
-  alert( JSON.stringify(data) );
+  let toast = this.toastCtrl.create({
+    message: JSON.stringify(data) ,
+    duration: 3000,
+    position: "bottom"
+    
+  });
+  toast.present();
+ //alert(JSON.stringify(data)  );
 }
 });
 
 FCMPlugin.onTokenRefresh(function(token){
-alert( token );
+//alert( token );
+
+  let toast = this.toastCtrl.create({
+    message: token.message  + "soy el" + token.sendername,
+    duration: 3000,
+    position: "bottom"
+    
+  });
+  toast.present();
+
+
 });    
 }
 
