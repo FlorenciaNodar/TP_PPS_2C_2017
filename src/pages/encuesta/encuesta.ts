@@ -14,8 +14,8 @@ import { DatePipe } from '@angular/common';
 })
 export class EncuestaPage {
 
-  encuesta = { nombreEncuesta: '', autor: '', respondida: false, enviada: false, preguntas: [{ isOpen: false, texto: '' }], destinatarios: [{}], fechaIngreso: '' };
-  opcionesSelect = [{ valor: '1' }, { valor: '2' }, { valor: '3' },{ valor: '4' },{ valor: '5' },{ valor: '6' }];
+  encuesta = { nombreEncuesta: '', duracion: 0, autor: '', respondida: false, enviada: false, preguntas: [{isOpen: false, texto: '' }], destinatarios: [{}], fechaIngreso: '' };
+  opcionesSelect = [{ valor: '1' }, { valor: '2' }, { valor: '3' }, { valor: '4' }, { valor: '5' }, { valor: '6' }];
   cantidadOpcionesDisponiblesSelect = [{ valor: '1 a 2' }, { valor: '1 a 3' }];
   creadorDelaEncuesta = '';
   deshabilitar = false;
@@ -60,9 +60,29 @@ export class EncuestaPage {
   ionViewDidLoad() {
   }
 
-  siguiente() {    
-    var jsonEncuesta = { encuesta: this.encuesta, modificar: this.modificar };
-    this.navCtrl.push(EncuestaEnviarPage, jsonEncuesta);
+  siguiente() {
+    let errorStr = '';
+    if (this.encuesta.nombreEncuesta == '') {
+      errorStr = errorStr + ' ' + 'Nombre de la Encuesta-';
+    } 
+    if (this.encuesta.duracion == 0) {
+      errorStr = errorStr + ' ' + 'Duracion-';
+    }
+    let band=0;
+    this.encuesta.preguntas.forEach(p=>{
+      if(p.texto == '' && band==0){
+        errorStr = errorStr + ' ' + 'Pregunta-';
+        band++;
+      }
+    });
+
+    if(errorStr != ''){
+      this.showAlertError('Debe completar los campos'+ errorStr);
+    }else{
+      var jsonEncuesta = { encuesta: this.encuesta, modificar: this.modificar };
+      this.navCtrl.push(EncuestaEnviarPage, jsonEncuesta);
+    }
+    
   }
 
   agregarPregunta() {

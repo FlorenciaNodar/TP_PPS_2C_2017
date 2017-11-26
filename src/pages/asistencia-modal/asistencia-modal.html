@@ -1,9 +1,15 @@
 <ion-content padding class="fondo">
 
+  <!--<div class="avatar center">
+    <img alt="" src="./assets/img/camara.png" (click)="tomarFoto()">
+  </div>-->
+
   <div class="avatar center">
-    <img alt="" src="./assets/img/icon.png">
+    <button ion-button (click)="tomarFoto()">
+      <ion-icon name="md-camera"></ion-icon>
+    </button>
   </div>
-  
+
   <br>
   <ion-item>
     <ion-label style="color : rgb(85, 158, 218)">Aulas</ion-label>
@@ -28,9 +34,11 @@
     </ion-item>
   </ion-list>
 
-  <div class="image-container">
-    <img class="ImagenGrande" [src]="imag" />
+
+  <div class="image-container" *ngIf="mostrar">
+    <img class="ImagenPequeña center" [src]="imag" />
   </div>
+
 
   <button ion-button (click)="cancelar()">Cancelar</button>
 

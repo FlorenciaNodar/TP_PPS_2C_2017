@@ -41,6 +41,7 @@ export class Login {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Login');
+    
   }
 
   login() {
@@ -60,6 +61,7 @@ export class Login {
         });
         this.userData.login(this.usuarioSelecionado.email);
         loader.present();
+        this.events.publish('user:created', this.usuarioSelecionado.email);
         this.navCtrl.push(TabsPage, {data: this.usuarioSelecionado.email});
       },
         error => {

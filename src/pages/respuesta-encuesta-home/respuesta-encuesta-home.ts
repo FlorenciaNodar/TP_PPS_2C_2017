@@ -60,7 +60,7 @@ export class RespuestaEncuestaHomePage {
       this.eProvider.actualizarEncuestaPorRespuesta(this.encuestaOrigin,this.encuesta.$key);
       this.showAlert('La respuesta se envio correctamente');
     } catch(e){
-      this.showAlert(e);      
+      this.showException(e);      
     }        
   }
 
@@ -72,6 +72,18 @@ export class RespuestaEncuestaHomePage {
         text:'aceptar',
         handler:()=>{
           this.navCtrl.push(HomePage);
+        }}]
+    });
+    alert.present();
+  }
+
+  showException(mensaje: string) {
+    let alert = this.alertCtrl.create({
+      title: 'INFO!',
+      subTitle: mensaje,
+      buttons: [{
+        text:'aceptar',
+        handler:()=>{
         }}]
     });
     alert.present();

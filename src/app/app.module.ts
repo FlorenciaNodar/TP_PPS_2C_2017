@@ -52,6 +52,8 @@ import { File } from '@ionic-native/file';
 import { RespuestaEncuestaDetallePage } from '../pages/respuesta-encuesta-detalle/respuesta-encuesta-detalle';
 import { Zip } from '@ionic-native/zip';
 import { FCM } from '@ionic-native/fcm';
+import { Camera } from '@ionic-native/camera';
+
 
 const cloudSettings: CloudSettings = {
   'core': {
@@ -177,7 +179,8 @@ const cloudSettings: CloudSettings = {
     File,
     FileTransfer,
     Zip,
-    FCM
+    FCM,
+    Camera
   ]
 })
 export class AppModule {}
