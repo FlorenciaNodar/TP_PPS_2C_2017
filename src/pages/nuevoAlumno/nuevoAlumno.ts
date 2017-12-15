@@ -225,6 +225,13 @@ addNewAlumn(){
    materia: this.materia
   });
 
+  let alumnoAltaExcel = [];
+
+  alumnoAltaExcel[0]=this.dni+';'+this.apellidoInsertado;
+  alumnoAltaExcel[1]=this.nombreInsertado+';'+'Sabado  8:30 12:30';
+
+  this.af.list("/listas/PPS -4A-2c2017").push(alumnoAltaExcel);
+
   this.nombre = "";
   this.apellido= "";
   this.fecha = "";
