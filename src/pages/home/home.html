@@ -3,8 +3,11 @@
     <section class="housing-image"
              [ngStyle]="{ 'background-image': 'url(' + estateProperty.image + ')'}">
     </section>
+    <ion-fab right bottom>
+        <button ion-fab color="danger" (click)="modal()"><ion-icon name="flag"></ion-icon></button>
+      </ion-fab>  
   <ion-card>
-     
+    
       <ion-card-content style="background-color:#48D1CC">
           <h2 class="card-title">Bienvenido!</h2>
           <p>{{usuarioActual}}</p>

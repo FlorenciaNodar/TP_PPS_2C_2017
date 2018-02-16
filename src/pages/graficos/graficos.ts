@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database-deprecated";
 import firebase from 'firebase';
+import { modalGraficos } from '../modalGraficos/modalGraficos';
 
 @Component({
   selector: 'page-graficos',
@@ -96,6 +97,11 @@ this.algo.forEach(element => {
 });
                 this.ngOnInit(this.contAsistio, this.contNoAsistio);
 
+}
+
+modal(){
+  let modal = this.modalCtrl.create(modalGraficos);
+  modal.present();
 }
 
 }

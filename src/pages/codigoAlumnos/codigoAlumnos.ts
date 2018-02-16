@@ -14,6 +14,7 @@ import { EncuestaDataProvider } from '../../providers/encuesta-data/encuesta-dat
 import firebase from 'firebase';
 import { RespuestaEncuestaHomePage } from '../respuesta-encuesta-home/respuesta-encuesta-home';
 import { RespuestaEncuestaDetallePage } from '../respuesta-encuesta-detalle/respuesta-encuesta-detalle';
+import { modalQr } from '../modalQr/modalQr';
 
 
 @Component({
@@ -171,6 +172,11 @@ export class CodigoAlumnos {
         }, (err) => {
             console.log('Error: ', err);
         });
+    }
+
+    modal(){
+        let modal = this.modalCtrl.create(modalQr);
+        modal.present();
     }
 
 }

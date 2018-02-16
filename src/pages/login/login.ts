@@ -1,7 +1,7 @@
 import { HomePage } from '../home/home';
 import { Component } from '@angular/core';
 import { TabsPage } from '../tabs/tabs';
-import { NavController, NavParams, ActionSheetController, LoadingController, Loading, AlertController, Platform } from 'ionic-angular';
+import { NavController, NavParams, ActionSheetController,ModalController, LoadingController, Loading, AlertController, Platform } from 'ionic-angular';
 import { AngularFireDatabaseModule, AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuth, AngularFireAuthProvider, AngularFireAuthModule } from 'angularfire2/auth';
 import * as firebase from 'firebase';
@@ -13,6 +13,7 @@ import { Events } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/Rx';
 import { UserData } from '../../providers/userdata/userdata';
+import { modalLogin } from '../modalLogin/modalLogin';
 
 @Component({
   selector: 'page-login',
@@ -35,7 +36,7 @@ export class Login {
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController,
     private events: Events, private iab: InAppBrowser, private http: Http,public userData: UserData,
     public navParams: NavParams, public platform: Platform, public actionsheetCtrl: ActionSheetController,
-    public alertCtrl: AlertController, public facebook: Facebook,public googlePlus: GooglePlus) {
+    public alertCtrl: AlertController, public facebook: Facebook,public googlePlus: GooglePlus, public modalCtrl: ModalController) {
 
   }
 
@@ -280,5 +281,11 @@ showLoading(): Promise<any> {
   registro()
   {
     this.navCtrl.push(RegistroPage);
+  }
+
+
+  modal(){
+    let modal = this.modalCtrl.create(modalLogin);
+    modal.present();
   }
 }

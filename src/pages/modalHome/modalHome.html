@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>
+        TUTORIAL
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+      <ion-slides pager>
+          
+            <ion-slide style="background-color: aqua">
+                <h2>Inicio</h2>
+                 <h5>Vamos a poder visualizar el usuario que se encuentra logueado en la aplicación apretando el siguiente botón:</h5>
+                 <img style="width:200px; height:300px" src="../assets/img/InicioPerfil.png"/> 
+            </ion-slide> 
+            <ion-slide style="background-color: #F4B38E">
+                 <h5>Y lo muestra de la siguiente manera:</h5>
+                 <img style="width:200px; height:300px" src="../assets/img/Perfil.png"/> 
+            </ion-slide>
+            <ion-slide style="background-color: #00ffff">
+              <h2>Atajos:</h2>
+              <h5>Vas a poder directamente apretar cualquiera de esos dos íconos para ingresar a la pantalla de código de barras o los gráficos</h5>              
+              <img style="width:200px; height:300px" src="../assets/img/inicioAtajos.png"/> 
+         </ion-slide>
+          
+            <ion-slide style="background-color: #F4B38E"  *ngIf="btnAsistencia">
+              <h2>Tomar Lista</h2>
+              <h5>Debemos seleccionar el siguiente botón para poder tomar lista:</h5>
+              <img style="width:200px; height:300px" src="../assets/img/tomarLista.png"/>                          
+            </ion-slide>
+            <ion-slide style="background-color: #00ffff" *ngIf="btnAsistencia">
+              <h5>Se abre el siguiente modal:</h5>
+              <img style="width:200px; height:300px" src="../assets/img/asistencia.png"/>                          
+            </ion-slide>
+            <ion-slide style="background-color: #F4B38E" *ngIf="btnAsistencia">
+              <h5>Se abre el siguiente modal:</h5>
+              <img style="width:200px; height:300px" src="../assets/img/asistencia.png"/>                          
+            </ion-slide>
+            <ion-slide style="background-color: #00ffff" *ngIf="btnAsistencia">
+              <h5>Tenés que seleccionar el aula que querés tomar lista:</h5>
+              <img style="width:200px; height:300px" src="../assets/img/seleccionarAula.png"/>                          
+            </ion-slide>
+            <ion-slide style="background-color: #F4B38E" *ngIf="btnAsistencia">
+              <h5>Se te abre una nueva pantalla en la cual podés seleccionar los alumnos que se encuentran presentes y para finalizar apretaremos el botón Listo.</h5>
+              <img style="width:200px; height:300px" src="../assets/img/tomar.png"/>                          
+            </ion-slide>
+          
+          
+          </ion-slides>
+  </ion-content>
+  

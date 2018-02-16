@@ -13,7 +13,10 @@
   </ion-item> -->
   <!-- <button ion-button full icon-left (click)="createCode()"><ion-icon name="barcode"></ion-icon>Create Code</button> -->
   <button class="button button1" (click)="scanCode()" color="primary"><ion-icon name="qr-scanner"></ion-icon> Escanear Código</button>
-  
+
+  <ion-fab right bottom>
+    <button ion-fab color="danger" (click)="modal()"><ion-icon name="flag"></ion-icon></button>
+  </ion-fab>
  <!-- <ion-card *ngIf="createdCode">
     <ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
        <ion-card-content>

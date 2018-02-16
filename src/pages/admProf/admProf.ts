@@ -9,6 +9,7 @@ import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/databa
 
 
 import firebase from 'firebase';
+import { modalAdminProf } from '../modalAdminProf/modalAdminProf';
 
 @Component({
   selector: 'page-admProf',
@@ -113,5 +114,11 @@ var puesto = "ADMINISTRATIVO";
 let modal = this.modalCtrl.create(editarAdmProf, {lista:boca, puestoPersona: puesto});
 modal.present();
 }
+
+modal(){
+  let modal = this.modalCtrl.create(modalAdminProf);
+  modal.present();
+}
+
 
 }

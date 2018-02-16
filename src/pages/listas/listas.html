@@ -8,6 +8,7 @@
           <ion-icon name="add"></ion-icon>
         </button>
     </ion-buttons>
+
     <ion-title>
       CSV Data
     </ion-title>
@@ -23,7 +24,9 @@
 </ion-header>
  
 <ion-content padding class="fondo">  
-
+  <ion-fab right bottom>
+    <button ion-fab color="danger" (click)="modal()"><ion-icon name="flag"></ion-icon></button>
+  </ion-fab>
       <ion-card *ngIf="archivo == null">
           <ion-card-header>
               <div style="color : rgb(26, 18, 92); text-align: center;">Inicio</div>

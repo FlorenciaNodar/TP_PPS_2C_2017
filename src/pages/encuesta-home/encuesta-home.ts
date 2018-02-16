@@ -8,6 +8,7 @@ import { FirebaseListObservable } from 'angularfire2/database-deprecated';
 import { EncuestaEnviarPage } from '../encuesta-enviar/encuesta-enviar';
 import { DatePipe } from '@angular/common';
 import { RespuestaEncuestaDetallePage } from '../respuesta-encuesta-detalle/respuesta-encuesta-detalle';
+import { modalEncuesta } from '../modalEncuesta/modalEncuesta';
 
 
 @IonicPage()
@@ -96,6 +97,11 @@ export class EncuestaHomePage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  modal(){
+    let modal = this.modalCtrl.create(modalEncuesta);
+    modal.present();
   }
 
 }

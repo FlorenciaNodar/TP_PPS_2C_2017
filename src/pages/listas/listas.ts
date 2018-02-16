@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import * as papa from 'papaparse';
 import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database-deprecated";
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { Zip } from '@ionic-native/zip';
+import { modalListas } from '../modalListas/modalListas';
 
 declare var cordova:any; 
 
@@ -29,7 +30,8 @@ export class ListasPage {
      private file: File, private http: Http, 
      public af: AngularFireDatabase, 
      private zip: Zip,
-     public alertCtrl: AlertController) {
+     public alertCtrl: AlertController,
+    public modalCtrl: ModalController) {
 
       this.readCsvData();
       this.lista = af.list('/listas/');
@@ -294,4 +296,10 @@ export class ListasPage {
       this.testRadioOpen = true;
     });
   }
+
+  
+modal(){
+  let modal = this.modalCtrl.create(modalListas);
+  modal.present();
+}
 }

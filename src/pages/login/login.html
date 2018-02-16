@@ -6,6 +6,9 @@
 </head>
 
 <body>
+    <ion-fab right bottom>
+        <button ion-fab color="danger" (click)="modal()"><ion-icon name="flag"></ion-icon></button>
+      </ion-fab>  
   <div class="loginpanel">
     <div class="txt">
       <input id="user" [(ngModel)]="usuarioSelecionado.email" name="email" type="text" placeholder="Correo" />

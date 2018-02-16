@@ -22,6 +22,7 @@ import{ Push, PushToken } from '@ionic/cloud-angular';
 import * as firebase from 'firebase/app';
 import { PerfilPage } from '../pages/perfil/perfil';
 import { Content } from 'ionic-angular'; 
+import { modalHome } from '../pages/modalHome/modalHome'; 
 
 
 export interface PageInterface {

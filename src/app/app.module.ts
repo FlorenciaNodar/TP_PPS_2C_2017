@@ -53,6 +53,15 @@ import { RespuestaEncuestaDetallePage } from '../pages/respuesta-encuesta-detall
 import { Zip } from '@ionic-native/zip';
 import { FCM } from '@ionic-native/fcm';
 import { Camera } from '@ionic-native/camera';
+import { modalHome } from '../pages/modalHome/modalHome'; 
+import { modalEncuesta } from '../pages/modalEncuesta/modalEncuesta'; 
+import { modalAdminProf } from '../pages/modalAdminProf/modalAdminProf'; 
+import { modalGraficos } from '../pages/modalGraficos/modalGraficos'; 
+import { modalListas } from '../pages/modalListas/modalListas'; 
+import { modalQr } from '../pages/modalQr/modalQr'; 
+import { modalAlumnos } from '../pages/modalAlumnos/modalAlumnos'; 
+import { modalLogin } from '../pages/modalLogin/modalLogin'; 
+
 
 
 const cloudSettings: CloudSettings = {
@@ -112,7 +121,15 @@ const cloudSettings: CloudSettings = {
     ListaRespuestaEncuestaHomePage,
     RespuestaEncuestaDetallePage,
     CodigoProfesoresPage,
-    PerfilPage
+    PerfilPage,
+    modalHome,
+    modalAdminProf,
+    modalAlumnos,
+    modalEncuesta,
+    modalGraficos,
+    modalListas,
+    modalQr,
+    modalLogin
   ],
   imports: [
     BrowserModule,
@@ -161,7 +178,15 @@ const cloudSettings: CloudSettings = {
     ListaRespuestaEncuestaHomePage,
     RespuestaEncuestaDetallePage,
     CodigoProfesoresPage,
-    PerfilPage
+    PerfilPage,
+    modalHome,
+    modalAdminProf,
+    modalAlumnos,
+    modalEncuesta,
+    modalGraficos,
+    modalListas,
+    modalQr,
+    modalLogin
   ],
   providers: [
     StatusBar,

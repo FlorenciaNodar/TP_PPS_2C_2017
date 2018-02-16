@@ -6,7 +6,7 @@ import { nuevoAlumno } from '../nuevoAlumno/nuevoAlumno';
 import { editarAlumno } from '../editarAlumno/editarAlumno';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase, FirebaseListObservable } from "angularfire2/database-deprecated";
-
+import { modalAlumnos } from '../modalAlumnos/modalAlumnos';
 
 import firebase from 'firebase';
 
@@ -76,5 +76,9 @@ let modal = this.modalCtrl.create(editarAlumno, {lista:boca});
 modal.present();
 }
 
+modal(){
+  let modal = this.modalCtrl.create(modalAlumnos);
+  modal.present();
+}
 
 }

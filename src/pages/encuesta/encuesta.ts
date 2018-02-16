@@ -6,6 +6,8 @@ import { EncuestaEnviarPage } from '../encuesta-enviar/encuesta-enviar';
 import { EncuestaDataProvider } from '../../providers/encuesta-data/encuesta-data';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { modalEncuesta } from '../modalEncuesta/modalEncuesta';
+
 
 @IonicPage()
 @Component({
@@ -159,6 +161,11 @@ export class EncuestaPage {
     console.log(fecha.getHours);
     console.log(fecha.getMinutes);
 
+  }
+
+  modal(){
+    let modal = this.modalCtrl.create(modalEncuesta);
+    modal.present();
   }
 
 }

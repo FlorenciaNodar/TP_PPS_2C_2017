@@ -13,6 +13,7 @@ import { PerfilPage } from '../perfil/perfil';
 import { CodigoAlumnos } from '../codigoAlumnos/codigoAlumnos';
 import { ToastCmp } from 'ionic-angular/components/toast/toast-component';
 import { DatePipe } from '@angular/common';
+import { modalHome } from '../modalHome/modalHome';
 declare var FCMPlugin;
 @Component({
   selector: 'page-home',
@@ -52,7 +53,7 @@ export class HomePage {
 
    
   }
-  
+
 ionViewDidLoad() {
    this.usuarioActual = this.getUser();
     if (this.usuarioActual == 'alumno@alumno.com') {
@@ -102,7 +103,6 @@ FCMPlugin.onTokenRefresh(function(token){
 
 });    
 }
-
 tokensetup() {
 var promise = new Promise((resolve, reject) => {
   FCMPlugin.getToken(function(token){
@@ -218,6 +218,11 @@ notificationEncuestas(){
       this.storetoken(token);
     })
     let modal = this.modalCtrl.create(AsistenciaModalPage);
+    modal.present();
+  }
+
+  modal(){
+    let modal = this.modalCtrl.create(modalHome);
     modal.present();
   }
     
